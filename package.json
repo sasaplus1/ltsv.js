@@ -9,5 +9,11 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/sasaplus1/ltsv.git"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "devDependencies": {
+    "mocha": "~1.8"
   }
 }
