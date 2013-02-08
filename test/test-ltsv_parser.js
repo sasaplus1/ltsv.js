@@ -6,7 +6,11 @@ suite('ltsvのテスト', function() {
   suite('parse関数のテスト', function() {
 
     test('パースできること', function() {
-      var result = ltsv.parse('aaa:bbb\tccc:ddd\teee:fff');
+      var result = ltsv.parse([
+        'aaa:bbb',
+        'ccc:ddd',
+        'eee:fff'
+      ].join('\t'));
 
       assert.deepEqual(result, {
         aaa: 'bbb',
