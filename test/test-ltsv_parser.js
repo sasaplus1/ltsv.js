@@ -19,6 +19,12 @@ suite('ltsvのテスト', function() {
       }, 'result has any records');
     });
 
+    test('":"を含んでいない場合は例外が投げられること', function() {
+      assert.throws(function() {
+        ltsv.parse('aaa');
+      }, '"aaa" has not field separator');
+    });
+
   });
 
   suite('parseLines関数のテスト', function() {
