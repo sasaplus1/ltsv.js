@@ -1,4 +1,4 @@
-# ltsv
+# ltsv [![Build Status](https://travis-ci.org/sasaplus1/ltsv.png)](https://travis-ci.org/sasaplus1/ltsv)
 
 LTSV parser
 
