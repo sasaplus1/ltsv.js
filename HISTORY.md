@@ -1,3 +1,10 @@
+# 0.3.0 / 2013-02-09
+
+  - added parseLine function
+  - added any format functions
+  - changed parse function
+  - deleted parseLines function
+
 # 0.2.0 / 2013-02-08
 
   - added parseLines function

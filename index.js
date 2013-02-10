@@ -2,4 +2,4 @@
 // https://github.com/sasaplus1/ltsv
 // Released under the MIT License.
 
-module.exports = require('./lib/ltsv_parser');
+module.exports = require('./lib');
