@@ -37,7 +37,7 @@ ltsv.format([
 // 'label1:value1\tlabel2:value2\nlabel1:value1\tlabel2:value2\nlabel1:value1\tlabel2:value2'
 
 ltsv.formatLine({ label1: 'value1', label2: 'value2' });
-//'label1:value1\tlabel2:value2'
+// 'label1:value1\tlabel2:value2'
 ```
 
 ## Functions
@@ -46,45 +46,50 @@ ltsv.formatLine({ label1: 'value1', label2: 'value2' });
 
 * `ltsv` string - LTSV string (multi line)
 
-* `return` Array.<Object> - parsed objects
+* `return` Array.Object - parsed objects
 
-throw SyntaxError if ltsv has no separator (":").
+throw SyntaxError if ltsv records has no separator (":").
 
 ### parseLine(record)
 
-* `ltsv` string - LTSV string
+* `record` string - record string
 
 * `return` Object - parsed object
 
-throw SyntaxError if ltsv has no separator (":").
+throw SyntaxError if record has no separator (":").
 
 ### parseStrict(ltsv)
 
 * `ltsv` string - LTSV string (multi line)
 
-* `return` Array.<Object> - parsed objects
+* `return` Array.Object - parsed objects
 
-throw SyntaxError if ltsv has no separator (":").
+throw SyntaxError if ltsv records has no separator (":").
+
 throw SyntaxError if labels don't match for `/^[0-9A-Za-z_.-]+$/`.
+
 throw SyntaxError if values don't match for `/^[\x01-\x08\x0B\x0C\x0E-\xFF]*$/`.
 
 ### parseLineStrict(record)
 
-* `ltsv` string - LTSV string
+* `record` string - record string
 
 * `return` Object - parsed object
 
-throw SyntaxError if ltsv has no separator (":").
+throw SyntaxError if record has no separator (":").
+
 throw SyntaxError if labels don't match for `/^[0-9A-Za-z_.-]+$/`.
+
 throw SyntaxError if values don't match for `/^[\x01-\x08\x0B\x0C\x0E-\xFF]*$/`.
 
 ### format(ltsvArray)
 
-* `ltsvArray` Array.<Object> - object array
+* `ltsvArray` Array.Object - object array
 
 * `return` string - LTSV formatted string
 
 throw TypeError if ltsvArray is not Array types.
+
 throw TypeError if ltsvArray objects are not Object types.
 
 ### formatLine(recordObj)
@@ -97,13 +102,16 @@ throw TypeError if recordObj is not Object types.
 
 ### formatStrict(ltsvArray)
 
-* `ltsvArray` Array.<Object> - object array
+* `ltsvArray` Array.Object - object array
 
 * `return` string - LTSV formatted string
 
 throw TypeError if ltsvArray is not Array types.
+
 throw TypeError if ltsvArray objects are not Object types.
+
 throw SyntaxError if labels don't match for `/^[0-9A-Za-z_.-]+$/`.
+
 throw SyntaxError if values don't match for `/^[\x01-\x08\x0B\x0C\x0E-\xFF]*$/`.
 
 ### formatLineStrict(recordObj)
@@ -113,7 +121,9 @@ throw SyntaxError if values don't match for `/^[\x01-\x08\x0B\x0C\x0E-\xFF]*$/`.
 * `return` string - LTSV formatted string
 
 throw TypeError if recordObj is not Object types.
+
 throw SyntaxError if labels don't match for `/^[0-9A-Za-z_.-]+$/`.
+
 throw SyntaxError if values don't match for `/^[\x01-\x08\x0B\x0C\x0E-\xFF]*$/`.
 
 ## Test

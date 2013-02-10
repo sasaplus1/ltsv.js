@@ -1,3 +1,7 @@
+# 0.3.1 / 2013-02-09
+
+  - fixed README.md
+
 # 0.3.0 / 2013-02-09
 
   - added parseLine function
