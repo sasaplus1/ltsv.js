@@ -2,7 +2,7 @@
   "name": "ltsv",
   "version": "0.2.0",
   "author": "sasa+1 <sasaplus1@gmail.com>",
-  "description": "LTSV parser",
+  "description": "LTSV parser and formatter",
   "main": "./index.js",
   "license": "MIT",
   "readmeFilename": "README.md",
