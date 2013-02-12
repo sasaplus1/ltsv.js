@@ -18,11 +18,11 @@ suite('ltsv_formatterのテスト', function() {
       ];
 
       assert.deepEqual(ltsv_formatter.format_(array), [
-            'label1:value1\tlabel2:value2\tlabel3:value3',
-            'label1:value1\tlabel2:value2\tlabel3:value3',
-            'label1:value1\tlabel2:value2\tlabel3:value3'
-          ].join('\n'),
-          'format_' +
+        'label1:value1\tlabel2:value2\tlabel3:value3',
+        'label1:value1\tlabel2:value2\tlabel3:value3',
+        'label1:value1\tlabel2:value2\tlabel3:value3'
+      ].join('\n'),
+      'format_' +
           '([{label1: "value1", label2: "value2", label3: "value3"} x 3]) ' +
           'should be returned ' +
           '"label1:value1\\tlabel2:value2\\tlabel3:value3\\n" x 3 - "\\n"');
@@ -125,12 +125,12 @@ suite('ltsv_formatterのテスト', function() {
         assert.doesNotThrow(function() {
           ltsv_formatter.formatLine_(field);
         }, SyntaxError,
-            'formatLine_({"+": ""}) should not be threw SyntaxError');
+        'formatLine_({"+": ""}) should not be threw SyntaxError');
       });
 
       test('値に\\x00,\\x09,\\x0A,\\x0Dを含んでいても生成できること',
           function() {
-            var field = {label: '\x00\x09\x0A\x0D'}
+            var field = {label: '\x00\x09\x0A\x0D'};
 
             assert.strictEqual(ltsv_formatter.formatLine_(field),
                 'label:\x00\x09\x0A\x0D',
@@ -139,7 +139,7 @@ suite('ltsv_formatterのテスト', function() {
             assert.doesNotThrow(function() {
               ltsv_formatter.formatLine_(field);
             }, SyntaxError,
-                'formatLine_({label: "\\x00\\x09\\x0A\\x0D"}) ' +
+            'formatLine_({label: "\\x00\\x09\\x0A\\x0D"}) ' +
                 'should not be threw SyntaxError');
           });
     });
