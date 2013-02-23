@@ -76,7 +76,7 @@ suite('ltsv_to_json_streamのテスト', function() {
           '{"l1":"v1","l2":"v2"}',
           '{"l3":"v3","l4":"v4"}'
         ],
-        'LtsvToJsonStream should be sent data events per ltsv record');
+        'LtsvToJsonStream should be sent data event per ltsv records');
         done();
       });
 
@@ -96,7 +96,7 @@ suite('ltsv_to_json_streamのテスト', function() {
           { l1: 'v1', l2: 'v2' },
           { l3: 'v3', l4: 'v4' }
         ],
-        'LtsvToJsonStream should be sent data events per ltsv record');
+        'LtsvToJsonStream should be sent data event per ltsv records');
         done();
       });
 
@@ -116,7 +116,7 @@ suite('ltsv_to_json_streamのテスト', function() {
           '{"+++":"---"}',
           '{"***":"///"}'
         ],
-        'LtsvToJsonStream should be sent data events per ltsv record');
+        'LtsvToJsonStream should be sent data event per ltsv records');
         done();
       });
 
@@ -137,7 +137,7 @@ suite('ltsv_to_json_streamのテスト', function() {
       });
       ltjs.on('end', function() {
         assert.deepEqual(json, [],
-            'LtsvToJsonStream should be sent data events per ltsv record');
+            'LtsvToJsonStream should be sent data event per ltsv records');
         ltjs.destroy();
       });
       ltjs.on('close', function() {
