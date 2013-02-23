@@ -104,7 +104,7 @@ suite('ltsv_to_json_streamのテスト', function() {
       ltjs.end('\nl3:v3\tl4:v4');
     });
 
-    test('LTSVがparseLine関数で変換されていること', function(done) {
+    test('parseLine関数で変換されていること', function(done) {
       var ltjs = ltsv_to_json_stream.createLtsvToJsonStream(),
           json = [];
 
@@ -124,7 +124,7 @@ suite('ltsv_to_json_streamのテスト', function() {
       ltjs.end('\n***:///');
     });
 
-    test('LTSVがparseLineStrict関数で変換されていること', function(done) {
+    test('parseLineStrict関数で変換されていること', function(done) {
       var ltjs = ltsv_to_json_stream.createLtsvToJsonStream({ strict: true }),
           json = [],
           errorCount = 0;
