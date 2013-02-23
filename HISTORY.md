@@ -1,3 +1,7 @@
+# 0.4.0 / 2013-02-23
+
+  - added createLtsvToJsonStream function
+
 # 0.3.1 / 2013-02-09
 
   - fixed README.md

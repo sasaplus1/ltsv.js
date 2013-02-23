@@ -3,7 +3,7 @@ var assert = require('chai').assert,
 
 suite('ltsv_checkerのテスト', function() {
 
-  suite('checkLabel関数のテスト', function() {
+  suite('isValidLabel関数のテスト', function() {
 
     test('/^[0-9A-Za-z_.-]+$/に一致する文字列はtrueを返すこと', function() {
       var str =
@@ -12,18 +12,18 @@ suite('ltsv_checkerのテスト', function() {
           'abcdefghijklmnopqrstuvwxyz' +
           '_.-';
 
-      assert.isTrue(ltsv_checker.checkLabel(str),
-          'checkLabel("0-9A-Za-z_.-") should be returned true');
+      assert.isTrue(ltsv_checker.isValidLabel(str),
+          'isValidLabel("0-9A-Za-z_.-") should be returned true');
     });
 
     test('空文字はfalseを返すこと', function() {
-      assert.isFalse(ltsv_checker.checkLabel(''),
-          'checkLabel("") should be returned false');
+      assert.isFalse(ltsv_checker.isValidLabel(''),
+          'isValidLabel("") should be returned false');
     });
 
   });
 
-  suite('checkValue関数のテスト', function() {
+  suite('isValidValue関数のテスト', function() {
 
     test('/^[\\x01-\\x08\\x0B\\x0C\\x0E-\\xFF]*$/' +
         'に一致する文字列はtrueを返すこと', function() {
@@ -62,25 +62,25 @@ suite('ltsv_checkerのテスト', function() {
             '\xFC', '\xFD', '\xFE', '\xFF'
           ].join('');
 
-          assert.isTrue(ltsv_checker.checkValue(),
-              'checkValue("\\x01-\\x08\\x0B\\x0C\\x0E-\\xFF") ' +
+          assert.isTrue(ltsv_checker.isValidValue(),
+              'isValidValue("\\x01-\\x08\\x0B\\x0C\\x0E-\\xFF") ' +
               'should be returned true');
         });
 
     test('空文字はtrueを返すこと', function() {
-      assert.isTrue(ltsv_checker.checkValue(''),
-          'checkValue("") should be returned true');
+      assert.isTrue(ltsv_checker.isValidValue(''),
+          'isValidValue("") should be returned true');
     });
 
     test('\\x00,\\x09,\\x0A,\\x0Dはfalseを返すこと', function() {
-      assert.isFalse(ltsv_checker.checkValue('\x00'),
-          'checkValue("\\x00") should be returned false');
-      assert.isFalse(ltsv_checker.checkValue('\x09'),
-          'checkValue("\\x09") should be returned false');
-      assert.isFalse(ltsv_checker.checkValue('\x0A'),
-          'checkValue("\\x0A") should be returned false');
-      assert.isFalse(ltsv_checker.checkValue('\x0D'),
-          'checkValue("\\x0D") should be returned false');
+      assert.isFalse(ltsv_checker.isValidValue('\x00'),
+          'isValidValue("\\x00") should be returned false');
+      assert.isFalse(ltsv_checker.isValidValue('\x09'),
+          'isValidValue("\\x09") should be returned false');
+      assert.isFalse(ltsv_checker.isValidValue('\x0A'),
+          'isValidValue("\\x0A") should be returned false');
+      assert.isFalse(ltsv_checker.isValidValue('\x0D'),
+          'isValidValue("\\x0D") should be returned false');
     });
 
   });
