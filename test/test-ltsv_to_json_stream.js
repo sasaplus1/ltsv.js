@@ -150,6 +150,51 @@ suite('ltsv_to_json_streamのテスト', function() {
       ltjs.end('\n***:///');
     });
 
+    test('最後に改行が挿入されていてもエラーが発生しないこと', function(done) {
+      var ltjs = ltsv_to_json_stream.createLtsvToJsonStream(),
+          json = [];
+
+      ltjs.on('error', function(err) {
+        throw new Error(
+          'LtsvToJsonStream should not be threw error at final blank line');
+      });
+      ltjs.on('data', function(data) {
+        json.push(data);
+      });
+      ltjs.on('end', function() {
+        assert.deepEqual(json, [
+              '{"aaa":"bbb"}',
+              '{"ccc":"ddd"}'
+            ],
+            'LtsvToJsonStream should be sent data event per ltsv records');
+        done();
+      });
+
+      ltjs.write('aaa:bbb\n');
+      ltjs.end('ccc:ddd\n');
+    });
+
+    test('途中に空行が挿入されている場合エラーが発生すること', function(done) {
+      var ltjs = ltsv_to_json_stream.createLtsvToJsonStream(),
+          json = [];
+
+      ltjs.on('error', function(err) {
+        assert.deepEqual(json, [
+              '{"aaa":"bbb"}',
+              '{"ccc":"ddd"}'
+            ],
+            'LtsvToJsonStream should be sent data event per ltsv records');
+        done();
+      });
+      ltjs.on('data', function(data) {
+        json.push(data);
+      });
+
+      ltjs.write('aaa:bbb\n');
+      ltjs.write('ccc:ddd\n\n');
+      ltjs.end('eee:fff\n');
+    });
+
   });
 
 });
