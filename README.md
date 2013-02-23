@@ -51,7 +51,7 @@ var fs = require('fs'),
 // access.log:
 // l1:v1\tl2:v2\n
 // l1:v1\tl2:v2\n
-// l1:v1\tl2:v2
+// l1:v1\tl2:v2\n
 fs.createReadStream('./access.log').pipe(ltjs).pipe(process.stdout);
 // {"l1":"v1","l2":"v2"}{"l1":"v1","l2":"v2"}{"l1":"v1","l2":"v2"}
 ```

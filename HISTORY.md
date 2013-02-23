@@ -1,3 +1,8 @@
+# 0.4.1 / 2013-02-24
+
+  - fixed LtsvToJsonStream
+    - do not throw error if EOF is (CR)LF
+
 # 0.4.0 / 2013-02-23
 
   - added createLtsvToJsonStream function

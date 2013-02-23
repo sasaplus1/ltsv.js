@@ -76,7 +76,7 @@ suite('ltsv_to_json_streamのテスト', function() {
           '{"l1":"v1","l2":"v2"}',
           '{"l3":"v3","l4":"v4"}'
         ],
-        'LtsvToJsonStream should be sent data events per ltsv record');
+        'LtsvToJsonStream should be sent data event per ltsv records');
         done();
       });
 
@@ -96,7 +96,7 @@ suite('ltsv_to_json_streamのテスト', function() {
           { l1: 'v1', l2: 'v2' },
           { l3: 'v3', l4: 'v4' }
         ],
-        'LtsvToJsonStream should be sent data events per ltsv record');
+        'LtsvToJsonStream should be sent data event per ltsv records');
         done();
       });
 
@@ -104,7 +104,7 @@ suite('ltsv_to_json_streamのテスト', function() {
       ltjs.end('\nl3:v3\tl4:v4');
     });
 
-    test('LTSVがparseLine関数で変換されていること', function(done) {
+    test('parseLine関数で変換されていること', function(done) {
       var ltjs = ltsv_to_json_stream.createLtsvToJsonStream(),
           json = [];
 
@@ -116,7 +116,7 @@ suite('ltsv_to_json_streamのテスト', function() {
           '{"+++":"---"}',
           '{"***":"///"}'
         ],
-        'LtsvToJsonStream should be sent data events per ltsv record');
+        'LtsvToJsonStream should be sent data event per ltsv records');
         done();
       });
 
@@ -124,7 +124,7 @@ suite('ltsv_to_json_streamのテスト', function() {
       ltjs.end('\n***:///');
     });
 
-    test('LTSVがparseLineStrict関数で変換されていること', function(done) {
+    test('parseLineStrict関数で変換されていること', function(done) {
       var ltjs = ltsv_to_json_stream.createLtsvToJsonStream({ strict: true }),
           json = [],
           errorCount = 0;
@@ -137,7 +137,7 @@ suite('ltsv_to_json_streamのテスト', function() {
       });
       ltjs.on('end', function() {
         assert.deepEqual(json, [],
-            'LtsvToJsonStream should be sent data events per ltsv record');
+            'LtsvToJsonStream should be sent data event per ltsv records');
         ltjs.destroy();
       });
       ltjs.on('close', function() {
@@ -148,6 +148,51 @@ suite('ltsv_to_json_streamのテスト', function() {
 
       ltjs.write('+++:---');
       ltjs.end('\n***:///');
+    });
+
+    test('最後に改行が挿入されていてもエラーが発生しないこと', function(done) {
+      var ltjs = ltsv_to_json_stream.createLtsvToJsonStream(),
+          json = [];
+
+      ltjs.on('error', function(err) {
+        throw new Error(
+          'LtsvToJsonStream should not be threw error at final blank line');
+      });
+      ltjs.on('data', function(data) {
+        json.push(data);
+      });
+      ltjs.on('end', function() {
+        assert.deepEqual(json, [
+              '{"aaa":"bbb"}',
+              '{"ccc":"ddd"}'
+            ],
+            'LtsvToJsonStream should be sent data event per ltsv records');
+        done();
+      });
+
+      ltjs.write('aaa:bbb\n');
+      ltjs.end('ccc:ddd\n');
+    });
+
+    test('途中に空行が挿入されている場合エラーが発生すること', function(done) {
+      var ltjs = ltsv_to_json_stream.createLtsvToJsonStream(),
+          json = [];
+
+      ltjs.on('error', function(err) {
+        assert.deepEqual(json, [
+              '{"aaa":"bbb"}',
+              '{"ccc":"ddd"}'
+            ],
+            'LtsvToJsonStream should be sent data event per ltsv records');
+        done();
+      });
+      ltjs.on('data', function(data) {
+        json.push(data);
+      });
+
+      ltjs.write('aaa:bbb\n');
+      ltjs.write('ccc:ddd\n\n');
+      ltjs.end('eee:fff\n');
     });
 
   });
