@@ -40,6 +40,22 @@ ltsv.formatLine({ label1: 'value1', label2: 'value2' });
 // 'label1:value1\tlabel2:value2'
 ```
 
+```js
+var fs = require('fs'),
+    ltsv = require('ltsv'),
+    ltjs = ltsv.createLtsvToJsonStream({
+      toObject: false,
+      strict: false
+    });
+
+// access.log:
+// l1:v1\tl2:v2\n
+// l1:v1\tl2:v2\n
+// l1:v1\tl2:v2
+fs.createReadStream('./access.log').pipe(ltjs).pipe(process.stdout);
+// {"l1":"v1","l2":"v2"}{"l1":"v1","l2":"v2"}{"l1":"v1","l2":"v2"}
+```
+
 ## Functions
 
 ### parse(ltsv)
@@ -125,6 +141,26 @@ throw TypeError if recordObj is not Object types.
 throw SyntaxError if labels don't match for `/^[0-9A-Za-z_.-]+$/`.
 
 throw SyntaxError if values don't match for `/^[\x01-\x08\x0B\x0C\x0E-\xFF]*$/`.
+
+### createLtsvToJsonStream(options)
+
+* `options` object - option object
+
+* `return` LtsvToJsonStream - LTSV to JSON stream
+
+#### options
+
+* `toObject` boolean - send object in data event
+
+send object in data event if true.
+
+default value is `false`.
+
+* `strict` boolean - strict parse
+
+use `parseLineStrict()` if true.
+
+default value is `false`.
 
 ## Test
 
