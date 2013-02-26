@@ -1,6 +1,6 @@
 {
   "name": "ltsv",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "description": "LTSV parser and formatter",
   "main": "./index.js",
@@ -16,7 +16,7 @@
     "test": "NODE_ENV=test ./node_modules/.bin/mocha"
   },
   "dependencies": {
-    "split-stream": "0.1.1"
+    "split-stream": "0.1.2"
   },
   "devDependencies": {
     "chai": "~1.5",

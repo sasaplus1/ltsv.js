@@ -1,3 +1,8 @@
+# 0.4.2 / 2013-02-26
+
+  - bug fix
+    - update version of split-stream
+
 # 0.4.1 / 2013-02-24
 
   - fixed LtsvToJsonStream
