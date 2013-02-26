@@ -104,6 +104,24 @@ suite('ltsv_to_json_streamのテスト', function() {
       ltjs.end('\nl3:v3\tl4:v4');
     });
 
+    test('改行がない場合でも変換できること', function(done) {
+      var ltjs = ltsv_to_json_stream.createLtsvToJsonStream(),
+          json = [];
+
+      ltjs.on('data', function(data) {
+        json.push(data);
+      });
+      ltjs.on('end', function() {
+        assert.deepEqual(json, [
+          '{"l1":"v1","l2":"v2"}',
+        ],
+        'LtsvToJsonStream should be sent data event per ltsv records');
+        done();
+      });
+
+      ltjs.end('l1:v1\tl2:v2');
+    });
+
     test('parseLine関数で変換されていること', function(done) {
       var ltjs = ltsv_to_json_stream.createLtsvToJsonStream(),
           json = [];
