@@ -16,7 +16,7 @@
     "test": "NODE_ENV=test ./node_modules/.bin/mocha"
   },
   "dependencies": {
-    "split-stream": "0.1.1"
+    "split-stream": "0.1.2"
   },
   "devDependencies": {
     "chai": "~1.5",
