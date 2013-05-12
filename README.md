@@ -148,6 +148,28 @@ throw SyntaxError if values don't match for `/^[\x01-\x08\x0B\x0C\x0E-\xFF]*$/`.
 
 * `return` LtsvToJsonStream - LTSV to JSON stream
 
+return LtsvToJsonStream2 if over version 0.9.
+
+return LtsvToJsonStream1 if under version 0.8.
+
+### createLtsvToJsonStream2(options)
+
+* `options` object - option object
+
+* `return` LtsvToJsonStream - LTSV to JSON stream
+
+inherited stream2 class.
+
+this function is null if under version 0.8.
+
+### createLtsvToJsonStream1(options)
+
+* `options` object - option object
+
+* `return` LtsvToJsonStream - LTSV to JSON stream
+
+inherited old style stream class.
+
 #### options
 
 * `toObject` boolean - send object in data event

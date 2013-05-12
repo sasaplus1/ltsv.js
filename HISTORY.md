@@ -1,3 +1,7 @@
+# 0.5.0 / 2013-05-12
+
+  - added createLtsvToJsonStream2 function
+
 # 0.4.2 / 2013-02-26
 
   - bug fix
