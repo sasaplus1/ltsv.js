@@ -1,4 +1,7 @@
-# ltsv [![Build Status](https://travis-ci.org/sasaplus1/ltsv.png)](https://travis-ci.org/sasaplus1/ltsv)
+# ltsv
+
+[![Build Status](https://travis-ci.org/sasaplus1/ltsv.png)](https://travis-ci.org/sasaplus1/ltsv)
+[![Dependency Status](https://gemnasium.com/sasaplus1/ltsv.png)](https://gemnasium.com/sasaplus1/ltsv)
 
 [LTSV](http://ltsv.org/) parser and formatter
 
@@ -58,131 +61,89 @@ fs.createReadStream('./access.log').pipe(ltjs).pipe(process.stdout);
 
 ## Functions
 
-### parse(ltsv)
+### parse(text)
 
-* `ltsv` string - LTSV string (multi line)
+* `text` string - LTSV text
+* `return` Object[] - parsed objects
 
-* `return` Array.Object - parsed objects
+split to LTSV records.
+throw SyntaxError if `text` has no separator.
 
-throw SyntaxError if ltsv records has no separator (":").
+### parseLine(line)
 
-### parseLine(record)
-
-* `record` string - record string
-
+* `line` string - LTSV line
 * `return` Object - parsed object
 
-throw SyntaxError if record has no separator (":").
+split to LTSV record.
+throw SyntaxError if `line` has no separator.
 
-### parseStrict(ltsv)
+### parseStrict(text)
 
-* `ltsv` string - LTSV string (multi line)
+* `text` string - LTSV text
+* `return` Object[] - parsed objects
 
-* `return` Array.Object - parsed objects
+split to LTSV records and validate label and value of fields.
+throw SyntaxError if `text` has no separator.
+also throw SyntaxError if `text` has unexpected character.
 
-throw SyntaxError if ltsv records has no separator (":").
+### parseLineStrict(line)
 
-throw SyntaxError if labels don't match for `/^[0-9A-Za-z_.-]+$/`.
-
-throw SyntaxError if values don't match for `/^[\x01-\x08\x0B\x0C\x0E-\xFF]*$/`.
-
-### parseLineStrict(record)
-
-* `record` string - record string
-
+* `line` string - LTSV line
 * `return` Object - parsed object
 
-throw SyntaxError if record has no separator (":").
+split to LTSV record.
+throw SyntaxError if `line` has no separator.
+also throw SyntaxError if `line` has unexpected character.
 
-throw SyntaxError if labels don't match for `/^[0-9A-Za-z_.-]+$/`.
+### format(mixed)
 
-throw SyntaxError if values don't match for `/^[\x01-\x08\x0B\x0C\x0E-\xFF]*$/`.
+* `mixed` Object|Object[] - object or object array
+* `return` string - LTSV text
 
-### format(ltsvArray)
+convert to LTSV text.
+throw TypeError if `mixed` is not an object or array.
 
-* `ltsvArray` Array.Object - object array
+### formatStrict(mixed)
 
-* `return` string - LTSV formatted string
+* `mixed` Object|Object[] - object or object array
+* `return` string - LTSV text
 
-throw TypeError if ltsvArray is not Array types.
+convert to LTSV text.
+throw TypeError if `mixed` is not an object or array.
+also throw SyntaxError if `mixed` has unexpected character.
 
-throw TypeError if ltsvArray objects are not Object types.
-
-### formatLine(recordObj)
-
-* `recordObj` Object - object
-
-* `return` string - LTSV formatted string
-
-throw TypeError if recordObj is not Object types.
-
-### formatStrict(ltsvArray)
-
-* `ltsvArray` Array.Object - object array
-
-* `return` string - LTSV formatted string
-
-throw TypeError if ltsvArray is not Array types.
-
-throw TypeError if ltsvArray objects are not Object types.
-
-throw SyntaxError if labels don't match for `/^[0-9A-Za-z_.-]+$/`.
-
-throw SyntaxError if values don't match for `/^[\x01-\x08\x0B\x0C\x0E-\xFF]*$/`.
-
-### formatLineStrict(recordObj)
-
-* `recordObj` Object - object
-
-* `return` string - LTSV formatted string
-
-throw TypeError if recordObj is not Object types.
-
-throw SyntaxError if labels don't match for `/^[0-9A-Za-z_.-]+$/`.
-
-throw SyntaxError if values don't match for `/^[\x01-\x08\x0B\x0C\x0E-\xFF]*$/`.
-
-### createLtsvToJsonStream(options)
+### createLtsvToJsonStream([options])
 
 * `options` object - option object
-
 * `return` LtsvToJsonStream - LTSV to JSON stream
 
-return LtsvToJsonStream2 if over version 0.9.
-
-return LtsvToJsonStream1 if under version 0.8.
-
-### createLtsvToJsonStream2(options)
-
-* `options` object - option object
-
-* `return` LtsvToJsonStream - LTSV to JSON stream
-
-inherited stream2 class.
-
-this function is null if under version 0.8.
-
-### createLtsvToJsonStream1(options)
-
-* `options` object - option object
-
-* `return` LtsvToJsonStream - LTSV to JSON stream
-
-inherited old style stream class.
+return LtsvToJsonStream instance.
 
 #### options
 
-* `toObject` boolean - send object in data event
+* `encoding` string - StringDecoder encoding
+* `toObject` boolean - flag of send to object
+* `strict` boolean - flag of strict parse
 
-send object in data event if true.
+##### encoding
 
-default value is `false`.
+StringDecoder's encoding.
 
-* `strict` boolean - strict parse
+if not set, use "utf8".
 
-use `parseLineStrict()` if true.
+##### toObject
 
-default value is `false`.
+send object if `toObject` is true.
+otherwise send JSON string.
+
+if not set, `toObject` is false.
+
+##### strict
+
+strict parse if `strict` is true.
+otherwise not strict parse.
+
+if not set, `strict` is false.
 
 ## Test
 
