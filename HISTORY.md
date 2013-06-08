@@ -5,12 +5,12 @@
 # 0.4.2 / 2013-02-26
 
   - bug fix
-    - update version of split-stream
+    - updated version of split-stream
 
 # 0.4.1 / 2013-02-24
 
   - fixed LtsvToJsonStream
-    - do not throw error if EOF is (CR)LF
+    - do not throw error if EOF is CRLF or LF
 
 # 0.4.0 / 2013-02-23
 
@@ -23,7 +23,7 @@
 # 0.3.0 / 2013-02-09
 
   - added parseLine function
-  - added any format functions
+  - added some format functions
   - changed parse function
   - deleted parseLines function
 
