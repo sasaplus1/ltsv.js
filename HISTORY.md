@@ -1,3 +1,7 @@
+# 0.6.0 / 2013-06-08
+
+  - removed old-style stream's LtsvToJsonStream
+
 # 0.5.0 / 2013-05-12
 
   - added createLtsvToJsonStream2 function
