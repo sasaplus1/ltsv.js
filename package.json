@@ -1,6 +1,6 @@
 {
   "name": "ltsv",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "description": "LTSV parser and formatter",
   "main": "./index.js",
@@ -11,11 +11,13 @@
     "url": "https://github.com/sasaplus1/ltsv.git"
   },
   "scripts": {
+    "bench": "node ./bench/index.js",
     "fix": "fixjsstyle --strict --nojsdoc -r ./lib -r ./test ./index.js",
     "lint": "gjslint --strict --nojsdoc -r ./lib -r ./test ./index.js",
     "test": "NODE_ENV=test ./node_modules/.bin/mocha"
   },
   "devDependencies": {
+    "benchmark": "~1.0",
     "chai": "~1.6",
     "mocha": "~1.10"
   },

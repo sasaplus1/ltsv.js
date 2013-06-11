@@ -1,3 +1,7 @@
+# 0.6.1 / 2013-06-11
+
+  - removed export of extra functions
+
 # 0.6.0 / 2013-06-08
 
   - removed old-style stream's LtsvToJsonStream

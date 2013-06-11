@@ -67,6 +67,7 @@ fs.createReadStream('./access.log').pipe(ltjs).pipe(process.stdout);
 * `return` Object[] - parsed objects
 
 split to LTSV records.
+
 throw SyntaxError if `text` has no separator.
 
 ### parseLine(line)
@@ -75,6 +76,7 @@ throw SyntaxError if `text` has no separator.
 * `return` Object - parsed object
 
 split to LTSV record.
+
 throw SyntaxError if `line` has no separator.
 
 ### parseStrict(text)
@@ -83,6 +85,7 @@ throw SyntaxError if `line` has no separator.
 * `return` Object[] - parsed objects
 
 split to LTSV records and validate label and value of fields.
+
 throw SyntaxError if `text` has no separator.
 also throw SyntaxError if `text` has unexpected character.
 
@@ -92,6 +95,7 @@ also throw SyntaxError if `text` has unexpected character.
 * `return` Object - parsed object
 
 split to LTSV record.
+
 throw SyntaxError if `line` has no separator.
 also throw SyntaxError if `line` has unexpected character.
 
@@ -101,6 +105,7 @@ also throw SyntaxError if `line` has unexpected character.
 * `return` string - LTSV text
 
 convert to LTSV text.
+
 throw TypeError if `mixed` is not an object or array.
 
 ### formatStrict(mixed)
@@ -109,6 +114,7 @@ throw TypeError if `mixed` is not an object or array.
 * `return` string - LTSV text
 
 convert to LTSV text.
+
 throw TypeError if `mixed` is not an object or array.
 also throw SyntaxError if `mixed` has unexpected character.
 
