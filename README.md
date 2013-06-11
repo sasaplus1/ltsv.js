@@ -39,7 +39,7 @@ ltsv.format([
 ]);
 // 'label1:value1\tlabel2:value2\nlabel1:value1\tlabel2:value2\nlabel1:value1\tlabel2:value2'
 
-ltsv.formatLine({ label1: 'value1', label2: 'value2' });
+ltsv.format({ label1: 'value1', label2: 'value2' });
 // 'label1:value1\tlabel2:value2'
 ```
 
