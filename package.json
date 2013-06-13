@@ -19,7 +19,7 @@
   "devDependencies": {
     "benchmark": "~1.0",
     "chai": "~1.6",
-    "mocha": "~1.10"
+    "mocha": "~1.11"
   },
   "engines": {
     "node": ">0.9"
