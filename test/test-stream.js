@@ -1,42 +1,34 @@
 var fs = require('fs'),
     path = require('path'),
-    assert = require('chai').assert,
+    expect = require('expect.js'),
     stream = require('../lib/stream');
 
-suite('stream', function() {
+describe('stream', function() {
 
-  suite('#createLtsvToJsonStream()', function() {
+  describe('#createLtsvToJsonStream()', function() {
 
-    test('can create instance if not has parameter', function() {
+    it('should create instance if not has parameter', function() {
       var ltjs = stream.createLtsvToJsonStream();
 
-      assert.isFalse(
-          ltjs.toObject_,
-          'toObject_ should be false');
-      assert.isFalse(
-          ltjs.isStrict_,
-          'isStrict_ should be false');
+      expect(ltjs.toObject_).to.be(false);
+      expect(ltjs.isStrict_).to.be(false);
     });
 
-    test('can create instance if has parameter', function() {
+    it('should create instance if has parameter', function() {
       var ltjs = stream.createLtsvToJsonStream({
         toObject: true,
         strict: true
       });
 
-      assert.isTrue(
-          ltjs.toObject_,
-          'toObject_ should be true');
-      assert.isTrue(
-          ltjs.isStrict_,
-          'isStrict_ should be true');
+      expect(ltjs.toObject_).to.be(true);
+      expect(ltjs.isStrict_).to.be(true);
     });
 
   });
 
-  suite('#write() and #end()', function() {
+  describe('#write() and #end()', function() {
 
-    test('can convert to JSON from LTSV', function(done) {
+    it('should convert to JSON from LTSV', function(done) {
       var ltjs = stream.createLtsvToJsonStream(),
           json = [];
 
@@ -48,13 +40,10 @@ suite('stream', function() {
         }
       });
       ltjs.once('end', function() {
-        assert.deepEqual(
-            json,
-            [
-              '{"label1":"value1","label2":"value2"}',
-              '{"label3":"value3","label4":"value4"}'
-            ],
-            'LtsvToJsonStream should be sent record');
+        expect(json).to.eql([
+          '{"label1":"value1","label2":"value2"}',
+          '{"label3":"value3","label4":"value4"}'
+        ]);
         done();
       });
 
@@ -62,7 +51,7 @@ suite('stream', function() {
       ltjs.end('\nlabel3:value3\tlabel4:value4');
     });
 
-    test('can convert to JSON if LTSV has empty line of end', function(done) {
+    it('should convert to JSON if LTSV has empty line of end', function(done) {
       var ltjs = stream.createLtsvToJsonStream(),
           json = [];
 
@@ -74,13 +63,10 @@ suite('stream', function() {
         }
       });
       ltjs.once('end', function() {
-        assert.deepEqual(
-            json,
-            [
-              '{"label1":"value1","label2":"value2"}',
-              '{"label3":"value3","label4":"value4"}'
-            ],
-            'LtsvToJsonStream should be sent record');
+        expect(json).to.eql([
+          '{"label1":"value1","label2":"value2"}',
+          '{"label3":"value3","label4":"value4"}'
+        ]);
         done();
       });
 
@@ -88,22 +74,20 @@ suite('stream', function() {
       ltjs.end('\nlabel3:value3\tlabel4:value4\n');
     });
 
-    test('throw error if illegal LTSV', function(done) {
+    it('should throw error if illegal LTSV', function(done) {
       var ltjs = stream.createLtsvToJsonStream();
 
       ltjs.once('error', function(err) {
-        assert.isNotNull(
-            err,
-            'err should not be null');
+        expect(err).not.to.be(null);
         done();
       });
 
       ltjs.end('\t');
     });
 
-    suite('toObject mode', function() {
+    describe('toObject mode', function() {
 
-      test('can convert to Object from LTSV', function(done) {
+      it('should convert to Object from LTSV', function(done) {
         var ltjs = stream.createLtsvToJsonStream({ toObject: true }),
             json = [];
 
@@ -115,13 +99,10 @@ suite('stream', function() {
           }
         });
         ltjs.once('end', function() {
-          assert.deepEqual(
-              json,
-              [
-                {label1: 'value1', label2: 'value2'},
-                {label3: 'value3', label4: 'value4'}
-              ],
-              'LtsvToJsonStream should be sent record');
+          expect(json).to.eql([
+            { label1: 'value1', label2: 'value2' },
+            { label3: 'value3', label4: 'value4' }
+          ]);
           done();
         });
 
@@ -131,15 +112,13 @@ suite('stream', function() {
 
     });
 
-    suite('isStrict mode', function() {
+    describe('isStrict mode', function() {
 
-      test('throw error if LTSV has unexpected character', function(done) {
+      it('should throw error if LTSV has unexpected character', function(done) {
         var ltjs = stream.createLtsvToJsonStream({ strict: true });
 
         ltjs.once('error', function(err) {
-          assert.isNotNull(
-              err,
-              'err should not be null');
+          expect(err).not.to.be(null);
           done();
         });
 
@@ -150,19 +129,19 @@ suite('stream', function() {
 
   });
 
-  suite('#pipe()', function() {
+  describe('#pipe()', function() {
 
     var ltjs;
 
-    setup(function() {
+    beforeEach(function() {
       ltjs = stream.createLtsvToJsonStream();
     });
 
-    teardown(function() {
+    afterEach(function() {
       ltjs = null;
     });
 
-    test('convert 1 line LTSV log', function(done) {
+    it('should convert LTSV log of 1 line', function(done) {
       var json = [];
 
       ltjs.on('readable', function() {
@@ -173,12 +152,9 @@ suite('stream', function() {
         }
       });
       ltjs.once('end', function() {
-        assert.deepEqual(
-            json,
-            [
-              '{"aaa":"bbb","ccc":"ddd","eee":"fff"}'
-            ],
-            'LtsvToJsonStream should be sent record');
+        expect(json).to.eql([
+          '{"aaa":"bbb","ccc":"ddd","eee":"fff"}'
+        ]);
         done();
       });
 
@@ -186,7 +162,7 @@ suite('stream', function() {
           path.join(__dirname, './log/valid-1.ltsv')).pipe(ltjs);
     });
 
-    test('convert 3 line LTSV log', function(done) {
+    it('should convert LTSV log of 3 line', function(done) {
       var json = [];
 
       ltjs.on('readable', function() {
@@ -197,14 +173,11 @@ suite('stream', function() {
         }
       });
       ltjs.once('end', function() {
-        assert.deepEqual(
-            json,
-            [
-              '{"aaa":"bbb","ccc":"ddd","eee":"fff"}',
-              '{"aaa":"bbb","ccc":"ddd","eee":"fff"}',
-              '{"aaa":"bbb","ccc":"ddd","eee":"fff"}'
-            ],
-            'LtsvToJsonStream should be sent record');
+        expect(json).to.eql([
+          '{"aaa":"bbb","ccc":"ddd","eee":"fff"}',
+          '{"aaa":"bbb","ccc":"ddd","eee":"fff"}',
+          '{"aaa":"bbb","ccc":"ddd","eee":"fff"}'
+        ]);
         done();
       });
 
@@ -212,12 +185,10 @@ suite('stream', function() {
           path.join(__dirname, './log/valid-3.ltsv')).pipe(ltjs);
     });
 
-    test('throw error if invalid LTSV log', function(done) {
+    it('should throw error if invalid LTSV log', function(done) {
       // XXX: why fail when use ltjs.once?
       ltjs.on('error', function(err) {
-        assert.isNotNull(
-            err,
-            'err should not be null');
+        expect(err).not.to.be(null);
         done();
       });
 
@@ -227,52 +198,41 @@ suite('stream', function() {
 
   });
 
-  suite('#splitToLines_()', function() {
+  describe('#splitToLines_()', function() {
 
-    test('can split to lines', function() {
+    it('should split to lines', function() {
       var ltjs = stream.createLtsvToJsonStream();
 
-      assert.deepEqual(
-          ltjs.splitToLines_(''),
-          {
-            lines: [],
-            tail: ''
-          },
-          'splitToLines_("") should not be splitted');
-      assert.deepEqual(
-          ltjs.splitToLines_('line'),
-          {
-            lines: [],
-            tail: 'line'
-          },
-          'splitToLines_("line") should not be splitted');
-      assert.deepEqual(
-          ltjs.splitToLines_('1\n2\n3\n4\n5\n'),
-          {
-            lines: [
-              '1', '2', '3', '4', '5'
-            ],
-            tail: ''
-          },
-          'splitToLines_("1\n2\n3\n4\n5\n") should be splitted to lines');
-      assert.deepEqual(
-          ltjs.splitToLines_('\n\n\n'),
-          {
-            lines: [
-              '', '', ''
-            ],
-            tail: ''
-          },
-          'splitToLines_("\n\n\n") should be splitted to lines');
-      assert.deepEqual(
-          ltjs.splitToLines_('line\nend'),
-          {
-            lines: [
-              'line'
-            ],
-            tail: 'end'
-          },
-          'splitToLines_("line\nend") should be splitted to lines');
+      expect(ltjs.splitToLines_('')).to.eql({
+        lines: [],
+        tail: ''
+      });
+
+      expect(ltjs.splitToLines_('line')).to.eql({
+        lines: [],
+        tail: 'line'
+      });
+
+      expect(ltjs.splitToLines_('1\n2\n3\n4\n5\n')).to.eql({
+        lines: [
+          '1', '2', '3', '4', '5'
+        ],
+        tail: ''
+      });
+
+      expect(ltjs.splitToLines_('\n\n\n')).to.eql({
+        lines: [
+          '', '', ''
+        ],
+        tail: ''
+      });
+
+      expect(ltjs.splitToLines_('line\nend')).to.eql({
+        lines: [
+          'line'
+        ],
+        tail: 'end'
+      });
     });
 
   });

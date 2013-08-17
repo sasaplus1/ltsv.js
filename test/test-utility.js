@@ -1,42 +1,21 @@
-var assert = require('chai').assert,
+var expect = require('expect.js'),
     utility = require('../lib/utility');
 
-suite('utility', function() {
+describe('utility', function() {
 
-  suite('#getTypeName()', function() {
+  describe('#getTypeName()', function() {
 
-    test('return typeof value', function() {
-      assert.strictEqual(
-          utility.getTypeName(1),
-          'number',
-          'getTypeName(1) should be returned "number"');
-      assert.strictEqual(
-          utility.getTypeName('a'),
-          'string',
-          'getTypeName("a") should be returned "string"');
-      assert.strictEqual(
-          utility.getTypeName(true),
-          'boolean',
-          'getTypeName(true) should be returned "boolean"');
-      assert.strictEqual(
-          utility.getTypeName(void 0),
-          'undefined',
-          'getTypeName(undefined) should be returned "undefined"');
-      assert.strictEqual(
-          utility.getTypeName(function() {}),
-          'function',
-          'getTypeName(function() {}) should be returned "function"');
-      assert.strictEqual(
-          utility.getTypeName({}),
-          'object',
-          'getTypeName({}) should be returned "object"');
+    it('should return typeof value', function() {
+      expect(utility.getTypeName(1)).to.be('number');
+      expect(utility.getTypeName('a')).to.be('string');
+      expect(utility.getTypeName(true)).to.be('boolean');
+      expect(utility.getTypeName(undefined)).to.be('undefined');
+      expect(utility.getTypeName(function() {})).to.be('function');
+      expect(utility.getTypeName({})).to.be('object');
     });
 
-    test('return "null" if parameter is null', function() {
-      assert.strictEqual(
-          utility.getTypeName(null),
-          'null',
-          'getTypeName(null) should be returned "null"');
+    it('should return "null" if parameter is null', function() {
+      expect(utility.getTypeName(null)).to.be('null');
     });
 
   });

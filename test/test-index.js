@@ -1,26 +1,22 @@
-var assert = require('chai').assert,
+var expect = require('expect.js'),
     ltsv = require('../');
 
-suite('index', function() {
+describe('index', function() {
 
-  test('not exports other functions', function() {
+  it('should not export extra functions', function() {
     var parser = require('../lib/parser'),
         formatter = require('../lib/formatter'),
-        stream = require('../lib/stream'),
-        ltsvMock = {
-          parse: parser.parse,
-          parseLine: parser.parseLine,
-          parseStrict: parser.parseStrict,
-          parseLineStrict: parser.parseLineStrict,
-          format: formatter.format,
-          formatStrict: formatter.formatStrict,
-          createLtsvToJsonStream: stream.createLtsvToJsonStream
-        };
+        stream = require('../lib/stream');
 
-    assert.deepEqual(
-        ltsv,
-        ltsvMock,
-        'ltsv should not be export other functions');
+    expect(ltsv).to.eql({
+      parse: parser.parse,
+      parseLine: parser.parseLine,
+      parseStrict: parser.parseStrict,
+      parseLineStrict: parser.parseLineStrict,
+      format: formatter.format,
+      formatStrict: formatter.formatStrict,
+      createLtsvToJsonStream: stream.createLtsvToJsonStream
+    });
   });
 
 });
