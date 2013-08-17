@@ -38,7 +38,7 @@ describe('formatter', function() {
       expect(f('a')).to.throwError(fn);
       expect(f(true)).to.throwError(fn);
       expect(f(null)).to.throwError(fn);
-      expect(f(undefined)).to.throwError(fn);
+      expect(f(void 0)).to.throwError(fn);
       expect(f(function() {})).to.throwError(fn);
     });
 
@@ -79,7 +79,7 @@ describe('formatter', function() {
       expect(f('a')).to.throwError(fn);
       expect(f(true)).to.throwError(fn);
       expect(f(null)).to.throwError(fn);
-      expect(f(undefined)).to.throwError(fn);
+      expect(f(void 0)).to.throwError(fn);
       expect(f(function() {})).to.throwError(fn);
     });
 
@@ -158,7 +158,7 @@ describe('formatter', function() {
       expect(f('a')).to.throwError(fn);
       expect(f(true)).to.throwError(fn);
       expect(f(null)).to.throwError(fn);
-      expect(f(undefined)).to.throwError(fn);
+      expect(f(void 0)).to.throwError(fn);
       expect(f(function() {})).to.throwError(fn);
     });
 
@@ -190,7 +190,7 @@ describe('formatter', function() {
       expect(f('a')).to.throwError(fn);
       expect(f(true)).to.throwError(fn);
       expect(f(null)).to.throwError(fn);
-      expect(f(undefined)).to.throwError(fn);
+      expect(f(void 0)).to.throwError(fn);
       expect(f(function() {})).to.throwError(fn);
     });
 
