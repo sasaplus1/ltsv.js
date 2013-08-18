@@ -1,6 +1,8 @@
+ltsv.min.js
 npm-debug.log
 .DS_Store
 .*.swp
 .travis.yml
 .git*
 bench/
+bower_components/

@@ -1,0 +1,14 @@
+{
+  "name": "ltsv",
+  "version": "0.6.1",
+  "main": "./ltsv.min.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "devDependencies": {
+    "expect": "~0.2",
+    "mocha": "~1.12"
+  }
+}
