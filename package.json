@@ -12,9 +12,11 @@
   },
   "scripts": {
     "bench": "node ./bench/index.js",
+    "bower": "bower install",
     "fix": "fixjsstyle --strict --nojsdoc -r ./lib -r ./test ./index.js",
     "lint": "gjslint --strict --nojsdoc -r ./lib -r ./test ./index.js",
-    "test": "NODE_ENV=test mocha"
+    "test": "NODE_ENV=test mocha",
+    "testem": "testem ci"
   },
   "devDependencies": {
     "benchmark": "~1.0",
