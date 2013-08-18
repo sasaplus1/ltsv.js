@@ -1,0 +1,7 @@
+{
+  "test_page": "./test/test-ltsv.html",
+  "launch_in_ci": [
+    "Firefox",
+    "PhantomJS"
+  ]
+}
