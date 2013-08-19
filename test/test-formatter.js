@@ -249,4 +249,21 @@ describe('formatter', function() {
 
   });
 
+  describe('#isArray_()', function() {
+
+    it('should return true if parameter is an array', function() {
+      expect(formatter.isArray_([])).to.be(true);
+    });
+
+    it('should return false if parameter is not an array', function() {
+      expect(formatter.isArray_(1)).to.be(false);
+      expect(formatter.isArray_('a')).to.be(false);
+      expect(formatter.isArray_(true)).to.be(false);
+      expect(formatter.isArray_(void 0)).to.be(false);
+      expect(formatter.isArray_(function() {})).to.be(false);
+      expect(formatter.isArray_({})).to.be(false);
+    });
+
+  });
+
 });
