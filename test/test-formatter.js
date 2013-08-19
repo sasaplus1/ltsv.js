@@ -232,4 +232,21 @@ describe('formatter', function() {
 
   });
 
+  describe('#getType_()', function() {
+
+    it('should return typeof value', function() {
+      expect(formatter.getType_(1)).to.be('number');
+      expect(formatter.getType_('a')).to.be('string');
+      expect(formatter.getType_(true)).to.be('boolean');
+      expect(formatter.getType_(void 0)).to.be('undefined');
+      expect(formatter.getType_(function() {})).to.be('function');
+      expect(formatter.getType_({})).to.be('object');
+    });
+
+    it('should return "null" if parameter is null', function() {
+      expect(formatter.getType_(null)).to.be('null');
+    });
+
+  });
+
 });
