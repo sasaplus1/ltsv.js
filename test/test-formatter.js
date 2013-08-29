@@ -1,5 +1,12 @@
-var expect = require('expect.js'),
-    formatter = require('../lib/formatter');
+var expect, formatter;
+
+if (typeof module !== 'undefined') {
+  expect = require('expect.js');
+  formatter = require('../').formatter_;
+} else {
+  expect = this.expect;
+  formatter = this.ltsv.formatter_;
+}
 
 describe('formatter', function() {
 
@@ -245,23 +252,6 @@ describe('formatter', function() {
 
     it('should return "null" if parameter is null', function() {
       expect(formatter.getType_(null)).to.be('null');
-    });
-
-  });
-
-  describe('#isArray_()', function() {
-
-    it('should return true if parameter is an array', function() {
-      expect(formatter.isArray_([])).to.be(true);
-    });
-
-    it('should return false if parameter is not an array', function() {
-      expect(formatter.isArray_(1)).to.be(false);
-      expect(formatter.isArray_('a')).to.be(false);
-      expect(formatter.isArray_(true)).to.be(false);
-      expect(formatter.isArray_(void 0)).to.be(false);
-      expect(formatter.isArray_(function() {})).to.be(false);
-      expect(formatter.isArray_({})).to.be(false);
     });
 
   });

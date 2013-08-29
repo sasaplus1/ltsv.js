@@ -1,5 +1,12 @@
-var expect = require('expect.js'),
-    parser = require('../lib/parser');
+var expect, parser;
+
+if (typeof module !== 'undefined') {
+  expect = require('expect.js'),
+  parser = require('../').parser_;
+} else {
+  expect = this.expect;
+  parser = this.ltsv.parser_;
+}
 
 describe('parser', function() {
 

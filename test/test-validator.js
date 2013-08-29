@@ -1,5 +1,12 @@
-var expect = require('expect.js'),
-    validator = require('../lib/validator');
+var expect, validator;
+
+if (typeof module !== 'undefined') {
+  expect = require('expect.js');
+  validator = require('../').validator_;
+} else {
+  expect = this.expect;
+  validator = this.ltsv.validator_;
+}
 
 describe('validator', function() {
 

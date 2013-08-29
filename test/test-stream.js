@@ -1,7 +1,7 @@
 var fs = require('fs'),
     path = require('path'),
     expect = require('expect.js'),
-    stream = require('../lib/stream');
+    stream = require('../');
 
 describe('stream', function() {
 

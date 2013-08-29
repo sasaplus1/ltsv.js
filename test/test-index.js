@@ -1,22 +1,30 @@
-var expect = require('expect.js'),
-    ltsv = require('../');
+var expect, ltsv;
+
+if (typeof module !== 'undefined') {
+  expect = require('expect.js');
+  ltsv = require('../');
+} else {
+  expect = this.expect;
+  ltsv = this.ltsv;
+}
 
 describe('index', function() {
 
   it('should not export extra functions', function() {
-    var parser = require('../lib/parser'),
-        formatter = require('../lib/formatter'),
-        stream = require('../lib/stream');
+    var isNode = (typeof module !== 'undefined');
 
-    expect(ltsv).to.eql({
-      parse: parser.parse,
-      parseLine: parser.parseLine,
-      parseStrict: parser.parseStrict,
-      parseLineStrict: parser.parseLineStrict,
-      format: formatter.format,
-      formatStrict: formatter.formatStrict,
-      createLtsvToJsonStream: stream.createLtsvToJsonStream
-    });
+    expect(ltsv).to.have.keys([
+      'parse',
+      'parseLine',
+      'parseStrict',
+      'parseLineStrict',
+      'format',
+      'formatStrict'
+    ]);
+
+    if (isNode) {
+      expect(ltsv).to.have.key('createLtsvToJsonStream');
+    }
   });
 
 });
