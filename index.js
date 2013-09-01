@@ -5,7 +5,5 @@
  */
 
 
-/**
- * export lib/index.js
- */
-module.exports = require('./lib');
+/** export ./lib/ltsv.js. */
+module.exports = require('./lib/ltsv');
