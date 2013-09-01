@@ -17,7 +17,8 @@
     "lint": "gjslint --strict --nojsdoc -r ./lib -r ./test ./index.js",
     "mini": "uglifyjs ./lib/ltsv.js --comments -cm -d 'module=void 0' -r ltsv -o ./ltsv.min.js",
     "test": "NODE_ENV=test mocha",
-    "testem": "testem ci"
+    "testem": "testem ci",
+    "travis": "testem ci --launch Firefox,PhantomJS"
   },
   "devDependencies": {
     "benchmark": "~1.0",
