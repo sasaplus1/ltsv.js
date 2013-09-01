@@ -53,11 +53,11 @@ describe('validator', function() {
         '\xEC', '\xED', '\xEE', '\xEF', '\xF0', '\xF1', '\xF2', '\xF3',
         '\xF4', '\xF5', '\xF6', '\xF7', '\xF8', '\xF9', '\xFA', '\xFB',
         '\xFC', '\xFD', '\xFE', '\xFF'
-      ];
+      ], i, len;
 
-      unexpectedCharacters.forEach(function(character) {
-        expect(validator.isValidLabel(character)).to.be(false);
-      });
+      for (i = 0, len = unexpectedCharacters.length; i < len; ++i) {
+        expect(validator.isValidLabel(unexpectedCharacters[i])).to.be(false);
+      }
     });
 
   });
