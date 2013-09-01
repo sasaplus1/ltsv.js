@@ -28,11 +28,11 @@ $ bower install ltsv
 ```js
 var ltsv = require('ltsv');
 
-ltsv.parse([
-  'label1:value1\tlabel2:value2',
-  'label1:value1\tlabel2:value2',
+ltsv.parse(
+  'label1:value1\tlabel2:value2\n' +
+  'label1:value1\tlabel2:value2\n' +
   'label1:value1\tlabel2:value2'
-].join('\n'));
+);
 // [ { label1: 'value1', label2: 'value2' },
 //   { label1: 'value1', label2: 'value2' },
 //   { label1: 'value1', label2: 'value2' } ]
