@@ -1,14 +1,26 @@
 # ltsv
 
-[![Build Status](https://travis-ci.org/sasaplus1/ltsv.png)](https://travis-ci.org/sasaplus1/ltsv)
-[![Dependency Status](https://gemnasium.com/sasaplus1/ltsv.png)](https://gemnasium.com/sasaplus1/ltsv)
+[![Build Status](https://travis-ci.org/sasaplus1/ltsv.js.png)](https://travis-ci.org/sasaplus1/ltsv.js)
+[![Dependency Status](https://gemnasium.com/sasaplus1/ltsv.js.png)](https://gemnasium.com/sasaplus1/ltsv.js)
 
 [LTSV](http://ltsv.org/) parser and formatter
 
 ## Installation
 
+### node.js
+
 ```sh
 $ npm install ltsv
+```
+
+### bower
+
+```sh
+$ bower install ltsv
+```
+
+```html
+<script src="ltsv.min.js"></script>
 ```
 
 ## Usage
@@ -39,7 +51,7 @@ ltsv.format([
 ]);
 // 'label1:value1\tlabel2:value2\nlabel1:value1\tlabel2:value2\nlabel1:value1\tlabel2:value2'
 
-ltsv.formatLine({ label1: 'value1', label2: 'value2' });
+ltsv.format({ label1: 'value1', label2: 'value2' });
 // 'label1:value1\tlabel2:value2'
 ```
 
@@ -123,7 +135,7 @@ also throw SyntaxError if `mixed` has unexpected character.
 * `options` object - option object
 * `return` LtsvToJsonStream - LTSV to JSON stream
 
-return LtsvToJsonStream instance.
+return LtsvToJsonStream instance. cannot use by browser.
 
 #### options
 
@@ -153,9 +165,19 @@ if not set, `strict` is false.
 
 ## Test
 
+### node.js
+
 ```sh
 $ npm install
 $ npm test
+```
+
+### browser
+
+```sh
+$ npm install
+$ npm run-script bower
+$ npm run-script testem
 ```
 
 ## License

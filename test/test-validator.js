@@ -1,30 +1,34 @@
-var assert = require('chai').assert,
-    validator = require('../lib/validator');
+var expect, validator;
 
-suite('validator', function() {
+if (typeof module !== 'undefined') {
+  expect = require('expect.js');
+  validator = require('../').validator_;
+} else {
+  expect = this.expect;
+  validator = this.ltsv.validator_;
+}
 
-  suite('#isValidLabel()', function() {
+describe('validator', function() {
 
-    test('return true if parameter match a /^[0-9A-Za-z_.-]+$/', function() {
-      var str =
-          '0123456789' +
-          'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
-          'abcdefghijklmnopqrstuvwxyz' +
-          '_.-';
+  describe('#isValidLabel()', function() {
 
-      assert.isTrue(
-          validator.isValidLabel(str),
-          'isValidLabel("' + str + '") should be returned true');
+    it('should return true if matching a /^[0-9A-Za-z_.-]+$/', function() {
+      expect(
+          validator.isValidLabel(
+              '0123456789' +
+              'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
+              'abcdefghijklmnopqrstuvwxyz' +
+              '_.-'
+          )
+      ).to.be(true);
     });
 
-    test('return false if parameter is empty string', function() {
-      assert.isFalse(
-          validator.isValidLabel(''),
-          'isValidLabel("") should be returned false');
+    it('should return false if parameter is empty string', function() {
+      expect(validator.isValidLabel('')).to.be(false);
     });
 
-    test('return false if parameter is unexpected character', function() {
-      var str = [
+    it('should return false if parameter is unexpected character', function() {
+      var unexpectedCharacters = [
         '\x00', '\x01', '\x02', '\x03', '\x04', '\x05', '\x06', '\x07',
         '\x08', '\x0B', '\x0C', '\x0E', '\x0F', '\x10', '\x11', '\x12',
         '\x13', '\x14', '\x15', '\x16', '\x17', '\x18', '\x19', '\x1A',
@@ -49,24 +53,21 @@ suite('validator', function() {
         '\xEC', '\xED', '\xEE', '\xEF', '\xF0', '\xF1', '\xF2', '\xF3',
         '\xF4', '\xF5', '\xF6', '\xF7', '\xF8', '\xF9', '\xFA', '\xFB',
         '\xFC', '\xFD', '\xFE', '\xFF'
-      ];
+      ], i, len;
 
-      str.forEach(function(str) {
-        assert.isFalse(
-            validator.isValidLabel(str),
-            'isValidValue(' +
-                '"\\x00-\\x2C\\x2F\\x3A-\\x40\\x5B-\\x5E\\x60\\x7B-\\xFF"' +
-                ') should be returned false');
-      });
+      for (i = 0, len = unexpectedCharacters.length; i < len; ++i) {
+        expect(validator.isValidLabel(unexpectedCharacters[i])).to.be(false);
+      }
     });
 
   });
 
-  suite('#isValidValue()', function() {
+  describe('#isValidValue()', function() {
 
-    test('return true if match a /^[\\x01-\\x08\\x0B\\x0C\\x0E-\\xFF]*$/',
+    it('should return true if matching a ' +
+        '/^[\\x01-\\x08\\x0B\\x0C\\x0E-\\xFF]*$/',
         function() {
-          var str = [
+          expect(validator.isValidValue([
             '\x01', '\x02', '\x03', '\x04', '\x05', '\x06', '\x07', '\x08',
             '\x0B', '\x0C', '\x0E', '\x0F', '\x10', '\x11', '\x12', '\x13',
             '\x14', '\x15', '\x16', '\x17', '\x18', '\x19', '\x1A', '\x1B',
@@ -99,35 +100,19 @@ suite('validator', function() {
             '\xEC', '\xED', '\xEE', '\xEF', '\xF0', '\xF1', '\xF2', '\xF3',
             '\xF4', '\xF5', '\xF6', '\xF7', '\xF8', '\xF9', '\xFA', '\xFB',
             '\xFC', '\xFD', '\xFE', '\xFF'
-          ].join('');
-
-          assert.isTrue(
-              validator.isValidValue(str),
-              'isValidValue("\\x01-\\x08\\x0B\\x0C\\x0E-\\xFF") ' +
-              'should be returned true');
+          ].join(''))).to.be(true);
         });
 
-    test('return true if parameter is empty string', function() {
-      assert.isTrue(
-          validator.isValidValue(''),
-          'isValidValue("") should be returned true');
+    it('should return true if parameter is empty string', function() {
+      expect(validator.isValidValue('')).to.be(true);
     });
 
-    test('return false if parameter is unexpected character',
-        function() {
-          assert.isFalse(
-              validator.isValidValue('\x00'),
-              'isValidValue("\\x00") should be returned false');
-          assert.isFalse(
-              validator.isValidValue('\x09'),
-              'isValidValue("\\x09") should be returned false');
-          assert.isFalse(
-              validator.isValidValue('\x0A'),
-              'isValidValue("\\x0A") should be returned false');
-          assert.isFalse(
-              validator.isValidValue('\x0D'),
-              'isValidValue("\\x0D") should be returned false');
-        });
+    it('should return false if parameter is unexpected character', function() {
+      expect(validator.isValidValue('\x00')).to.be(false);
+      expect(validator.isValidValue('\x09')).to.be(false);
+      expect(validator.isValidValue('\x0A')).to.be(false);
+      expect(validator.isValidValue('\x0D')).to.be(false);
+    });
 
   });
 

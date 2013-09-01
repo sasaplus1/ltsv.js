@@ -1,6 +1,6 @@
 {
   "name": "ltsv",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "description": "LTSV parser and formatter",
   "main": "./index.js",
@@ -8,18 +8,24 @@
   "readmeFilename": "README.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sasaplus1/ltsv.git"
+    "url": "git://github.com/sasaplus1/ltsv.js.git"
   },
   "scripts": {
     "bench": "node ./bench/index.js",
+    "bower": "bower install",
     "fix": "fixjsstyle --strict --nojsdoc -r ./lib -r ./test ./index.js",
     "lint": "gjslint --strict --nojsdoc -r ./lib -r ./test ./index.js",
-    "test": "NODE_ENV=test ./node_modules/.bin/mocha"
+    "mini": "uglifyjs ./lib/ltsv.js --comments -cm -d 'module=void 0' -r ltsv -o ./ltsv.min.js",
+    "test": "NODE_ENV=test mocha",
+    "testem": "testem ci"
   },
   "devDependencies": {
     "benchmark": "~1.0",
-    "chai": "~1.6",
-    "mocha": "~1.10"
+    "bower": "~1.2",
+    "expect.js": "~0.2",
+    "mocha": "~1.12",
+    "testem": "~0.4",
+    "uglify-js": "~2.4"
   },
   "engines": {
     "node": ">0.9"

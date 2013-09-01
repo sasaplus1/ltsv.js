@@ -1,377 +1,257 @@
-var assert = require('chai').assert,
-    formatter = require('../lib/formatter');
+var expect, formatter;
 
-suite('formatter', function() {
+if (typeof module !== 'undefined') {
+  expect = require('expect.js');
+  formatter = require('../').formatter_;
+} else {
+  expect = this.expect;
+  formatter = this.ltsv.formatter_;
+}
 
-  suite('#format()', function() {
+describe('formatter', function() {
 
-    test('can generate LTSV from object', function() {
-      assert.strictEqual(
+  describe('#format()', function() {
+
+    it('should generate LTSV from object', function() {
+      expect(
           formatter.format({
             label1: 'value1',
             label2: 'value2'
-          }),
-          'label1:value1\tlabel2:value2',
-          'format(' +
-              '{label1: "value1", label2: "value2"}' +
-              ') should be returned "label1:value1\\tlabel2:value2"');
+          })
+      ).to.be('label1:value1\tlabel2:value2');
     });
 
-    test('can generate LTSV from object in array', function() {
-      assert.strictEqual(
+    it('should generate LTSV from object in array', function() {
+      expect(
           formatter.format([
-            {l1: 'v1', l2: 'v2'},
-            {l3: 'v3', l4: 'v4'}
-          ]),
-          'l1:v1\tl2:v2\nl3:v3\tl4:v4',
-          'format([' +
-              '{l1: "v1", l2: "v2"},{l3: "v3", l4: "v4"},' +
-              ']) should be returned "l1:v1\\tl2:v2\\nl3:v3\\tl4:v4"');
+            { l1: 'v1', l2: 'v2' },
+            { l3: 'v3', l4: 'v4' }
+          ])
+      ).to.be('l1:v1\tl2:v2\nl3:v3\tl4:v4');
     });
 
-    test('throw error if parameter is not a object or array', function() {
-      assert.throws(
-          function() {
-            formatter.format(1);
-          },
-          'parameter should be a Object or Array: number',
-          'format(1) should be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.format('a');
-          },
-          'parameter should be a Object or Array: string',
-          'format("a") should be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.format(true);
-          },
-          'parameter should be a Object or Array: boolean',
-          'format(true) should be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.format(void 0);
-          },
-          'parameter should be a Object or Array: undefined',
-          'format(undefined) should be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.format(null);
-          },
-          'parameter should be a Object or Array: null',
-          'format(null) should be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.format(function() {});
-          },
-          'parameter should be a Object or Array: function',
-          'format(function() {}) should be threw TypeError');
+    it('should throw error if parameter is not an object or array', function() {
+      function f(v) {
+        return function() {
+          formatter.format(v);
+        };
+      }
+
+      function fn(e) {
+        expect(e).to.be.a(TypeError);
+      }
+
+      expect(f(1)).to.throwError(fn);
+      expect(f('a')).to.throwError(fn);
+      expect(f(true)).to.throwError(fn);
+      expect(f(null)).to.throwError(fn);
+      expect(f(void 0)).to.throwError(fn);
+      expect(f(function() {})).to.throwError(fn);
     });
 
   });
 
-  suite('#formatStrict()', function() {
+  describe('#formatStrict()', function() {
 
-    test('can generate LTSV from object', function() {
-      assert.strictEqual(
+    it('should generate LTSV from object', function() {
+      expect(
           formatter.formatStrict({
             label1: 'value1',
             label2: 'value2'
-          }),
-          'label1:value1\tlabel2:value2',
-          'formatStrict(' +
-              '{label1: "value1", label2: "value2"}' +
-              ') should be returned "label1:value1\\tlabel2:value2"');
+          })
+      ).to.be('label1:value1\tlabel2:value2');
     });
 
-    test('can generate LTSV from object in array', function() {
-      assert.strictEqual(
+    it('should generate LTSV from object in array', function() {
+      expect(
           formatter.formatStrict([
-            {l1: 'v1', l2: 'v2'},
-            {l3: 'v3', l4: 'v4'}
-          ]),
-          'l1:v1\tl2:v2\nl3:v3\tl4:v4',
-          'formatStrict([' +
-              '{l1: "v1", l2: "v2"},{l3: "v3", l4: "v4"},' +
-              ']) should be returned "l1:v1\\tl2:v2\\nl3:v3\\tl4:v4"');
+            { l1: 'v1', l2: 'v2' },
+            { l3: 'v3', l4: 'v4' }
+          ])
+      ).to.be('l1:v1\tl2:v2\nl3:v3\tl4:v4');
     });
 
-    test('throw error if parameter is not a object or array', function() {
-      assert.throws(
-          function() {
-            formatter.formatStrict(1);
-          },
-          'parameter should be a Object or Array: number',
-          'formatStrict(1) should be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.formatStrict('a');
-          },
-          'parameter should be a Object or Array: string',
-          'formatStrict("a") should be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.formatStrict(true);
-          },
-          'parameter should be a Object or Array: boolean',
-          'formatStrict(true) should be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.formatStrict(void 0);
-          },
-          'parameter should be a Object or Array: undefined',
-          'formatStrict(undefined) should be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.formatStrict(null);
-          },
-          'parameter should be a Object or Array: null',
-          'formatStrict(null) should be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.formatStrict(function() {});
-          },
-          'parameter should be a Object or Array: function',
-          'formatStrict(function() {}) should be threw TypeError');
+    it('should throw error if parameter is not an object or array', function() {
+      function f(v) {
+        return function() {
+          formatter.formatStrict(v);
+        };
+      }
+
+      function fn(e) {
+        expect(e).to.be.a(TypeError);
+      }
+
+      expect(f(1)).to.throwError(fn);
+      expect(f('a')).to.throwError(fn);
+      expect(f(true)).to.throwError(fn);
+      expect(f(null)).to.throwError(fn);
+      expect(f(void 0)).to.throwError(fn);
+      expect(f(function() {})).to.throwError(fn);
     });
 
   });
 
-  suite('#objectToRecord_()', function() {
+  describe('#objectToRecord_()', function() {
 
-    test('can generate record from object', function() {
-      assert.strictEqual(
+    it('should generate record from object', function() {
+      expect(
           formatter.objectToRecord_({
             label1: 'value1',
             label2: 'value2'
-          }),
-          'label1:value1\tlabel2:value2',
-          'objectToRecord_(' +
-              '{label1: "value1", label2: "value2"}' +
-              ') should be returned "label1:value1\\tlabel2:value2"');
+          })
+      ).to.be('label1:value1\tlabel2:value2');
     });
 
-    test('can generate record if label has unexpected character', function() {
-      assert.strictEqual(
+    it('should generate record if label has unexpected character', function() {
+      expect(
           formatter.objectToRecord_({
             '\x00\x2C': ''
-          }),
-          '\x00\x2C:',
-          'objectToRecord_(' +
-              '{"\\x00\\x2C":""}' +
-              ') should be returned "\\x00\\x2C:"');
-      assert.strictEqual(
+          })
+      ).to.be('\x00\x2C:');
+
+      expect(
           formatter.objectToRecord_({
             '\x2F': ''
-          }),
-          '\x2F:',
-          'objectToRecord_(' +
-              '{"\\x2F":""}' +
-              ') should be returned "\\x2F:"');
+          })
+      ).to.be('\x2F:');
+
       // \x3A is ":"
-      assert.strictEqual(
+      expect(
           formatter.objectToRecord_({
             '\x3B\x40': ''
-          }),
-          '\x3B\x40:',
-          'objectToRecord_(' +
-              '{"\\x3B\\x40": ""}' +
-              ') should be returned "\\x3B\\x40:"');
-      assert.strictEqual(
+          })
+      ).to.be('\x3B\x40:');
+
+      expect(
           formatter.objectToRecord_({
             '\x5B\x5E': ''
-          }),
-          '\x5B\x5E:',
-          'objectToRecord_(' +
-              '{"\\x5B\\x5E": ""}' +
-              ') should be returned "\\x5B\\x5E:"');
-      assert.strictEqual(
+          })
+      ).to.be('\x5B\x5E:');
+
+      expect(
           formatter.objectToRecord_({
             '\x60': ''
-          }),
-          '\x60:',
-          'objectToRecord_(' +
-              '{"\\x60": ""}' +
-              ') should be returned "\\x60:"');
-      assert.strictEqual(
+          })
+      ).to.be('\x60:');
+
+      expect(
           formatter.objectToRecord_({
             '\x7B\xFF': ''
-          }),
-          '\x7B\xFF:',
-          'objectToRecord_(' +
-              '{"\\x7B\\xFF": ""}' +
-              ') should be returned "\\x7B\\xFF:"');
+          })
+      ).to.be('\x7B\xFF:');
     });
 
-    test('can generate record if value has unexpected character', function() {
-      assert.strictEqual(
+    it('should generate record if value has unexpected character', function() {
+      expect(
           formatter.objectToRecord_({
             label: '\x00\x09\x0A\x0D'
-          }),
-          'label:\x00\x09\x0A\x0D',
-          'objectToRecord_(' +
-              '{label: "\\x00\\x09\\x0A\\x0D"}' +
-              ') should be returned "label:\\x00\\x09\\x0A\\x0D"');
+          })
+      ).to.be('label:\x00\x09\x0A\x0D');
     });
 
-    test('throw error if parameter is not a object', function() {
-      assert.throws(
-          function() {
-            formatter.objectToRecord_(1);
-          },
-          'parameter should be a Object: number',
-          'objectToRecord_(1) shuold be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.objectToRecord_('a');
-          },
-          'parameter should be a Object: string',
-          'objectToRecord_("a") shuold be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.objectToRecord_(true);
-          },
-          'parameter should be a Object: boolean',
-          'objectToRecord_(true) shuold be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.objectToRecord_(void 0);
-          },
-          'parameter should be a Object: undefined',
-          'objectToRecord_(undefined) shuold be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.objectToRecord_(null);
-          },
-          'parameter should be a Object: null',
-          'objectToRecord_(null) shuold be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.objectToRecord_(function() {});
-          },
-          'parameter should be a Object: function',
-          'objectToRecord_(function() {}) shuold be threw TypeError');
+    it('should throw error if parameter is not an object', function() {
+      function f(v) {
+        return function() {
+          formatter.objectToRecord_(v);
+        };
+      }
+
+      function fn(e) {
+        expect(e).to.be.a(TypeError);
+      }
+
+      expect(f(1)).to.throwError(fn);
+      expect(f('a')).to.throwError(fn);
+      expect(f(true)).to.throwError(fn);
+      expect(f(null)).to.throwError(fn);
+      expect(f(void 0)).to.throwError(fn);
+      expect(f(function() {})).to.throwError(fn);
     });
 
   });
 
-  suite('#objectToRecordStrict_()', function() {
+  describe('#objectToRecordStrict_()', function() {
 
-    test('can generate record from object', function() {
-      assert.strictEqual(
+    it('should generate record from object', function() {
+      expect(
           formatter.objectToRecordStrict_({
             label1: 'value1',
             label2: 'value2'
-          }),
-          'label1:value1\tlabel2:value2',
-          'objectToRecordStrict_(' +
-              '{label1: "value1", label2: "value2"}' +
-              ') should be returned "label1:value1\\tlabel2:value2"');
+          })
+      ).to.be('label1:value1\tlabel2:value2');
     });
 
-    test('throw error if parameter is not a object', function() {
-      assert.throws(
-          function() {
-            formatter.objectToRecordStrict_(1);
-          },
-          'parameter should be a Object: number',
-          'objectToRecordStrict_(1) shuold be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.objectToRecordStrict_('a');
-          },
-          'parameter should be a Object: string',
-          'objectToRecordStrict_("a") shuold be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.objectToRecordStrict_(true);
-          },
-          'parameter should be a Object: boolean',
-          'objectToRecordStrict_(true) shuold be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.objectToRecordStrict_(void 0);
-          },
-          'parameter should be a Object: undefined',
-          'objectToRecordStrict_(undefined) shuold be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.objectToRecordStrict_(null);
-          },
-          'parameter should be a Object: null',
-          'objectToRecordStrict_(null) shuold be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.objectToRecordStrict_(function() {});
-          },
-          'parameter should be a Object: function',
-          'objectToRecordStrict_(function() {}) shuold be threw TypeError');
+    it('should throw error if parameter is not an object', function() {
+      function f(v) {
+        return function() {
+          formatter.objectToRecordStrict_(v);
+        };
+      }
+
+      function fn(e) {
+        expect(e).to.be.a(TypeError);
+      }
+
+      expect(f(1)).to.throwError(fn);
+      expect(f('a')).to.throwError(fn);
+      expect(f(true)).to.throwError(fn);
+      expect(f(null)).to.throwError(fn);
+      expect(f(void 0)).to.throwError(fn);
+      expect(f(function() {})).to.throwError(fn);
     });
 
-    test('throw error if label has unexpected character', function() {
-      assert.throws(
-          function() {
-            formatter.objectToRecordStrict_({'\x00\x2C': ''});
-          },
-          'unexpected character of label: "\x00\x2C"',
-          'objectToRecordStrict_("\\x00\\x2C") should be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.objectToRecordStrict_({'\x2F': ''});
-          },
-          'unexpected character of label: "\x2F"',
-          'objectToRecordStrict_("\\x2F") should be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.objectToRecordStrict_({'\x3B\x40': ''});
-          },
-          'unexpected character of label: "\x3B\x40"',
-          'objectToRecordStrict_("\\x3B\\x40") should be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.objectToRecordStrict_({'\x5B\x5E': ''});
-          },
-          'unexpected character of label: "\x5B\x5E"',
-          'objectToRecordStrict_("\\x5B\\x5E") should be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.objectToRecordStrict_({'\x60': ''});
-          },
-          'unexpected character of label: "\x60"',
-          'objectToRecordStrict_("\\x60") should be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.objectToRecordStrict_({'\x7B\xFF': ''});
-          },
-          'unexpected character of label: "\x7B\xFF"',
-          'objectToRecordStrict_("\\x7B\\xFF") should be threw TypeError');
+    it('should throw error if label has unexpected character', function() {
+      function f(v) {
+        return function() {
+          formatter.objectToRecordStrict_(v);
+        };
+      }
+
+      function fn(e) {
+        expect(e).to.be.a(SyntaxError);
+      }
+
+      expect(f({ '\x00\x2C': '' })).to.throwError(fn);
+      expect(f({ '\x2F': '' })).to.throwError(fn);
+      expect(f({ '\x3B\x40': '' })).to.throwError(fn);
+      expect(f({ '\x5B\x5E': '' })).to.throwError(fn);
+      expect(f({ '\x60': '' })).to.throwError(fn);
+      expect(f({ '\x7B\xFF': '' })).to.throwError(fn);
     });
 
-    test('throw error if value has unexpected character', function() {
-      assert.throws(
-          function() {
-            formatter.objectToRecordStrict_({label: '\x00'});
-          },
-          'unexpected character of value: "\x00"',
-          'objectToRecordStrict_("\\x00") should be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.objectToRecordStrict_({label: '\x09'});
-          },
-          'unexpected character of value: "\x09"',
-          'objectToRecordStrict_("\\x09") should be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.objectToRecordStrict_({label: '\x0A'});
-          },
-          'unexpected character of value: "\x0A"',
-          'objectToRecordStrict_("\\x0A") should be threw TypeError');
-      assert.throws(
-          function() {
-            formatter.objectToRecordStrict_({label: '\x00'});
-          },
-          'unexpected character of value: "\x00"',
-          'objectToRecordStrict_("\\x00") should be threw TypeError');
+    it('should throw error if value has unexpected character', function() {
+      function f(v) {
+        return function() {
+          formatter.objectToRecordStrict_(v);
+        };
+      }
+
+      function fn(e) {
+        expect(e).to.be.a(SyntaxError);
+      }
+
+      expect(f({ label: '\x00' })).to.throwError(fn);
+      expect(f({ label: '\x09' })).to.throwError(fn);
+      expect(f({ label: '\x0A' })).to.throwError(fn);
+      expect(f({ label: '\x0D' })).to.throwError(fn);
+    });
+
+  });
+
+  describe('#getType_()', function() {
+
+    it('should return typeof value', function() {
+      expect(formatter.getType_(1)).to.be('number');
+      expect(formatter.getType_('a')).to.be('string');
+      expect(formatter.getType_(true)).to.be('boolean');
+      expect(formatter.getType_(void 0)).to.be('undefined');
+      expect(formatter.getType_(function() {})).to.be('function');
+      expect(formatter.getType_({})).to.be('object');
+    });
+
+    it('should return "null" if parameter is null', function() {
+      expect(formatter.getType_(null)).to.be('null');
     });
 
   });
