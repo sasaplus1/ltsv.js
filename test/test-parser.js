@@ -94,7 +94,9 @@ describe('parser', function() {
         label2: 'value2'
       });
 
-      expect(parser.parseLineStrict('label1:value1\tlabel2:value2\r\n')).to.eql({
+      expect(
+          parser.parseLineStrict('label1:value1\tlabel2:value2\r\n')
+      ).to.eql({
         label1: 'value1',
         label2: 'value2'
       });
