@@ -7,8 +7,20 @@
 
 ## Installation
 
+### node.js
+
 ```sh
 $ npm install ltsv
+```
+
+### bower
+
+```sh
+$ bower install ltsv
+```
+
+```html
+<script src="ltsv.min.js"></script>
 ```
 
 ## Usage
@@ -123,7 +135,7 @@ also throw SyntaxError if `mixed` has unexpected character.
 * `options` object - option object
 * `return` LtsvToJsonStream - LTSV to JSON stream
 
-return LtsvToJsonStream instance.
+return LtsvToJsonStream instance. cannot use by browser.
 
 #### options
 
@@ -153,9 +165,19 @@ if not set, `strict` is false.
 
 ## Test
 
+### node.js
+
 ```sh
 $ npm install
 $ npm test
+```
+
+### browser
+
+```sh
+$ npm install
+$ npm run-script bower
+$ npm run-script testem
 ```
 
 ## License
