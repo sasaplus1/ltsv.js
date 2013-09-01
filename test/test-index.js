@@ -10,9 +10,21 @@ if (typeof module !== 'undefined') {
 
 describe('index', function() {
 
-  it('should not export extra functions', function() {
-    var isNode = (typeof module !== 'undefined');
+  var isNode = (typeof module !== 'undefined');
 
+  it('should export some functions for node.js', (isNode) ? function() {
+    expect(ltsv).to.have.keys([
+      'parse',
+      'parseLine',
+      'parseStrict',
+      'parseLineStrict',
+      'format',
+      'formatStrict',
+      'createLtsvToJsonStream'
+    ]);
+  } : void 0);
+
+  it('should export some functions for browser', (!isNode) ? function() {
     expect(ltsv).to.have.keys([
       'parse',
       'parseLine',
@@ -21,10 +33,6 @@ describe('index', function() {
       'format',
       'formatStrict'
     ]);
-
-    if (isNode) {
-      expect(ltsv).to.have.key('createLtsvToJsonStream');
-    }
-  });
+  } : void 0);
 
 });
