@@ -1,6 +1,6 @@
 {
   "name": "ltsv",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "main": "./ltsv.min.js",
   "ignore": [
     "**/.*",
