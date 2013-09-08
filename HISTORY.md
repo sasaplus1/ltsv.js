@@ -1,3 +1,7 @@
+# 0.7.1 / 2013-09-08
+
+  - fallback Object#keys
+
 # 0.7.0 / 2013-09-01
 
   - appended browser support

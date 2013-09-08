@@ -19,20 +19,26 @@ $ npm install ltsv
 $ bower install ltsv
 ```
 
+## Usage
+
+### node.js
+
+```js
+var ltsv = require('ltsv');
+```
+
+### browser
+
 ```html
 <script src="ltsv.min.js"></script>
 ```
 
-## Usage
-
 ```js
-var ltsv = require('ltsv');
-
-ltsv.parse([
-  'label1:value1\tlabel2:value2',
-  'label1:value1\tlabel2:value2',
+ltsv.parse(
+  'label1:value1\tlabel2:value2\n' +
+  'label1:value1\tlabel2:value2\n' +
   'label1:value1\tlabel2:value2'
-].join('\n'));
+);
 // [ { label1: 'value1', label2: 'value2' },
 //   { label1: 'value1', label2: 'value2' },
 //   { label1: 'value1', label2: 'value2' } ]
