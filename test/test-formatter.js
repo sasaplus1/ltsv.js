@@ -283,7 +283,7 @@ describe('formatter', function() {
             i: 1, ro: 'ro', ha: true
           })
       ).to.eql([
-          'i', 'ro', 'ha'
+        'i', 'ro', 'ha'
       ]);
     });
 
