@@ -256,4 +256,37 @@ describe('formatter', function() {
 
   });
 
+  describe('#getObjectKeys_()', function() {
+
+    it('should throw error if parameter is not an Object', function() {
+      function f(v) {
+        return function() {
+          formatter.getObjectKeys_(v);
+        };
+      }
+
+      function fn(e) {
+        expect(e).to.be.a(TypeError);
+      }
+
+      expect(f(1)).to.throwError(fn);
+      expect(f('a')).to.throwError(fn);
+      expect(f(true)).to.throwError(fn);
+      expect(f(null)).to.throwError(fn);
+      expect(f(void 0)).to.throwError(fn);
+      expect(f(function() {})).to.throwError(fn);
+    });
+
+    it('should return array in parameter\'s keys', function() {
+      expect(
+          formatter.getObjectKeys_({
+            i: 1, ro: 'ro', ha: true
+          })
+      ).to.eql([
+          'i', 'ro', 'ha'
+      ]);
+    });
+
+  });
+
 });
