@@ -24,7 +24,7 @@
     "benchmark": "~1.0",
     "bower": "~1.2",
     "expect.js": "~0.2",
-    "mocha": "~1.12",
+    "mocha": "~1.13",
     "testem": "~0.4",
     "uglify-js": "~2.4"
   },
