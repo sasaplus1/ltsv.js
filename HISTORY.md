@@ -1,3 +1,7 @@
+# 0.7.2 / 2013-11-22
+
+  - fixed error messages
+
 # 0.7.1 / 2013-09-08
 
   - fallback Object#keys
