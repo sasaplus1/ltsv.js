@@ -1,6 +1,6 @@
 {
   "name": "ltsv",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "description": "LTSV parser and formatter",
   "main": "./index.js",
@@ -24,8 +24,8 @@
     "benchmark": "~1.0",
     "bower": "~1.2",
     "expect.js": "~0.2",
-    "mocha": "~1.12",
-    "testem": "~0.4",
+    "mocha": "~1.14",
+    "testem": "~0.5",
     "uglify-js": "~2.4"
   },
   "engines": {
