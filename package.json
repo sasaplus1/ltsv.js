@@ -12,9 +12,10 @@
   },
   "scripts": {
     "bower": "bower install",
-    "fix": "fixjsstyle --strict --nojsdoc -r ./lib -r ./test ./index.js",
-    "lint": "gjslint --strict --nojsdoc -r ./lib -r ./test ./index.js",
-    "mini": "uglifyjs ./lib/ltsv.js --comments -cm -d 'module=void 0' -r ltsv -o ./ltsv.min.js",
+    "clean": "make clean",
+    "fix": "fixjsstyle --strict --nojsdoc -x ltsv.js,_intro.js,_outro.js -r ./lib -r ./test ./index.js",
+    "lint": "gjslint --strict --nojsdoc -x ltsv.js,_intro.js,_outro.js -r ./lib -r ./test ./index.js",
+    "minify": "make release-build test-build",
     "test": "NODE_ENV=test mocha",
     "testem": "testem ci",
     "travis": "testem ci --launch Firefox,PhantomJS"
