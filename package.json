@@ -1,6 +1,6 @@
 {
   "name": "ltsv",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "description": "LTSV parser and formatter",
   "main": "./index.js",
