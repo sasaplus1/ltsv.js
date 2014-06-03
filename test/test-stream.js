@@ -198,43 +198,4 @@ describe('stream', function() {
 
   });
 
-  describe('#splitToLines_()', function() {
-
-    it('should split to lines', function() {
-      var ltjs = stream.createLtsvToJsonStream();
-
-      expect(ltjs.splitToLines_('')).to.eql({
-        lines: [],
-        tail: ''
-      });
-
-      expect(ltjs.splitToLines_('line')).to.eql({
-        lines: [],
-        tail: 'line'
-      });
-
-      expect(ltjs.splitToLines_('1\n2\n3\n4\n5\n')).to.eql({
-        lines: [
-          '1', '2', '3', '4', '5'
-        ],
-        tail: ''
-      });
-
-      expect(ltjs.splitToLines_('\n\n\n')).to.eql({
-        lines: [
-          '', '', ''
-        ],
-        tail: ''
-      });
-
-      expect(ltjs.splitToLines_('line\nend')).to.eql({
-        lines: [
-          'line'
-        ],
-        tail: 'end'
-      });
-    });
-
-  });
-
 });
