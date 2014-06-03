@@ -1,7 +1,7 @@
 # ltsv
 
-[![Build Status](https://travis-ci.org/sasaplus1/ltsv.js.png)](https://travis-ci.org/sasaplus1/ltsv.js)
-[![Dependency Status](https://gemnasium.com/sasaplus1/ltsv.js.png)](https://gemnasium.com/sasaplus1/ltsv.js)
+[![Build Status](https://travis-ci.org/sasaplus1/ltsv.js.svg)](https://travis-ci.org/sasaplus1/ltsv.js)
+[![Dependency Status](https://gemnasium.com/sasaplus1/ltsv.js.svg)](https://gemnasium.com/sasaplus1/ltsv.js)
 
 [LTSV](http://ltsv.org/) parser and formatter
 
