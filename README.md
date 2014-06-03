@@ -1,13 +1,13 @@
 # ltsv
 
-[![Build Status](https://travis-ci.org/sasaplus1/ltsv.js.png)](https://travis-ci.org/sasaplus1/ltsv.js)
-[![Dependency Status](https://gemnasium.com/sasaplus1/ltsv.js.png)](https://gemnasium.com/sasaplus1/ltsv.js)
+[![Build Status](https://travis-ci.org/sasaplus1/ltsv.js.svg)](https://travis-ci.org/sasaplus1/ltsv.js)
+[![Dependency Status](https://gemnasium.com/sasaplus1/ltsv.js.svg)](https://gemnasium.com/sasaplus1/ltsv.js)
 
 [LTSV](http://ltsv.org/) parser and formatter
 
 ## Installation
 
-### node.js
+### npm
 
 ```sh
 $ npm install ltsv
@@ -81,8 +81,10 @@ fs.createReadStream('./access.log').pipe(ltjs).pipe(process.stdout);
 
 ### parse(text)
 
-* `text` string - LTSV text
-* `return` Object[] - parsed objects
+* `text`
+  * `String` - LTSV text
+* `return`
+  * `Object[]` - parsed objects
 
 split to LTSV records.
 
@@ -90,8 +92,10 @@ throw SyntaxError if `text` has no separator.
 
 ### parseLine(line)
 
-* `line` string - LTSV line
-* `return` Object - parsed object
+* `line`
+  * `String` - LTSV line
+* `return`
+  * `Object` - parsed object
 
 split to LTSV record.
 
@@ -99,8 +103,10 @@ throw SyntaxError if `line` has no separator.
 
 ### parseStrict(text)
 
-* `text` string - LTSV text
-* `return` Object[] - parsed objects
+* `text`
+  * `String` - LTSV text
+* `return`
+  * `Object[]` - parsed objects
 
 split to LTSV records and validate label and value of fields.
 
@@ -109,65 +115,56 @@ also throw SyntaxError if `text` has unexpected character.
 
 ### parseLineStrict(line)
 
-* `line` string - LTSV line
-* `return` Object - parsed object
+* `line`
+  * `String` - LTSV line
+* `return`
+  * `Object` - parsed object
 
 split to LTSV record.
 
 throw SyntaxError if `line` has no separator.
 also throw SyntaxError if `line` has unexpected character.
 
-### format(mixed)
+### format(data)
 
-* `mixed` Object|Object[] - object or object array
-* `return` string - LTSV text
-
-convert to LTSV text.
-
-throw TypeError if `mixed` is not an object or array.
-
-### formatStrict(mixed)
-
-* `mixed` Object|Object[] - object or object array
-* `return` string - LTSV text
+* `data`
+  * `Object|Object[]` - object or object array
+* `return`
+  * `String` - LTSV text
 
 convert to LTSV text.
 
-throw TypeError if `mixed` is not an object or array.
-also throw SyntaxError if `mixed` has unexpected character.
+throw TypeError if `data` is not an object or array.
+
+### formatStrict(data)
+
+* `data`
+  * `Object|Object[]` - object or object array
+* `return`
+  * `String` - LTSV text
+
+convert to LTSV text.
+
+throw TypeError if `data` is not an object or array.
+also throw SyntaxError if `data` has unexpected character.
 
 ### createLtsvToJsonStream([options])
 
-* `options` object - option object
-* `return` LtsvToJsonStream - LTSV to JSON stream
+* `options`
+  * `Object` - option object
+* `return`
+  * `LtsvToJsonStream` - LTSV to JSON stream
 
-return LtsvToJsonStream instance. cannot use by browser.
+return LtsvToJsonStream instance. this function cannot use by browser.
 
 #### options
 
-* `encoding` string - StringDecoder encoding
-* `toObject` boolean - flag of send to object
-* `strict` boolean - flag of strict parse
-
-##### encoding
-
-StringDecoder's encoding.
-
-if not set, use "utf8".
-
-##### toObject
-
-send object if `toObject` is true.
-otherwise send JSON string.
-
-if not set, `toObject` is false.
-
-##### strict
-
-strict parse if `strict` is true.
-otherwise not strict parse.
-
-if not set, `strict` is false.
+* `encoding`
+  * `String` - StringDecoder's encoding, default is `utf8`
+* `toObject`
+  * `Boolean` - convert to Object if true, default is `false`
+* `strict`
+  * `Boolean` - strict parse if true, default is `false`
 
 ## Test
 
@@ -182,10 +179,10 @@ $ npm test
 
 ```sh
 $ npm install
-$ npm run-script bower
-$ npm run-script testem
+$ npm run bower
+$ npm run testem
 ```
 
 ## License
 
-The MIT License. Please see LICENSE file.
+The MIT license. Please see LICENSE file.

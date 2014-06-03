@@ -1,6 +1,6 @@
 {
   "name": "ltsv",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "description": "LTSV parser and formatter",
   "main": "./index.js",
@@ -11,22 +11,21 @@
     "url": "git://github.com/sasaplus1/ltsv.js.git"
   },
   "scripts": {
-    "bench": "node ./bench/index.js",
     "bower": "bower install",
-    "fix": "fixjsstyle --strict --nojsdoc -r ./lib -r ./test ./index.js",
-    "lint": "gjslint --strict --nojsdoc -r ./lib -r ./test ./index.js",
-    "mini": "uglifyjs ./lib/ltsv.js --comments -cm -d 'module=void 0' -r ltsv -o ./ltsv.min.js",
+    "clean": "make clean",
+    "fix": "fixjsstyle --strict --nojsdoc -x ltsv.js,_intro.js,_outro.js -r ./lib -r ./test ./index.js",
+    "lint": "gjslint --strict --nojsdoc -x ltsv.js,_intro.js,_outro.js -r ./lib -r ./test ./index.js",
+    "minify": "make release-build test-build",
     "test": "NODE_ENV=test mocha",
     "testem": "testem ci",
     "travis": "testem ci --launch Firefox,PhantomJS"
   },
   "devDependencies": {
-    "benchmark": "~1.0",
-    "bower": "~1.2",
-    "expect.js": "~0.2",
-    "mocha": "~1.14",
-    "testem": "~0.5",
-    "uglify-js": "~2.4"
+    "bower": "^1.3.3",
+    "expect.js": "^0.3.1",
+    "mocha": "^1.20.0",
+    "testem": "^0.6.16",
+    "uglifyjs": "^2.3.6"
   },
   "engines": {
     "node": ">0.9"

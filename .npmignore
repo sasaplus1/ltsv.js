@@ -1,8 +1,7 @@
+Makefile
+bower.json
 ltsv.min.js
-npm-debug.log
-.DS_Store
-.*.swp
+testem.json
 .travis.yml
-.git*
-bench/
 bower_components/
+test/
