@@ -1,6 +1,6 @@
 #!/usr/bin/env make -f
 
-DEFAULT_GOAL := all
+.DEFAULT_GOAL := all
 
 cat := $(if $(OS), type, cat)
 
