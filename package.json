@@ -13,8 +13,8 @@
   "scripts": {
     "bower": "bower install",
     "clean": "make clean",
-    "fix": "fixjsstyle --strict --nojsdoc -x ltsv.js,_intro.js,_outro.js -r ./lib -r ./test ./index.js",
-    "lint": "gjslint --strict --nojsdoc -x ltsv.js,_intro.js,_outro.js -r ./lib -r ./test ./index.js",
+    "fix": "fixjsstyle --flagfile .closurelinter  -r ./lib -r ./test ./index.js",
+    "lint": "gjslint --flagfile .closurelinter -r ./lib -r ./test ./index.js",
     "minify": "make release-build test-build",
     "test": "NODE_ENV=test mocha",
     "testem": "testem ci",
