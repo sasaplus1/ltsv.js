@@ -35,6 +35,8 @@ var ltsv = require('ltsv');
 <script src="ltsv.min.js"></script>
 ```
 
+### Example
+
 ```js
 ltsv.parse(
   'label1:value1\tlabel2:value2\n' +
