@@ -1,7 +1,8 @@
+.closurelinter
+.travis.yml
 Makefile
 bower.json
 ltsv.min.js
 testem.json
-.travis.yml
 bower_components/
 test/
