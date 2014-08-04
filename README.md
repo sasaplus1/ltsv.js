@@ -183,7 +183,6 @@ $ npm test
 
 ```sh
 $ npm install
-$ npm run bower
 $ npm run testem
 ```
 
