@@ -7,6 +7,10 @@
 
 [LTSV](http://ltsv.org/) parser and formatter
 
+## playgound
+
+[http://sasaplus1.github.io/ltsv.js/](http://sasaplus1.github.io/ltsv.js/)
+
 ## Installation
 
 ### npm
