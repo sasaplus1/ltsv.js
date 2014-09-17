@@ -1,6 +1,6 @@
 {
   "name": "ltsv",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "description": "LTSV parser and formatter",
   "main": "./index.js",
@@ -11,11 +11,9 @@
     "url": "git://github.com/sasaplus1/ltsv.js.git"
   },
   "scripts": {
-    "bower": "bower install",
-    "clean": "make clean",
-    "fix": "fixjsstyle --strict --nojsdoc -x ltsv.js,_intro.js,_outro.js -r ./lib -r ./test ./index.js",
-    "lint": "gjslint --strict --nojsdoc -x ltsv.js,_intro.js,_outro.js -r ./lib -r ./test ./index.js",
-    "minify": "make release-build test-build",
+    "fix": "fixjsstyle --flagfile .closurelinter  -r ./lib -r ./test ./index.js",
+    "lint": "gjslint --flagfile .closurelinter -r ./lib -r ./test ./index.js",
+    "postinstall": "bower install",
     "test": "NODE_ENV=test mocha",
     "testem": "testem ci",
     "travis": "testem ci --launch Firefox,PhantomJS"
@@ -25,7 +23,7 @@
     "expect.js": "^0.3.1",
     "mocha": "^1.20.0",
     "testem": "^0.6.16",
-    "uglifyjs": "^2.3.6"
+    "uglify-js": "^2.4.15"
   },
   "engines": {
     "node": ">0.9"

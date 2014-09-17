@@ -1,3 +1,7 @@
+# 0.7.4 / 2014-09-17
+
+  - maintenance update
+
 # 0.7.3 / 2014-06-03
 
   - refactored

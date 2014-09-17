@@ -1,32 +1,34 @@
-#!/usr/bin/env make -f
+.DEFAULT_GOAL := all
 
-DEFAULT_GOAL := all
+CAT := $(if $(OS), type, cat)
 
-cat := $(if $(OS), type, cat)
+UGLIFYJSC := $(shell npm bin)/uglifyjs
+UGLIFYJSFLAGS := --comments -m -c 'pure_funcs=["export_", "require_"]' -r 'ltsv'
 
-source_files := formatter.js parser.js utility.js validator.js export.js
-concat_files := $(addprefix lib/, _intro.js $(source_files) _outro.js)
+MINI := ltsv.min.js
+TEST := test/ltsv.js
 
-r_file := ltsv.min.js
-t_file := test/ltsv.js
-
-flags := --comments -m -c 'pure_funcs=["export_", "require_"]' -r 'ltsv'
-
-r_flags := $(flags) -d 'process=void 0, Mocha=void 0' -o $(r_file)
-t_flags := $(flags) -d 'process="true", Mocha="ltsv"' -o $(t_file)
+SRCS := $(addprefix lib/, \
+  _intro.js \
+  formatter.js \
+  parser.js \
+  utility.js \
+  validator.js \
+  export.js \
+  _outro.js \
+)
 
 .PHONY: all
-all:
-	@echo 'please execute `npm run`'
+all: $(MINI) $(TEST)
 
 .PHONY: clean
 clean:
-	@$(RM) $(r_file) $(t_file)
+	@$(RM) $(MINI) $(TEST)
 
-.PHONY: release-build
-release-build:
-	@$(cat) $(concat_files) | uglifyjs $(r_flags)
+$(MINI): UGLIFYJSFLAGS += -d 'process=void 0, Mocha=void 0'
+$(MINI): $(SRCS)
+	@$(CAT) $^ | $(UGLIFYJSC) $(UGLIFYJSFLAGS) -o $@
 
-.PHONY: test-build
-test-build:
-	@$(cat) $(concat_files) | uglifyjs $(t_flags)
+$(TEST): UGLIFYJSFLAGS += -d 'process=true, Mocha=true'
+$(TEST): $(SRCS)
+	@$(CAT) $^ | $(UGLIFYJSC) $(UGLIFYJSFLAGS) -o $@

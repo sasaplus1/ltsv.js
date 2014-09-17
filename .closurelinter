@@ -1,0 +1,3 @@
+--strict
+--nojsdoc
+-x ltsv.js,_intro.js,_outro.js

@@ -1,9 +1,15 @@
-# ltsv
+# ltsv.js
 
 [![Build Status](https://travis-ci.org/sasaplus1/ltsv.js.svg)](https://travis-ci.org/sasaplus1/ltsv.js)
 [![Dependency Status](https://gemnasium.com/sasaplus1/ltsv.js.svg)](https://gemnasium.com/sasaplus1/ltsv.js)
+[![NPM version](https://badge.fury.io/js/ltsv.svg)](http://badge.fury.io/js/ltsv)
+[![Bower version](https://badge.fury.io/bo/ltsv.svg)](http://badge.fury.io/bo/ltsv)
 
 [LTSV](http://ltsv.org/) parser and formatter
+
+## playgound
+
+[http://sasaplus1.github.io/ltsv.js/](http://sasaplus1.github.io/ltsv.js/)
 
 ## Installation
 
@@ -32,6 +38,8 @@ var ltsv = require('ltsv');
 ```html
 <script src="ltsv.min.js"></script>
 ```
+
+### Example
 
 ```js
 ltsv.parse(
@@ -179,7 +187,6 @@ $ npm test
 
 ```sh
 $ npm install
-$ npm run bower
 $ npm run testem
 ```
 
