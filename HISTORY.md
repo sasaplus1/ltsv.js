@@ -1,3 +1,7 @@
+# 0.7.5 / 2014-09-22
+
+  - fixed cannot install from npm
+
 # 0.7.4 / 2014-09-17
 
   - maintenance update
