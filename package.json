@@ -7,6 +7,8 @@
     "eslint": "^5.9.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-prettier": "^3.0.0",
+    "husky": "^1.1.4",
+    "lint-staged": "^8.0.5",
     "prettier": "^1.15.2"
   },
   "engines": {
@@ -40,7 +42,19 @@
     "dist",
     "lib"
   ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "license": "MIT",
+  "lint-staged": {
+    "**/*.mjs": "npm run lint",
+    "package.json": [
+      "npx fixpack",
+      "git diff --exit-code --quiet"
+    ]
+  },
   "main": "./index.js",
   "prettier": {
     "singleQuote": true
@@ -51,7 +65,8 @@
     "url": "https://github.com/sasaplus1/ltsv.js.git"
   },
   "scripts": {
+    "fix": "eslint --ext .mjs --fix .",
     "fixpack": "npx fixpack",
-    "lint": "eslint --ext .mjs --fix ."
+    "lint": "eslint --ext .mjs ."
   }
 }
