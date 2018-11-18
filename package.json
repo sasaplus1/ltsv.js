@@ -13,6 +13,7 @@
   "scripts": {
     "bower": "bower install",
     "fix": "fixjsstyle --flagfile .closurelinter  -r ./lib -r ./test ./index.js",
+    "fixpack": "npx fixpack",
     "lint": "gjslint --flagfile .closurelinter -r ./lib -r ./test ./index.js",
     "test": "NODE_ENV=test mocha",
     "testem": "testem ci",
