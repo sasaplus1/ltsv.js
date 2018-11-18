@@ -115,5 +115,6 @@
     "fix": "eslint --ext .mjs --fix .",
     "fixpack": "npx fixpack",
     "lint": "eslint --ext .mjs ."
-  }
+  },
+  "sideEffects": false
 }
