@@ -4,18 +4,54 @@
   "version": "0.7.5",
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "prettier": "^1.15.2"
   },
   "engines": {
     "node": ">=6"
   },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es6": true,
+      "node": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:prettier/recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+    },
+    "root": true,
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true
+        }
+      ]
+    }
+  },
+  "eslintIgnore": [
+    "dist",
+    "lib"
+  ],
   "license": "MIT",
   "main": "./index.js",
+  "prettier": {
+    "singleQuote": true
+  },
   "readmeFilename": "README.md",
   "repository": {
     "type": "git",
     "url": "https://github.com/sasaplus1/ltsv.js.git"
   },
   "scripts": {
-    "fixpack": "npx fixpack"
+    "fixpack": "npx fixpack",
+    "lint": "eslint --ext .mjs --fix ."
   }
 }
