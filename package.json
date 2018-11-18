@@ -21,12 +21,6 @@
     "url": "https://github.com/sasaplus1/ltsv.js.git"
   },
   "scripts": {
-    "bower": "bower install",
-    "fix": "fixjsstyle --flagfile .closurelinter  -r ./lib -r ./test ./index.js",
-    "fixpack": "npx fixpack",
-    "lint": "gjslint --flagfile .closurelinter -r ./lib -r ./test ./index.js",
-    "test": "NODE_ENV=test mocha",
-    "testem": "testem ci",
-    "travis": "testem ci --launch Firefox,PhantomJS"
+    "fixpack": "npx fixpack"
   }
 }
