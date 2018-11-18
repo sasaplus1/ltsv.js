@@ -3,7 +3,51 @@
   "description": "LTSV parser and formatter",
   "version": "0.7.5",
   "author": "sasa+1 <sasaplus1@gmail.com>",
+  "babel": {
+    "env": {
+      "node": {
+        "compact": false,
+        "minified": false,
+        "presets": [
+          [
+            "@babel/preset-env",
+            {
+              "targets": {
+                "node": "6"
+              },
+              "modules": "commonjs",
+              "loose": true
+            }
+          ]
+        ],
+        "plugins": [
+          [
+            "transform-rename-import",
+            {
+              "replacements": [
+                {
+                  "original": "(.*)\\.mjs$",
+                  "replacement": "$1.js"
+                },
+                {
+                  "original": "^\\./src",
+                  "replacement": "./lib"
+                }
+              ]
+            }
+          ]
+        ]
+      }
+    }
+  },
   "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/plugin-transform-destructuring": "^7.1.3",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/register": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-transform-rename-import": "^2.3.0",
     "eslint": "^5.9.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-prettier": "^3.0.0",
@@ -24,6 +68,7 @@
       "eslint:recommended",
       "plugin:prettier/recommended"
     ],
+    "parser": "babel-eslint",
     "parserOptions": {
       "ecmaVersion": 2018,
       "sourceType": "module"
@@ -66,6 +111,7 @@
     "url": "https://github.com/sasaplus1/ltsv.js.git"
   },
   "scripts": {
+    "build": "BABEL_ENV=node babel ./src --out-dir ./lib --source-maps true && BABEL_ENV=node babel ./index.mjs --out-file ./index.js --source-maps true",
     "fix": "eslint --ext .mjs --fix .",
     "fixpack": "npx fixpack",
     "lint": "eslint --ext .mjs ."
