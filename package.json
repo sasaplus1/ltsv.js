@@ -6,7 +6,7 @@
   "devDependencies": {
   },
   "engines": {
-    "node": ">0.9"
+    "node": ">=6"
   },
   "license": "MIT",
   "main": "./index.js",
