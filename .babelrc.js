@@ -11,8 +11,7 @@ module.exports = function(api) {
           targets: {
             node: '6'
           },
-          modules: 'commonjs',
-          loose: true
+          modules: 'commonjs'
         }
       ]
     ];
