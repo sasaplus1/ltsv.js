@@ -30,7 +30,7 @@
     "url": "https://github.com/sasaplus1/ltsv.js.git"
   },
   "scripts": {
-    "build": "BABEL_ENV=node babel ./src --out-dir ./lib --source-maps true && BABEL_ENV=node babel ./index.mjs --out-file ./index.js --source-maps true",
+    "build": "BABEL_ENV=node babel ./src -d ./cjs -s && BABEL_ENV=node babel ./index.mjs -o ./index.js -s",
     "fix": "eslint --ext .mjs --fix .",
     "fixpack": "npx fixpack",
     "lint": "eslint --ext .mjs ."
