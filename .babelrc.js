@@ -1,7 +1,7 @@
 module.exports = function(api) {
   const config = {};
 
-  if (api.env('node')) {
+  if (api.env('cjs')) {
     config.compact = false;
     config.minified = false;
     config.presets = [
