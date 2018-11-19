@@ -37,9 +37,9 @@
   "scripts": {
     "build": "BABEL_ENV=node babel ./src -d ./cjs -s && BABEL_ENV=node babel ./index.mjs -o ./index.js -s",
     "clean": "npx rimraf ./cjs ./index.js ./index.js.map",
-    "fix": "eslint --ext .mjs --fix .",
+    "fix": "eslint --ext .mjs,.js --fix .",
     "fixpack": "npx fixpack",
-    "lint": "eslint --ext .mjs ."
+    "lint": "eslint --ext .mjs,.js ."
   },
   "sideEffects": false
 }
