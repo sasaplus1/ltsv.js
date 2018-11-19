@@ -3,43 +3,6 @@
   "description": "LTSV parser and formatter",
   "version": "0.7.5",
   "author": "sasa+1 <sasaplus1@gmail.com>",
-  "babel": {
-    "env": {
-      "node": {
-        "compact": false,
-        "minified": false,
-        "presets": [
-          [
-            "@babel/preset-env",
-            {
-              "targets": {
-                "node": "6"
-              },
-              "modules": "commonjs",
-              "loose": true
-            }
-          ]
-        ],
-        "plugins": [
-          [
-            "transform-rename-import",
-            {
-              "replacements": [
-                {
-                  "original": "(.*)\\.mjs$",
-                  "replacement": "$1.js"
-                },
-                {
-                  "original": "^\\./src",
-                  "replacement": "./lib"
-                }
-              ]
-            }
-          ]
-        ]
-      }
-    }
-  },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.6",
@@ -58,53 +21,9 @@
   "engines": {
     "node": ">=6"
   },
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "es6": true,
-      "node": true
-    },
-    "extends": [
-      "eslint:recommended",
-      "plugin:prettier/recommended"
-    ],
-    "parser": "babel-eslint",
-    "parserOptions": {
-      "ecmaVersion": 2018,
-      "sourceType": "module"
-    },
-    "root": true,
-    "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "singleQuote": true
-        }
-      ]
-    }
-  },
-  "eslintIgnore": [
-    "dist",
-    "lib"
-  ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "license": "MIT",
-  "lint-staged": {
-    "**/*.mjs": "npm run lint",
-    "package.json": [
-      "npx fixpack",
-      "git diff --exit-code --quiet"
-    ]
-  },
   "main": "./index.js",
   "module": "./index.mjs",
-  "prettier": {
-    "singleQuote": true
-  },
   "readmeFilename": "README.md",
   "repository": {
     "type": "git",

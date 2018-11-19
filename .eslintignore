@@ -1,0 +1,4 @@
+cjs
+umd
+*.js
+!.*.js
