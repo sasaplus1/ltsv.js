@@ -36,7 +36,7 @@
   },
   "scripts": {
     "build": "npm run build:cjs && npm run build:umd",
-    "build:cjs": "BABEL_ENV=cjs babel ./src -d ./cjs -s && BABEL_ENV=cjs babel ./index.mjs -o ./index.js -s",
+    "build:cjs": "BABEL_ENV=cjs babel ./src -d ./cjs -s --ignore ./src/streams.mjs && BABEL_ENV=cjs babel ./index.mjs -o ./index.js -s",
     "build:umd": "BABEL_ENV=umd rollup -c",
     "clean": "npx rimraf ./cjs ./umd ./index.js ./index.js.map",
     "fix": "eslint --ext .mjs,.js --fix .",
