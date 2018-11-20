@@ -35,5 +35,23 @@ module.exports = function(api) {
     ];
   }
 
+  if (api.env('umd')) {
+    config.compact = false;
+    config.minified = false;
+    config.plugins = [
+      [
+        'transform-rename-import',
+        {
+          replacements: [
+            {
+              original: '(.*)/stream\\.mjs$',
+              replacement: '$1/streams.mjs'
+            }
+          ]
+        }
+      ]
+    ];
+  }
+
   return config;
 };
