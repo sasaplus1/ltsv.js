@@ -1,57 +1,43 @@
-/*!
- * @license ltsv.js Copyright(c) 2013-2014 sasa+1
- * https://github.com/sasaplus1/ltsv.js
- * Released under the MIT license.
- */
+"use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-var formatter = require('./lib/formatter'),
-    parser = require('./lib/parser'),
-    stream = require('./lib/stream'),
-    utility = require('./lib/utility'),
-    validator = require('./lib/validator');
+var _formatter = require("./cjs/formatter.js");
 
+Object.keys(_formatter).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _formatter[key];
+    }
+  });
+});
 
-/**
- * export.
- */
-module.exports = (process.env.NODE_ENV === 'test') ? {
+var _parser = require("./cjs/parser.js");
 
-  // formatter
-  format: formatter.format,
-  formatStrict: formatter.formatStrict,
+Object.keys(_parser).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _parser[key];
+    }
+  });
+});
 
-  // parser
-  parse: parser.parse,
-  parseLine: parser.parseLine,
-  parseStrict: parser.parseStrict,
-  parseLineStrict: parser.parseLineStrict,
+var _stream = require("./cjs/stream.js");
 
-  // stream
-  createLtsvToJsonStream: stream.createLtsvToJsonStream,
+Object.keys(_stream).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _stream[key];
+    }
+  });
+});
 
-  // utility
-  getObjectKeys: utility.getObjectKeys,
-  getType: utility.getType,
-  isArray: utility.isArray,
-
-  // validator
-  isValidLabel: validator.isValidLabel,
-  isValidValue: validator.isValidValue
-
-} : {
-
-  // formatter
-  format: formatter.format,
-  formatStrict: formatter.formatStrict,
-
-  // parser
-  parse: parser.parse,
-  parseLine: parser.parseLine,
-  parseStrict: parser.parseStrict,
-  parseLineStrict: parser.parseLineStrict,
-
-  // stream
-  createLtsvToJsonStream: stream.createLtsvToJsonStream
-
-};
+//# sourceMappingURL=index.js.map
