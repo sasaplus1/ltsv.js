@@ -8,10 +8,11 @@ module.exports = function(api) {
       [
         '@babel/preset-env',
         {
+          debug: true,
+          modules: 'commonjs',
           targets: {
             node: '6'
-          },
-          modules: 'commonjs'
+          }
         }
       ]
     ];
