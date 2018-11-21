@@ -53,5 +53,23 @@ module.exports = function(api) {
     ];
   }
 
+  if (api.env('mocha')) {
+    config.compact = false;
+    config.minified = false;
+    config.presets = [
+      [
+        '@babel/preset-env',
+        {
+          debug: true,
+          modules: 'commonjs',
+          targets: {
+            node: 'current'
+          }
+        }
+      ],
+      'power-assert'
+    ];
+  }
+
   return config;
 };

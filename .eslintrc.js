@@ -5,6 +5,14 @@ module.exports = {
     node: true
   },
   extends: ['eslint:recommended', 'plugin:prettier/recommended'],
+  overrides: [
+    {
+      env: {
+        mocha: true
+      },
+      files: ['test/**/*.mjs']
+    }
+  ],
   parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 2018,
