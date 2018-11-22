@@ -11,6 +11,12 @@ module.exports = {
         mocha: true
       },
       files: ['test/**/*.mjs']
+    },
+    {
+      files: ['.runkit.js'],
+      rules: {
+        'no-console': 'off'
+      }
     }
   ],
   parser: 'babel-eslint',

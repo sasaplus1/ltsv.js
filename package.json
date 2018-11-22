@@ -34,6 +34,7 @@
     "type": "git",
     "url": "https://github.com/sasaplus1/ltsv.js.git"
   },
+  "runkitExampleFilename": "./.runkit.js",
   "scripts": {
     "build": "npm run build:cjs && npm run build:umd",
     "build:cjs": "BABEL_ENV=cjs babel ./src -d ./cjs -s --ignore ./src/streams.mjs && BABEL_ENV=cjs babel ./index.mjs -o ./index.js -s",
