@@ -64,6 +64,9 @@ git:
 cache:
   npm
 
+script:
+  - npm run mocha
+
 notifications:
   email:
     false
