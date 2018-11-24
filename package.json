@@ -58,7 +58,7 @@
     "prekarma": "npm run build:umd",
     "premocha:cjs": "npm run build:cjs",
     "test": "npm run mocha && npm run karma -- --single-run --browsers ChromeHeadlessNoSandbox",
-    "travis": "npm run mocha && npm run karma -- --single-run --browsers ${BROWSERS}"
+    "travis": "npm run karma -- --single-run --browsers ${BROWSERS}"
   },
   "sideEffects": false
 }
