@@ -7,6 +7,10 @@ exports.isValidLabel = isValidLabel;
 exports.isValidValue = isValidValue;
 
 /**
+ * @file LTSV validator.
+ */
+
+/**
  * validate label.
  *
  * @param {string} label

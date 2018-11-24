@@ -10,6 +10,10 @@
 }(this, (function (exports) { 'use strict';
 
   /**
+   * @file LTSV validator.
+   */
+
+  /**
    * validate label.
    *
    * @param {string} label
@@ -30,6 +34,9 @@
     return /^[\x01-\x08\x0B\x0C\x0E-\xFF]*$/.test(value);
   }
 
+  /**
+   * @file LTSV formatter.
+   */
   /**
    * convert to record string from object.
    *
@@ -79,7 +86,7 @@
   function baseFormat(data, strict) {
     const isArray = Array.isArray(data);
 
-    if (!isArray || data === null || typeof data !== 'object') {
+    if (!isArray && (data === null || typeof data !== 'object')) {
       throw new TypeError('data must be an Object or Array');
     }
 
@@ -116,6 +123,9 @@
   }
 
   /**
+   * @file LTSV parser.
+   */
+  /**
    * split to label and value from field.
    *
    * @private
@@ -150,6 +160,7 @@
     };
   }
   /**
+   * parse LTSV text.
    *
    * @private
    * @param {string} text
@@ -163,12 +174,13 @@
     const records = [];
 
     for (let i = 0, len = lines.length; i < len; ++i) {
-      records[i] = splitField(lines[i], strict);
+      records[i] = baseParseLine(lines[i], strict);
     }
 
     return records;
   }
   /**
+   * parse LTSV record.
    *
    * @private
    * @param {string} line
@@ -191,19 +203,51 @@
 
     return record;
   }
+  /**
+   * parse LTSV text.
+   *
+   * @param {string} text
+   * @return {string}
+   */
+
 
   function parse(text) {
     return baseParse(text, false);
   }
+  /**
+   * parse LTSV record.
+   *
+   * @param {string} line
+   * @return {string}
+   */
+
   function parseLine(line) {
     return baseParseLine(line, false);
   }
+  /**
+   * parse LTSV text.
+   *
+   * @param {string} text
+   * @return {string}
+   */
+
   function parseStrict(text) {
     return baseParse(text, true);
   }
+  /**
+   * parse LTSV record.
+   *
+   * @param {string} line
+   * @return {string}
+   */
+
   function parseLineStrict(line) {
     return baseParseLine(line, true);
   }
+
+  /**
+   * @file entrypoint.
+   */
 
   exports.format = format;
   exports.formatStrict = formatStrict;

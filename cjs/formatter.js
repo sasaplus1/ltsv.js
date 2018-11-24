@@ -9,6 +9,10 @@ exports.formatStrict = formatStrict;
 var _validator = require("./validator.js");
 
 /**
+ * @file LTSV formatter.
+ */
+
+/**
  * convert to record string from object.
  *
  * @private
@@ -56,7 +60,7 @@ function objectToRecord(object, strict) {
 function baseFormat(data, strict) {
   const isArray = Array.isArray(data);
 
-  if (!isArray || data === null || typeof data !== 'object') {
+  if (!isArray && (data === null || typeof data !== 'object')) {
     throw new TypeError('data must be an Object or Array');
   }
 

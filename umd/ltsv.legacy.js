@@ -38,7 +38,7 @@
 	  return store[key] || (store[key] = value !== undefined ? value : {});
 	})('versions', []).push({
 	  version: _core.version,
-	  mode: _library ? 'pure' : 'global',
+	  mode: 'global',
 	  copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
 	});
 	});
@@ -635,6 +635,10 @@
 	}
 
 	/**
+	 * @file LTSV validator.
+	 */
+
+	/**
 	 * validate label.
 	 *
 	 * @param {string} label
@@ -704,7 +708,7 @@
 	function baseFormat(data, strict) {
 	  var isArray = Array.isArray(data);
 
-	  if (!isArray || data === null || _typeof(data) !== 'object') {
+	  if (!isArray && (data === null || _typeof(data) !== 'object')) {
 	    throw new TypeError('data must be an Object or Array');
 	  }
 
@@ -889,6 +893,7 @@
 	  };
 	}
 	/**
+	 * parse LTSV text.
 	 *
 	 * @private
 	 * @param {string} text
@@ -902,12 +907,13 @@
 	  var records = [];
 
 	  for (var i = 0, len = lines.length; i < len; ++i) {
-	    records[i] = splitField(lines[i], strict);
+	    records[i] = baseParseLine(lines[i], strict);
 	  }
 
 	  return records;
 	}
 	/**
+	 * parse LTSV record.
 	 *
 	 * @private
 	 * @param {string} line
@@ -930,19 +936,51 @@
 
 	  return record;
 	}
+	/**
+	 * parse LTSV text.
+	 *
+	 * @param {string} text
+	 * @return {string}
+	 */
+
 
 	function parse(text) {
 	  return baseParse(text, false);
 	}
+	/**
+	 * parse LTSV record.
+	 *
+	 * @param {string} line
+	 * @return {string}
+	 */
+
 	function parseLine(line) {
 	  return baseParseLine(line, false);
 	}
+	/**
+	 * parse LTSV text.
+	 *
+	 * @param {string} text
+	 * @return {string}
+	 */
+
 	function parseStrict(text) {
 	  return baseParse(text, true);
 	}
+	/**
+	 * parse LTSV record.
+	 *
+	 * @param {string} line
+	 * @return {string}
+	 */
+
 	function parseLineStrict(line) {
 	  return baseParseLine(line, true);
 	}
+
+	/**
+	 * @file entrypoint.
+	 */
 
 	exports.format = format;
 	exports.formatStrict = formatStrict;

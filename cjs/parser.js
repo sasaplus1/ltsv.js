@@ -11,6 +11,10 @@ exports.parseLineStrict = parseLineStrict;
 var _validator = require("./validator.js");
 
 /**
+ * @file LTSV parser.
+ */
+
+/**
  * split to label and value from field.
  *
  * @private
@@ -44,6 +48,7 @@ function splitField(chunk, strict) {
   };
 }
 /**
+ * parse LTSV text.
  *
  * @private
  * @param {string} text
@@ -57,12 +62,13 @@ function baseParse(text, strict) {
   const records = [];
 
   for (let i = 0, len = lines.length; i < len; ++i) {
-    records[i] = splitField(lines[i], strict);
+    records[i] = baseParseLine(lines[i], strict);
   }
 
   return records;
 }
 /**
+ * parse LTSV record.
  *
  * @private
  * @param {string} line
@@ -85,18 +91,46 @@ function baseParseLine(line, strict) {
 
   return record;
 }
+/**
+ * parse LTSV text.
+ *
+ * @param {string} text
+ * @return {string}
+ */
+
 
 function parse(text) {
   return baseParse(text, false);
 }
+/**
+ * parse LTSV record.
+ *
+ * @param {string} line
+ * @return {string}
+ */
+
 
 function parseLine(line) {
   return baseParseLine(line, false);
 }
+/**
+ * parse LTSV text.
+ *
+ * @param {string} text
+ * @return {string}
+ */
+
 
 function parseStrict(text) {
   return baseParse(text, true);
 }
+/**
+ * parse LTSV record.
+ *
+ * @param {string} line
+ * @return {string}
+ */
+
 
 function parseLineStrict(line) {
   return baseParseLine(line, true);
