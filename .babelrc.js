@@ -53,7 +53,39 @@ module.exports = function(api) {
     ];
   }
 
-  if (api.env('mocha')) {
+  if (api.env('mocha:cjs')) {
+    config.compact = false;
+    config.minified = false;
+    config.presets = [
+      [
+        '@babel/preset-env',
+        {
+          debug: true,
+          modules: 'commonjs',
+          targets: {
+            node: 'current'
+          }
+        }
+      ],
+      'power-assert'
+    ];
+    config.plugins = [
+      [
+        'transform-rename-import',
+        {
+          replacements: [
+            {
+              // NOTE: change to use built script
+              original: '^\\.\\./src/(.*)\\.mjs$',
+              replacement: '../index.js'
+            }
+          ]
+        }
+      ]
+    ];
+  }
+
+  if (api.env('mocha:src')) {
     config.compact = false;
     config.minified = false;
     config.presets = [
