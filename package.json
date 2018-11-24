@@ -3,6 +3,7 @@
   "description": "LTSV parser and formatter",
   "version": "0.7.5",
   "author": "sasa+1 <sasaplus1@gmail.com>",
+  "browser": "./umd/ltsv.js",
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.6",
