@@ -1,3 +1,7 @@
+/**
+ * @file LTSV to JSON transform stream.
+ */
+
 import { Transform } from 'stream';
 import { StringDecoder } from 'string_decoder';
 

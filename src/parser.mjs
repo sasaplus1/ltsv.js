@@ -1,3 +1,7 @@
+/**
+ * @file LTSV parser.
+ */
+
 import { isValidLabel, isValidValue } from './validator.mjs';
 
 /**
@@ -35,6 +39,7 @@ function splitField(chunk, strict) {
 }
 
 /**
+ * parse LTSV text.
  *
  * @private
  * @param {string} text
@@ -45,6 +50,7 @@ function baseParse(text, strict) {
   const lines = String(text)
     .replace(/(?:\r?\n)+$/, '')
     .split(/\r?\n/);
+
   const records = [];
 
   for (let i = 0, len = lines.length; i < len; ++i) {
@@ -55,6 +61,7 @@ function baseParse(text, strict) {
 }
 
 /**
+ * parse LTSV record.
  *
  * @private
  * @param {string} line
@@ -65,6 +72,7 @@ function baseParseLine(line, strict) {
   const fields = String(line)
     .replace(/(?:\r?\n)+$/, '')
     .split('\t');
+
   const record = {};
 
   for (let i = 0, len = fields.length; i < len; ++i) {
@@ -76,18 +84,42 @@ function baseParseLine(line, strict) {
   return record;
 }
 
+/**
+ * parse LTSV text.
+ *
+ * @param {string} text
+ * @return {string}
+ */
 export function parse(text) {
   return baseParse(text, false);
 }
 
+/**
+ * parse LTSV record.
+ *
+ * @param {string} line
+ * @return {string}
+ */
 export function parseLine(line) {
   return baseParseLine(line, false);
 }
 
+/**
+ * parse LTSV text.
+ *
+ * @param {string} text
+ * @return {string}
+ */
 export function parseStrict(text) {
   return baseParse(text, true);
 }
 
+/**
+ * parse LTSV record.
+ *
+ * @param {string} line
+ * @return {string}
+ */
 export function parseLineStrict(line) {
   return baseParseLine(line, true);
 }

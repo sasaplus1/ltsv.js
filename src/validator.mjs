@@ -1,4 +1,8 @@
 /**
+ * @file LTSV validator.
+ */
+
+/**
  * validate label.
  *
  * @param {string} label

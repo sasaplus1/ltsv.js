@@ -1,3 +1,7 @@
+/**
+ * @file LTSV formatter.
+ */
+
 import { isValidLabel, isValidValue } from './validator.mjs';
 
 /**
