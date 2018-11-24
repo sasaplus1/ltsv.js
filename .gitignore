@@ -77,4 +77,7 @@ typings/
 # FuseBox cache
 .fusebox/
 
+### ltsv.js
 
+# Chrome data directory
+.chrome
