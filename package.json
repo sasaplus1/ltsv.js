@@ -50,12 +50,15 @@
     "clean": "npx rimraf ./cjs ./umd ./index.js ./index.js.map",
     "fix": "eslint --ext .mjs,.js --fix .",
     "fixpack": "npx fixpack",
+    "karma": "BABEL_ENV=karma karma start --no-browsers --file ./umd/ltsv.js",
     "lint": "eslint --ext .mjs,.js .",
     "mocha": "npm run mocha:src && npm run mocha:cjs",
     "mocha:cjs": "BABEL_ENV=mocha:cjs mocha --exclude ./test/validator.mjs './test/**/*.mjs'",
     "mocha:src": "BABEL_ENV=mocha:src mocha './test/**/*.mjs'",
+    "prekarma": "npm run build:umd",
     "premocha:cjs": "npm run build:cjs",
-    "test": "npm run mocha"
+    "test": "npm run mocha && npm run karma -- --single-run --browsers ChromeHeadlessNoSandbox",
+    "travis": "npm run mocha && npm run karma -- --single-run --browsers ${BROWSERS}"
   },
   "sideEffects": false
 }
