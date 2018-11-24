@@ -48,7 +48,7 @@ function baseParse(text, strict) {
   const records = [];
 
   for (let i = 0, len = lines.length; i < len; ++i) {
-    records[i] = splitField(lines[i], strict);
+    records[i] = baseParseLine(lines[i], strict);
   }
 
   return records;

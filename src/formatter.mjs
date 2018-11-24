@@ -47,7 +47,7 @@ function objectToRecord(object, strict) {
 function baseFormat(data, strict) {
   const isArray = Array.isArray(data);
 
-  if (!isArray || data === null || typeof data !== 'object') {
+  if (!isArray && (data === null || typeof data !== 'object')) {
     throw new TypeError('data must be an Object or Array');
   }
 
