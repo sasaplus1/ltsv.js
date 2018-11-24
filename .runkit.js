@@ -17,8 +17,8 @@ const stream = ltsv.createLtsvToJsonStream();
 stream.on('readable', function() {
   for (let buffer = stream.read(); buffer !== null; buffer = stream.read()) {
     console.log(buffer);
-    // => '{ "name": "mario", "color": "red" }'
-    // => '{ "name": "luigi", "color": "green" }'
+    // => '{"name":"mario","color":"red"}'
+    // => '{"name":"luigi","color":"green"}'
   }
 });
 
