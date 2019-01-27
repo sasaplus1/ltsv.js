@@ -1,3 +1,7 @@
+# 1.1.0 / 2019-01-27
+
+- add stringify function
+
 # 1.0.0 / 2019-01-27
 
 - modernize
