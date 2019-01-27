@@ -11,7 +11,7 @@ import { isValidLabel, isValidValue } from './validator.mjs';
  * @private
  * @param {Object} object
  * @param {boolean} strict
- * @return {string}
+ * @returns {string}
  * @throws {TypeError}
  */
 function objectToRecord(object, strict) {
@@ -46,7 +46,7 @@ function objectToRecord(object, strict) {
  * @private
  * @param {Object|Object[]} data
  * @param {boolean} strict
- * @return {string}
+ * @returns {string}
  * @throws {TypeError}
  */
 function baseFormat(data, strict) {
@@ -72,6 +72,8 @@ function baseFormat(data, strict) {
 /**
  * convert to LTSV string from object or array.
  *
+ * @param {Object|Object[]} data
+ * @returns {string}
  * @see baseFormat
  */
 export function format(data) {
@@ -81,6 +83,8 @@ export function format(data) {
 /**
  * convert to LTSV string from object or array.
  *
+ * @param {Object|Object[]} data
+ * @returns {string}
  * @see baseFormat
  */
 export function formatStrict(data) {

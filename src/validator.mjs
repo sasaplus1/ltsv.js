@@ -7,7 +7,7 @@
  * validate label.
  *
  * @param {string} label
- * @return {boolean}
+ * @returns {boolean}
  */
 export function isValidLabel(label) {
   return /^[0-9A-Za-z_.-]+$/.test(label);
@@ -17,7 +17,7 @@ export function isValidLabel(label) {
  * validate for value.
  *
  * @param {string} value
- * @return {boolean}
+ * @returns {boolean}
  */
 export function isValidValue(value) {
   // eslint-disable-next-line no-control-regex

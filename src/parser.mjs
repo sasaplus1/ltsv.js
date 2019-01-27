@@ -11,7 +11,7 @@ import { isValidLabel, isValidValue } from './validator.mjs';
  * @private
  * @param {string} chunk
  * @param {boolean} strict
- * @return {Object}
+ * @returns {Object}
  * @throws {SyntaxError}
  */
 function splitField(chunk, strict) {
@@ -45,7 +45,7 @@ function splitField(chunk, strict) {
  * @private
  * @param {string} text
  * @param {boolean} strict
- * @return {Object[]}
+ * @returns {Object[]}
  */
 function baseParse(text, strict) {
   const lines = String(text)
@@ -67,7 +67,7 @@ function baseParse(text, strict) {
  * @private
  * @param {string} line
  * @param {boolean} strict
- * @return {Object}
+ * @returns {Object}
  */
 function baseParseLine(line, strict) {
   const fields = String(line)
@@ -89,7 +89,7 @@ function baseParseLine(line, strict) {
  * parse LTSV text.
  *
  * @param {string} text
- * @return {string}
+ * @returns {string}
  */
 export function parse(text) {
   return baseParse(text, false);
@@ -99,7 +99,7 @@ export function parse(text) {
  * parse LTSV record.
  *
  * @param {string} line
- * @return {string}
+ * @returns {string}
  */
 export function parseLine(line) {
   return baseParseLine(line, false);
@@ -109,7 +109,7 @@ export function parseLine(line) {
  * parse LTSV text.
  *
  * @param {string} text
- * @return {string}
+ * @returns {string}
  */
 export function parseStrict(text) {
   return baseParse(text, true);
@@ -119,7 +119,7 @@ export function parseStrict(text) {
  * parse LTSV record.
  *
  * @param {string} line
- * @return {string}
+ * @returns {string}
  */
 export function parseLineStrict(line) {
   return baseParseLine(line, true);

@@ -126,7 +126,7 @@ export class LtsvToJsonStream extends Transform {
  * create LtsvToJsonStream instance.
  *
  * @param {Object} options
- * @return {LtsvToJsonStream}
+ * @returns {LtsvToJsonStream}
  * @see LtsvToJsonStream
  */
 export function createLtsvToJsonStream(options) {
