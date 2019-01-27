@@ -1,10 +1,18 @@
 module.exports = {
   linters: {
-    '**/*.mjs': 'npm run lint',
-    '.*.js': 'npm run lint',
+    '*.+(js|mjs)': 'npx --no-install eslint --ext .js,.mjs',
+    '*.yml': [
+      'npx --no-install prettier --parser yaml --write',
+      'git diff --exit-code --quiet'
+    ],
+    '!(package|package-lock).json': [
+      'npx --no-install prettier --parser json-stringify --write',
+      'git diff --exit-code --quiet'
+    ],
     'package.json': [
       'npx fixpack',
-      'git diff --exit-code --quiet ./package.json'
+      'npx --no-install prettier --parser json-stringify --write',
+      'git diff --exit-code --quiet'
     ]
   }
 };
