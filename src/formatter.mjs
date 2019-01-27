@@ -86,3 +86,18 @@ export function format(data) {
 export function formatStrict(data) {
   return baseFormat(data, true);
 }
+
+/**
+ * convert to LTSV string from object or array.
+ *
+ * @param {Object|Object[]} data
+ * @param {Object} options
+ * @param {boolean} [options.strict=false]
+ * @returns {string}
+ * @see baseFormat
+ */
+export function stringify(data, options = {}) {
+  const { strict = false } = options;
+
+  return baseFormat(data, strict);
+}

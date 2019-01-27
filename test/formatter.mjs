@@ -158,4 +158,8 @@ describe('formatter', function() {
       }, SyntaxError);
     });
   });
+
+  describe('#stringify()', function() {
+    it.skip('not impelemented');
+  });
 });
