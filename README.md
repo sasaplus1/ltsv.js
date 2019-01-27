@@ -1,28 +1,18 @@
 # ltsv.js
 
-[![Build Status](https://travis-ci.org/sasaplus1/ltsv.js.svg)](https://travis-ci.org/sasaplus1/ltsv.js)
-[![Dependency Status](https://gemnasium.com/sasaplus1/ltsv.js.svg)](https://gemnasium.com/sasaplus1/ltsv.js)
-[![NPM version](https://badge.fury.io/js/ltsv.svg)](http://badge.fury.io/js/ltsv)
-[![Bower version](https://badge.fury.io/bo/ltsv.svg)](http://badge.fury.io/bo/ltsv)
+[![Build Status](https://travis-ci.org/sasaplus1/ltsv.js.svg?branch=master)](https://travis-ci.org/sasaplus1/ltsv.js)
+[![npm version](https://badge.fury.io/js/ltsv.svg)](https://badge.fury.io/js/ltsv)
+[![Try ltsv on RunKit](https://badge.runkitcdn.com/ltsv.svg)](https://npm.runkit.com/ltsv)
+[![renovate](https://badges.renovateapi.com/github/sasaplus1/ltsv.js)](https://renovatebot.com)
 
-[LTSV](http://ltsv.org/) parser and formatter
-
-## playgound
-
-[http://sasaplus1.github.io/ltsv.js/](http://sasaplus1.github.io/ltsv.js/)
+[LTSV](http://ltsv.org/) parser, formatter, validator and TransformStream
 
 ## Installation
 
 ### npm
 
-```sh
+```console
 $ npm install ltsv
-```
-
-### bower
-
-```sh
-$ bower install ltsv
 ```
 
 ## Usage
@@ -30,7 +20,7 @@ $ bower install ltsv
 ### node.js
 
 ```js
-var ltsv = require('ltsv');
+const ltsv = require('ltsv');
 ```
 
 ### browser
@@ -70,127 +60,28 @@ ltsv.format({ label1: 'value1', label2: 'value2' });
 ```
 
 ```js
-var fs = require('fs'),
-    ltsv = require('ltsv'),
-    ltjs = ltsv.createLtsvToJsonStream({
-      toObject: false,
-      strict: false
-    });
+const fs = require('fs'),
+
+const ltsv = require('ltsv'),
+
+const stream = ltsv.createLtsvToJsonStream({
+  encoding: 'utf8',
+  obectMode: false,
+  strict: false
+});
 
 // access.log:
 // l1:v1\tl2:v2\n
 // l1:v1\tl2:v2\n
 // l1:v1\tl2:v2\n
-fs.createReadStream('./access.log').pipe(ltjs).pipe(process.stdout);
+fs.createReadStream('./access.log').pipe(stream).pipe(process.stdout);
 // {"l1":"v1","l2":"v2"}{"l1":"v1","l2":"v2"}{"l1":"v1","l2":"v2"}
 ```
 
 ## Functions
 
-### parse(text)
-
-* `text`
-  * `String` - LTSV text
-* `return`
-  * `Object[]` - parsed objects
-
-split to LTSV records.
-
-throw SyntaxError if `text` has no separator.
-
-### parseLine(line)
-
-* `line`
-  * `String` - LTSV line
-* `return`
-  * `Object` - parsed object
-
-split to LTSV record.
-
-throw SyntaxError if `line` has no separator.
-
-### parseStrict(text)
-
-* `text`
-  * `String` - LTSV text
-* `return`
-  * `Object[]` - parsed objects
-
-split to LTSV records and validate label and value of fields.
-
-throw SyntaxError if `text` has no separator.
-also throw SyntaxError if `text` has unexpected character.
-
-### parseLineStrict(line)
-
-* `line`
-  * `String` - LTSV line
-* `return`
-  * `Object` - parsed object
-
-split to LTSV record.
-
-throw SyntaxError if `line` has no separator.
-also throw SyntaxError if `line` has unexpected character.
-
-### format(data)
-
-* `data`
-  * `Object|Object[]` - object or object array
-* `return`
-  * `String` - LTSV text
-
-convert to LTSV text.
-
-throw TypeError if `data` is not an object or array.
-
-### formatStrict(data)
-
-* `data`
-  * `Object|Object[]` - object or object array
-* `return`
-  * `String` - LTSV text
-
-convert to LTSV text.
-
-throw TypeError if `data` is not an object or array.
-also throw SyntaxError if `data` has unexpected character.
-
-### createLtsvToJsonStream([options])
-
-* `options`
-  * `Object` - option object
-* `return`
-  * `LtsvToJsonStream` - LTSV to JSON stream
-
-return LtsvToJsonStream instance. this function cannot use by browser.
-
-#### options
-
-* `encoding`
-  * `String` - StringDecoder's encoding, default is `utf8`
-* `toObject`
-  * `Boolean` - convert to Object if true, default is `false`
-* `strict`
-  * `Boolean` - strict parse if true, default is `false`
-
-## Test
-
-### node.js
-
-```sh
-$ npm install
-$ npm test
-```
-
-### browser
-
-```sh
-$ npm install
-$ npm run bower
-$ npm run testem
-```
+see [docs](docs) or https://sasaplus1.github.io/ltsv.js
 
 ## License
 
-The MIT license. Please see LICENSE file.
+The MIT license.
