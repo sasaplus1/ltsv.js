@@ -11,13 +11,14 @@
 
   /**
    * @file LTSV validator.
+   * @module validator
    */
 
   /**
    * validate label.
    *
    * @param {string} label
-   * @return {boolean}
+   * @returns {boolean}
    */
   function isValidLabel(label) {
     return /^[0-9A-Za-z_.-]+$/.test(label);
@@ -26,7 +27,7 @@
    * validate for value.
    *
    * @param {string} value
-   * @return {boolean}
+   * @returns {boolean}
    */
 
   function isValidValue(value) {
@@ -36,6 +37,7 @@
 
   /**
    * @file LTSV formatter.
+   * @module formatter
    */
   /**
    * convert to record string from object.
@@ -43,7 +45,7 @@
    * @private
    * @param {Object} object
    * @param {boolean} strict
-   * @return {string}
+   * @returns {string}
    * @throws {TypeError}
    */
 
@@ -78,7 +80,7 @@
    * @private
    * @param {Object|Object[]} data
    * @param {boolean} strict
-   * @return {string}
+   * @returns {string}
    * @throws {TypeError}
    */
 
@@ -105,6 +107,8 @@
   /**
    * convert to LTSV string from object or array.
    *
+   * @param {Object|Object[]} data
+   * @returns {string}
    * @see baseFormat
    */
 
@@ -115,15 +119,34 @@
   /**
    * convert to LTSV string from object or array.
    *
+   * @param {Object|Object[]} data
+   * @returns {string}
    * @see baseFormat
    */
 
   function formatStrict(data) {
     return baseFormat(data, true);
   }
+  /**
+   * convert to LTSV string from object or array.
+   *
+   * @param {Object|Object[]} data
+   * @param {Object} options
+   * @param {boolean} [options.strict=false]
+   * @returns {string}
+   * @see baseFormat
+   */
+
+  function stringify(data, options = {}) {
+    const {
+      strict = false
+    } = options;
+    return baseFormat(data, strict);
+  }
 
   /**
    * @file LTSV parser.
+   * @module parser
    */
   /**
    * split to label and value from field.
@@ -131,7 +154,7 @@
    * @private
    * @param {string} chunk
    * @param {boolean} strict
-   * @return {Object}
+   * @returns {Object}
    * @throws {SyntaxError}
    */
 
@@ -165,7 +188,7 @@
    * @private
    * @param {string} text
    * @param {boolean} strict
-   * @return {Object[]}
+   * @returns {Object[]}
    */
 
 
@@ -185,7 +208,7 @@
    * @private
    * @param {string} line
    * @param {boolean} strict
-   * @return {Object}
+   * @returns {Object}
    */
 
 
@@ -207,7 +230,7 @@
    * parse LTSV text.
    *
    * @param {string} text
-   * @return {string}
+   * @returns {string}
    */
 
 
@@ -218,7 +241,7 @@
    * parse LTSV record.
    *
    * @param {string} line
-   * @return {string}
+   * @returns {string}
    */
 
   function parseLine(line) {
@@ -228,7 +251,7 @@
    * parse LTSV text.
    *
    * @param {string} text
-   * @return {string}
+   * @returns {string}
    */
 
   function parseStrict(text) {
@@ -238,7 +261,7 @@
    * parse LTSV record.
    *
    * @param {string} line
-   * @return {string}
+   * @returns {string}
    */
 
   function parseLineStrict(line) {
@@ -247,10 +270,12 @@
 
   /**
    * @file entrypoint.
+   * @module ltsv
    */
 
   exports.format = format;
   exports.formatStrict = formatStrict;
+  exports.stringify = stringify;
   exports.parse = parse;
   exports.parseLine = parseLine;
   exports.parseStrict = parseStrict;

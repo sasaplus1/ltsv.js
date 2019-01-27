@@ -8,13 +8,14 @@ exports.isValidValue = isValidValue;
 
 /**
  * @file LTSV validator.
+ * @module validator
  */
 
 /**
  * validate label.
  *
  * @param {string} label
- * @return {boolean}
+ * @returns {boolean}
  */
 function isValidLabel(label) {
   return /^[0-9A-Za-z_.-]+$/.test(label);
@@ -23,7 +24,7 @@ function isValidLabel(label) {
  * validate for value.
  *
  * @param {string} value
- * @return {boolean}
+ * @returns {boolean}
  */
 
 

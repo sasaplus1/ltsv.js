@@ -38,7 +38,7 @@
 	  return store[key] || (store[key] = value !== undefined ? value : {});
 	})('versions', []).push({
 	  version: _core.version,
-	  mode: _library ? 'pure' : 'global',
+	  mode: 'global',
 	  copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
 	});
 	});
@@ -636,13 +636,14 @@
 
 	/**
 	 * @file LTSV validator.
+	 * @module validator
 	 */
 
 	/**
 	 * validate label.
 	 *
 	 * @param {string} label
-	 * @return {boolean}
+	 * @returns {boolean}
 	 */
 	function isValidLabel(label) {
 	  return /^[0-9A-Za-z_.-]+$/.test(label);
@@ -651,7 +652,7 @@
 	 * validate for value.
 	 *
 	 * @param {string} value
-	 * @return {boolean}
+	 * @returns {boolean}
 	 */
 
 	function isValidValue(value) {
@@ -665,7 +666,7 @@
 	 * @private
 	 * @param {Object} object
 	 * @param {boolean} strict
-	 * @return {string}
+	 * @returns {string}
 	 * @throws {TypeError}
 	 */
 
@@ -700,7 +701,7 @@
 	 * @private
 	 * @param {Object|Object[]} data
 	 * @param {boolean} strict
-	 * @return {string}
+	 * @returns {string}
 	 * @throws {TypeError}
 	 */
 
@@ -727,6 +728,8 @@
 	/**
 	 * convert to LTSV string from object or array.
 	 *
+	 * @param {Object|Object[]} data
+	 * @returns {string}
 	 * @see baseFormat
 	 */
 
@@ -737,11 +740,29 @@
 	/**
 	 * convert to LTSV string from object or array.
 	 *
+	 * @param {Object|Object[]} data
+	 * @returns {string}
 	 * @see baseFormat
 	 */
 
 	function formatStrict(data) {
 	  return baseFormat(data, true);
+	}
+	/**
+	 * convert to LTSV string from object or array.
+	 *
+	 * @param {Object|Object[]} data
+	 * @param {Object} options
+	 * @param {boolean} [options.strict=false]
+	 * @returns {string}
+	 * @see baseFormat
+	 */
+
+	function stringify(data) {
+	  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+	  var _options$strict = options.strict,
+	      strict = _options$strict === void 0 ? false : _options$strict;
+	  return baseFormat(data, strict);
 	}
 
 	var _fixReWks = function (KEY, length, exec) {
@@ -864,7 +885,7 @@
 	 * @private
 	 * @param {string} chunk
 	 * @param {boolean} strict
-	 * @return {Object}
+	 * @returns {Object}
 	 * @throws {SyntaxError}
 	 */
 
@@ -898,7 +919,7 @@
 	 * @private
 	 * @param {string} text
 	 * @param {boolean} strict
-	 * @return {Object[]}
+	 * @returns {Object[]}
 	 */
 
 
@@ -918,7 +939,7 @@
 	 * @private
 	 * @param {string} line
 	 * @param {boolean} strict
-	 * @return {Object}
+	 * @returns {Object}
 	 */
 
 
@@ -940,7 +961,7 @@
 	 * parse LTSV text.
 	 *
 	 * @param {string} text
-	 * @return {string}
+	 * @returns {string}
 	 */
 
 
@@ -951,7 +972,7 @@
 	 * parse LTSV record.
 	 *
 	 * @param {string} line
-	 * @return {string}
+	 * @returns {string}
 	 */
 
 	function parseLine(line) {
@@ -961,7 +982,7 @@
 	 * parse LTSV text.
 	 *
 	 * @param {string} text
-	 * @return {string}
+	 * @returns {string}
 	 */
 
 	function parseStrict(text) {
@@ -971,7 +992,7 @@
 	 * parse LTSV record.
 	 *
 	 * @param {string} line
-	 * @return {string}
+	 * @returns {string}
 	 */
 
 	function parseLineStrict(line) {
@@ -980,10 +1001,12 @@
 
 	/**
 	 * @file entrypoint.
+	 * @module ltsv
 	 */
 
 	exports.format = format;
 	exports.formatStrict = formatStrict;
+	exports.stringify = stringify;
 	exports.parse = parse;
 	exports.parseLine = parseLine;
 	exports.parseStrict = parseStrict;

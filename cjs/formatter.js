@@ -5,11 +5,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.format = format;
 exports.formatStrict = formatStrict;
+exports.stringify = stringify;
 
 var _validator = require("./validator.js");
 
 /**
  * @file LTSV formatter.
+ * @module formatter
  */
 
 /**
@@ -18,7 +20,7 @@ var _validator = require("./validator.js");
  * @private
  * @param {Object} object
  * @param {boolean} strict
- * @return {string}
+ * @returns {string}
  * @throws {TypeError}
  */
 function objectToRecord(object, strict) {
@@ -52,7 +54,7 @@ function objectToRecord(object, strict) {
  * @private
  * @param {Object|Object[]} data
  * @param {boolean} strict
- * @return {string}
+ * @returns {string}
  * @throws {TypeError}
  */
 
@@ -79,6 +81,8 @@ function baseFormat(data, strict) {
 /**
  * convert to LTSV string from object or array.
  *
+ * @param {Object|Object[]} data
+ * @returns {string}
  * @see baseFormat
  */
 
@@ -89,11 +93,29 @@ function format(data) {
 /**
  * convert to LTSV string from object or array.
  *
+ * @param {Object|Object[]} data
+ * @returns {string}
  * @see baseFormat
  */
 
 
 function formatStrict(data) {
   return baseFormat(data, true);
+}
+/**
+ * convert to LTSV string from object or array.
+ *
+ * @param {Object|Object[]} data
+ * @param {Object} options
+ * @param {boolean} [options.strict=false]
+ * @returns {string}
+ * @see baseFormat
+ */
+
+
+function stringify(data, options = {}) {
+  const _options$strict = options.strict,
+        strict = _options$strict === void 0 ? false : _options$strict;
+  return baseFormat(data, strict);
 }
 //# sourceMappingURL=formatter.js.map

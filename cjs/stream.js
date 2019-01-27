@@ -133,7 +133,7 @@ class LtsvToJsonStream extends _stream.Transform {
  * create LtsvToJsonStream instance.
  *
  * @param {Object} options
- * @return {LtsvToJsonStream}
+ * @returns {LtsvToJsonStream}
  * @see LtsvToJsonStream
  */
 

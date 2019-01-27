@@ -12,6 +12,7 @@ var _validator = require("./validator.js");
 
 /**
  * @file LTSV parser.
+ * @module parser
  */
 
 /**
@@ -20,7 +21,7 @@ var _validator = require("./validator.js");
  * @private
  * @param {string} chunk
  * @param {boolean} strict
- * @return {Object}
+ * @returns {Object}
  * @throws {SyntaxError}
  */
 function splitField(chunk, strict) {
@@ -53,7 +54,7 @@ function splitField(chunk, strict) {
  * @private
  * @param {string} text
  * @param {boolean} strict
- * @return {Object[]}
+ * @returns {Object[]}
  */
 
 
@@ -73,7 +74,7 @@ function baseParse(text, strict) {
  * @private
  * @param {string} line
  * @param {boolean} strict
- * @return {Object}
+ * @returns {Object}
  */
 
 
@@ -95,7 +96,7 @@ function baseParseLine(line, strict) {
  * parse LTSV text.
  *
  * @param {string} text
- * @return {string}
+ * @returns {string}
  */
 
 
@@ -106,7 +107,7 @@ function parse(text) {
  * parse LTSV record.
  *
  * @param {string} line
- * @return {string}
+ * @returns {string}
  */
 
 
@@ -117,7 +118,7 @@ function parseLine(line) {
  * parse LTSV text.
  *
  * @param {string} text
- * @return {string}
+ * @returns {string}
  */
 
 
@@ -128,7 +129,7 @@ function parseStrict(text) {
  * parse LTSV record.
  *
  * @param {string} line
- * @return {string}
+ * @returns {string}
  */
 
 
