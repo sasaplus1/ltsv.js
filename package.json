@@ -5,9 +5,9 @@
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "browser": "./umd/ltsv.js",
   "devDependencies": {
-    "@babel/cli": "7.1.5",
-    "@babel/core": "7.1.6",
-    "@babel/preset-env": "7.1.6",
+    "@babel/cli": "7.2.3",
+    "@babel/core": "7.2.2",
+    "@babel/preset-env": "7.3.1",
     "@babel/register": "7.0.0",
     "@mocha/docdash": "2.0.1",
     "babel-plugin-transform-rename-import": "2.3.0",
