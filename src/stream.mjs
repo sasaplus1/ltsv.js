@@ -1,5 +1,6 @@
 /**
  * @file LTSV to JSON transform stream.
+ * @module stream
  */
 
 import { Transform } from 'stream';

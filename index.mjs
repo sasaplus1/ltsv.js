@@ -1,5 +1,6 @@
 /**
  * @file entrypoint.
+ * @module ltsv
  */
 
 export * from './src/formatter.mjs';

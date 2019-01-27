@@ -1,5 +1,6 @@
 /**
  * @file LTSV parser.
+ * @module parser
  */
 
 import { isValidLabel, isValidValue } from './validator.mjs';
