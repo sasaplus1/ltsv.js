@@ -1,6 +1,7 @@
 # 1.0.0 / 2019-01-27
 
 - modernize
+- export validator functions
 
 # 0.7.5 / 2014-09-22
 
