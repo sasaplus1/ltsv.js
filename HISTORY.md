@@ -1,3 +1,7 @@
+# 1.0.0 / 2019-01-27
+
+- modernize
+
 # 0.7.5 / 2014-09-22
 
 - fixed cannot install from npm
