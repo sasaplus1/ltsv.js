@@ -1,8 +1,0 @@
-.closurelinter
-.travis.yml
-Makefile
-bower.json
-ltsv.min.js
-testem.json
-bower_components/
-test/

@@ -1,13 +1,54 @@
+os: linux
+
+dist: xenial
+
+sudo: false
+
 language: node_js
+
 node_js:
-  - "0.10"
-notifications:
-  email: false
-before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sleep 5
+  - '6'
+  - '8'
+  - '10'
+  - '11'
+  - 'lts/*'
+
+matrix:
+  include:
+    - os: linux
+      dist: xenial
+      sudo: false
+      addons:
+        chrome: stable
+        firefox: latest
+      node_js:
+        - 'lts/*'
+      env:
+        - BROWSERS=ChromeHeadlessNoSandbox,FirefoxHeadless
+      script:
+        - npm run travis
+    - os: osx
+      osx_image: xcode10.1
+      node_js:
+        - 'lts/*'
+      env:
+        - BROWSERS=Safari
+      script:
+        - npm run travis
+    - os: osx
+      osx_image: xcode9.2
+      node_js:
+        - 'lts/*'
+      env:
+        - BROWSERS=Safari
+      script:
+        - npm run travis
+
+git:
+  depth: 3
+
+cache: npm
+
 script:
-  - npm run bower
-  - npm run test
-  - npm run travis
+  - npm run lint
+  - npm run mocha
