@@ -34,6 +34,12 @@
   "engines": {
     "node": ">=6"
   },
+  "files": [
+    "cjs",
+    "index.*",
+    "src",
+    "umd"
+  ],
   "license": "MIT",
   "main": "./index.js",
   "module": "./index.mjs",
