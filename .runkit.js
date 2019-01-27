@@ -12,7 +12,11 @@ ltsv.format([
 ]);
 // => 'name:mario\tcolor:red\nname:luigi\tcolor:green'
 
-const stream = ltsv.createLtsvToJsonStream();
+const stream = ltsv.createLtsvToJsonStream({
+  encoding: 'utf8',
+  obectMode: false,
+  strict: false
+});
 
 stream.on('readable', function() {
   for (let buffer = stream.read(); buffer !== null; buffer = stream.read()) {
