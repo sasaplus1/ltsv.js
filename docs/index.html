@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-stream.LtsvToJsonStream.html">LtsvToJsonStream</a></li></ul><h3>Modules</h3><ul><li><a href="module-ltsv.html">ltsv</a></li><li><a href="module-formatter.html">formatter</a><ul class='methods'><li data-type='method'><a href="module-formatter.html#.format">format</a></li><li data-type='method'><a href="module-formatter.html#.formatStrict">formatStrict</a></li></ul></li><li><a href="module-parser.html">parser</a><ul class='methods'><li data-type='method'><a href="module-parser.html#.parse">parse</a></li><li data-type='method'><a href="module-parser.html#.parseLine">parseLine</a></li><li data-type='method'><a href="module-parser.html#.parseStrict">parseStrict</a></li><li data-type='method'><a href="module-parser.html#.parseLineStrict">parseLineStrict</a></li></ul></li><li><a href="module-stream.html">stream</a><ul class='methods'><li data-type='method'><a href="module-stream.html#.createLtsvToJsonStream">createLtsvToJsonStream</a></li></ul></li><li><a href="module-validator.html">validator</a><ul class='methods'><li data-type='method'><a href="module-validator.html#.isValidLabel">isValidLabel</a></li><li data-type='method'><a href="module-validator.html#.isValidValue">isValidValue</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-stream.LtsvToJsonStream.html">LtsvToJsonStream</a><ul class='methods'><li data-type='method'><a href="module-stream.LtsvToJsonStream.html#_push">_push</a></li><li data-type='method'><a href="module-stream.LtsvToJsonStream.html#_transform">_transform</a></li><li data-type='method'><a href="module-stream.LtsvToJsonStream.html#_flush">_flush</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-ltsv.html">ltsv</a></li><li><a href="module-formatter.html">formatter</a><ul class='methods'><li data-type='method'><a href="module-formatter.html#~objectToRecord">objectToRecord</a></li><li data-type='method'><a href="module-formatter.html#~baseFormat">baseFormat</a></li><li data-type='method'><a href="module-formatter.html#.format">format</a></li><li data-type='method'><a href="module-formatter.html#.formatStrict">formatStrict</a></li><li data-type='method'><a href="module-formatter.html#.stringify">stringify</a></li></ul></li><li><a href="module-parser.html">parser</a><ul class='methods'><li data-type='method'><a href="module-parser.html#~splitField">splitField</a></li><li data-type='method'><a href="module-parser.html#~baseParse">baseParse</a></li><li data-type='method'><a href="module-parser.html#~baseParseLine">baseParseLine</a></li><li data-type='method'><a href="module-parser.html#.parse">parse</a></li><li data-type='method'><a href="module-parser.html#.parseLine">parseLine</a></li><li data-type='method'><a href="module-parser.html#.parseStrict">parseStrict</a></li><li data-type='method'><a href="module-parser.html#.parseLineStrict">parseLineStrict</a></li></ul></li><li><a href="module-stream.html">stream</a><ul class='methods'><li data-type='method'><a href="module-stream.html#.createLtsvToJsonStream">createLtsvToJsonStream</a></li></ul></li><li><a href="module-validator.html">validator</a><ul class='methods'><li data-type='method'><a href="module-validator.html#.isValidLabel">isValidLabel</a></li><li data-type='method'><a href="module-validator.html#.isValidValue">isValidValue</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -80,19 +80,23 @@ ltsv.format([
 // 'label1:value1\tlabel2:value2\nlabel1:value1\tlabel2:value2\nlabel1:value1\tlabel2:value2'
 
 ltsv.format({ label1: 'value1', label2: 'value2' });
-// 'label1:value1\tlabel2:value2'</code></pre><pre class="prettyprint source lang-js"><code>var fs = require('fs'),
-    ltsv = require('ltsv'),
-    ltjs = ltsv.createLtsvToJsonStream({
-      toObject: false,
-      strict: false
-    });
+// 'label1:value1\tlabel2:value2'</code></pre><pre class="prettyprint source lang-js"><code>const fs = require('fs'),
+
+const ltsv = require('ltsv'),
+
+const stream = ltsv.createLtsvToJsonStream({
+  encoding: 'utf8',
+  obectMode: false,
+  strict: false
+});
 
 // access.log:
 // l1:v1\tl2:v2\n
 // l1:v1\tl2:v2\n
 // l1:v1\tl2:v2\n
-fs.createReadStream('./access.log').pipe(ltjs).pipe(process.stdout);
-// {&quot;l1&quot;:&quot;v1&quot;,&quot;l2&quot;:&quot;v2&quot;}{&quot;l1&quot;:&quot;v1&quot;,&quot;l2&quot;:&quot;v2&quot;}{&quot;l1&quot;:&quot;v1&quot;,&quot;l2&quot;:&quot;v2&quot;}</code></pre><h2>Functions</h2><h2>License</h2><p>The MIT license.</p></article>
+fs.createReadStream('./access.log').pipe(stream).pipe(process.stdout);
+// {&quot;l1&quot;:&quot;v1&quot;,&quot;l2&quot;:&quot;v2&quot;}{&quot;l1&quot;:&quot;v1&quot;,&quot;l2&quot;:&quot;v2&quot;}{&quot;l1&quot;:&quot;v1&quot;,&quot;l2&quot;:&quot;v2&quot;}</code></pre><h2>Functions</h2><p>see <a href="docs">docs</a> or https://sasaplus1.github.io/ltsv.js</p>
+<h2>License</h2><p>The MIT license.</p></article>
     </section>
 
 
@@ -107,7 +111,7 @@ fs.createReadStream('./access.log').pipe(ltjs).pipe(process.stdout);
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Jan 27 2019 20:11:43 GMT+0900 (GMT+09:00) using the <a href="https://github.com/mochajs/mocha-docdash">@mocha/docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Jan 27 2019 20:58:54 GMT+0900 (GMT+09:00) using the <a href="https://github.com/mochajs/mocha-docdash">@mocha/docdash</a> theme.
 </footer>
 
 <script src="scripts/prettify/prettify.js"></script>

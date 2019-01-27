@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-stream.LtsvToJsonStream.html">LtsvToJsonStream</a></li></ul><h3>Modules</h3><ul><li><a href="module-ltsv.html">ltsv</a></li><li><a href="module-formatter.html">formatter</a><ul class='methods'><li data-type='method'><a href="module-formatter.html#.format">format</a></li><li data-type='method'><a href="module-formatter.html#.formatStrict">formatStrict</a></li></ul></li><li><a href="module-parser.html">parser</a><ul class='methods'><li data-type='method'><a href="module-parser.html#.parse">parse</a></li><li data-type='method'><a href="module-parser.html#.parseLine">parseLine</a></li><li data-type='method'><a href="module-parser.html#.parseStrict">parseStrict</a></li><li data-type='method'><a href="module-parser.html#.parseLineStrict">parseLineStrict</a></li></ul></li><li><a href="module-stream.html">stream</a><ul class='methods'><li data-type='method'><a href="module-stream.html#.createLtsvToJsonStream">createLtsvToJsonStream</a></li></ul></li><li><a href="module-validator.html">validator</a><ul class='methods'><li data-type='method'><a href="module-validator.html#.isValidLabel">isValidLabel</a></li><li data-type='method'><a href="module-validator.html#.isValidValue">isValidValue</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-stream.LtsvToJsonStream.html">LtsvToJsonStream</a><ul class='methods'><li data-type='method'><a href="module-stream.LtsvToJsonStream.html#_push">_push</a></li><li data-type='method'><a href="module-stream.LtsvToJsonStream.html#_transform">_transform</a></li><li data-type='method'><a href="module-stream.LtsvToJsonStream.html#_flush">_flush</a></li></ul></li></ul><h3>Modules</h3><ul><li><a href="module-ltsv.html">ltsv</a></li><li><a href="module-formatter.html">formatter</a><ul class='methods'><li data-type='method'><a href="module-formatter.html#~objectToRecord">objectToRecord</a></li><li data-type='method'><a href="module-formatter.html#~baseFormat">baseFormat</a></li><li data-type='method'><a href="module-formatter.html#.format">format</a></li><li data-type='method'><a href="module-formatter.html#.formatStrict">formatStrict</a></li><li data-type='method'><a href="module-formatter.html#.stringify">stringify</a></li></ul></li><li><a href="module-parser.html">parser</a><ul class='methods'><li data-type='method'><a href="module-parser.html#~splitField">splitField</a></li><li data-type='method'><a href="module-parser.html#~baseParse">baseParse</a></li><li data-type='method'><a href="module-parser.html#~baseParseLine">baseParseLine</a></li><li data-type='method'><a href="module-parser.html#.parse">parse</a></li><li data-type='method'><a href="module-parser.html#.parseLine">parseLine</a></li><li data-type='method'><a href="module-parser.html#.parseStrict">parseStrict</a></li><li data-type='method'><a href="module-parser.html#.parseLineStrict">parseLineStrict</a></li></ul></li><li><a href="module-stream.html">stream</a><ul class='methods'><li data-type='method'><a href="module-stream.html#.createLtsvToJsonStream">createLtsvToJsonStream</a></li></ul></li><li><a href="module-validator.html">validator</a><ul class='methods'><li data-type='method'><a href="module-validator.html#.isValidLabel">isValidLabel</a></li><li data-type='method'><a href="module-validator.html#.isValidValue">isValidValue</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -157,7 +157,7 @@
 
     
 
-    <h4 class="name" id=".format"><span class="type-signature">(static) </span>format<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~objectToRecord"><span class="type-signature">(private, inner) </span>objectToRecord<span class="signature">(object, strict)</span><span class="type-signature"> &rarr; {string}</span></h4>
 
     
 
@@ -169,7 +169,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_formatter.mjs.html">src/formatter.mjs</a>, <a href="src_formatter.mjs.html#line77">line 77</a>
+        <a href="src_formatter.mjs.html">src/formatter.mjs</a>, <a href="src_formatter.mjs.html#line17">line 17</a>
     </li></ul></dd>
     
 
@@ -200,13 +200,6 @@
     
 
     
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li>baseFormat</li>
-        </ul>
-    </dd>
-    
 
     
 </dl>
@@ -216,7 +209,7 @@
 
 
 <div class="description">
-    convert to LTSV string from object or array.
+    convert to record string from object.
 </div>
 
 
@@ -229,6 +222,76 @@
 
 
 
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>object</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>strict</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -241,6 +304,41 @@
 
 
 
+<h5>Throws:</h5>
+
+        
+
+    <div class="param-desc">
+    
+        
+<span class="param-type">TypeError</span>
+
+
+    
+    </div>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
         
@@ -248,7 +346,7 @@
 
     
 
-    <h4 class="name" id=".formatStrict"><span class="type-signature">(static) </span>formatStrict<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~baseFormat"><span class="type-signature">(private, inner) </span>baseFormat<span class="signature">(data, strict)</span><span class="type-signature"> &rarr; {string}</span></h4>
 
     
 
@@ -260,7 +358,199 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_formatter.mjs.html">src/formatter.mjs</a>, <a href="src_formatter.mjs.html#line86">line 86</a>
+        <a href="src_formatter.mjs.html">src/formatter.mjs</a>, <a href="src_formatter.mjs.html#line52">line 52</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    convert to LTSV string from object or array.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>strict</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+    <div class="param-desc">
+    
+        
+<span class="param-type">TypeError</span>
+
+
+    
+    </div>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".format"><span class="type-signature">(static) </span>format<span class="signature">(data)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="src_formatter.mjs.html">src/formatter.mjs</a>, <a href="src_formatter.mjs.html#line79">line 79</a>
     </li></ul></dd>
     
 
@@ -320,6 +610,56 @@
 
 
 
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -332,6 +672,440 @@
 
 
 
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".formatStrict"><span class="type-signature">(static) </span>formatStrict<span class="signature">(data)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="src_formatter.mjs.html">src/formatter.mjs</a>, <a href="src_formatter.mjs.html#line90">line 90</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>baseFormat</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    convert to LTSV string from object or array.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".stringify"><span class="type-signature">(static) </span>stringify<span class="signature">(data, options)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="src_formatter.mjs.html">src/formatter.mjs</a>, <a href="src_formatter.mjs.html#line103">line 103</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>baseFormat</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    convert to LTSV string from object or array.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+|
+
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>strict</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>false</code>
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
         
@@ -354,7 +1128,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Jan 27 2019 20:11:43 GMT+0900 (GMT+09:00) using the <a href="https://github.com/mochajs/mocha-docdash">@mocha/docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Jan 27 2019 20:58:54 GMT+0900 (GMT+09:00) using the <a href="https://github.com/mochajs/mocha-docdash">@mocha/docdash</a> theme.
 </footer>
 
 <script src="scripts/prettify/prettify.js"></script>
