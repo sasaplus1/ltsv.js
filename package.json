@@ -14,7 +14,7 @@
     "babel-preset-power-assert": "3.0.0",
     "eslint": "5.12.1",
     "eslint-config-prettier": "3.6.0",
-    "eslint-plugin-prettier": "3.0.0",
+    "eslint-plugin-prettier": "3.0.1",
     "husky": "1.1.4",
     "jsdoc": "3.5.5",
     "karma": "3.1.1",
