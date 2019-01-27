@@ -19,18 +19,9 @@ module.exports = {
       }
     }
   ],
-  parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module'
   },
-  root: true,
-  rules: {
-    'prettier/prettier': [
-      'error',
-      {
-        singleQuote: true
-      }
-    ]
-  }
+  root: true
 };
