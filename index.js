@@ -40,4 +40,16 @@ Object.keys(_stream).forEach(function (key) {
   });
 });
 
+var _validator = require("./cjs/validator.js");
+
+Object.keys(_validator).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _validator[key];
+    }
+  });
+});
+
 //# sourceMappingURL=index.js.map

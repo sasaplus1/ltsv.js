@@ -988,6 +988,8 @@
 	exports.parseLine = parseLine;
 	exports.parseStrict = parseStrict;
 	exports.parseLineStrict = parseLineStrict;
+	exports.isValidLabel = isValidLabel;
+	exports.isValidValue = isValidValue;
 
 	Object.defineProperty(exports, '__esModule', { value: true });
 
