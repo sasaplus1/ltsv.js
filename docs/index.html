@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>Home - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module-stream.LtsvToJsonStream.html">LtsvToJsonStream</a></li></ul><h3>Modules</h3><ul><li><a href="module-ltsv.html">ltsv</a></li><li><a href="module-formatter.html">formatter</a><ul class='methods'><li data-type='method'><a href="module-formatter.html#.format">format</a></li><li data-type='method'><a href="module-formatter.html#.formatStrict">formatStrict</a></li></ul></li><li><a href="module-parser.html">parser</a><ul class='methods'><li data-type='method'><a href="module-parser.html#.parse">parse</a></li><li data-type='method'><a href="module-parser.html#.parseLine">parseLine</a></li><li data-type='method'><a href="module-parser.html#.parseStrict">parseStrict</a></li><li data-type='method'><a href="module-parser.html#.parseLineStrict">parseLineStrict</a></li></ul></li><li><a href="module-stream.html">stream</a><ul class='methods'><li data-type='method'><a href="module-stream.html#.createLtsvToJsonStream">createLtsvToJsonStream</a></li></ul></li><li><a href="module-validator.html">validator</a><ul class='methods'><li data-type='method'><a href="module-validator.html#.isValidLabel">isValidLabel</a></li><li data-type='method'><a href="module-validator.html#.isValidValue">isValidValue</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+
+    
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+
+
+    <section class="readme">
+        <article><h1>ltsv.js</h1><p><a href="https://travis-ci.org/sasaplus1/ltsv.js"><img src="https://travis-ci.org/sasaplus1/ltsv.js.svg?branch=master" alt="Build Status"></a>
+<a href="https://badge.fury.io/js/ltsv"><img src="https://badge.fury.io/js/ltsv.svg" alt="npm version"></a>
+<a href="https://npm.runkit.com/ltsv"><img src="https://badge.runkitcdn.com/ltsv.svg" alt="Try ltsv on RunKit"></a>
+<a href="https://renovatebot.com"><img src="https://badges.renovateapi.com/github/sasaplus1/ltsv.js" alt="renovate"></a></p>
+<p><a href="http://ltsv.org/">LTSV</a> parser, formatter, validator and TransformStream</p>
+<h2>Installation</h2><h3>npm</h3><pre class="prettyprint source lang-console"><code>$ npm install ltsv</code></pre><h2>Usage</h2><h3>node.js</h3><pre class="prettyprint source lang-js"><code>const ltsv = require('ltsv');</code></pre><h3>browser</h3><pre class="prettyprint source lang-html"><code>&lt;script src=&quot;ltsv.min.js&quot;>&lt;/script></code></pre><h3>Example</h3><pre class="prettyprint source lang-js"><code>ltsv.parse(
+  'label1:value1\tlabel2:value2\n' +
+  'label1:value1\tlabel2:value2\n' +
+  'label1:value1\tlabel2:value2'
+);
+// [ { label1: 'value1', label2: 'value2' },
+//   { label1: 'value1', label2: 'value2' },
+//   { label1: 'value1', label2: 'value2' } ]
+
+ltsv.parseLine('label1:value1\tlabel2:value2');
+// { label1: 'value1', label2: 'value2' }
+ltsv.parseLine('label1:value1\tlabel2:value2\n');
+// { label1: 'value1', label2: 'value2' }
+ltsv.parseLine('label1:value1\tlabel2:value2\r\n');
+// { label1: 'value1', label2: 'value2' }
+
+ltsv.format([
+  { label1: 'value1', label2: 'value2' },
+  { label1: 'value1', label2: 'value2' },
+  { label1: 'value1', label2: 'value2' }
+]);
+// 'label1:value1\tlabel2:value2\nlabel1:value1\tlabel2:value2\nlabel1:value1\tlabel2:value2'
+
+ltsv.format({ label1: 'value1', label2: 'value2' });
+// 'label1:value1\tlabel2:value2'</code></pre><pre class="prettyprint source lang-js"><code>var fs = require('fs'),
+    ltsv = require('ltsv'),
+    ltjs = ltsv.createLtsvToJsonStream({
+      toObject: false,
+      strict: false
+    });
+
+// access.log:
+// l1:v1\tl2:v2\n
+// l1:v1\tl2:v2\n
+// l1:v1\tl2:v2\n
+fs.createReadStream('./access.log').pipe(ltjs).pipe(process.stdout);
+// {&quot;l1&quot;:&quot;v1&quot;,&quot;l2&quot;:&quot;v2&quot;}{&quot;l1&quot;:&quot;v1&quot;,&quot;l2&quot;:&quot;v2&quot;}{&quot;l1&quot;:&quot;v1&quot;,&quot;l2&quot;:&quot;v2&quot;}</code></pre><h2>Functions</h2><h2>License</h2><p>The MIT license.</p></article>
+    </section>
+
+
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Jan 27 2019 20:11:43 GMT+0900 (GMT+09:00) using the <a href="https://github.com/mochajs/mocha-docdash">@mocha/docdash</a> theme.
+</footer>
+
+<script src="scripts/prettify/prettify.js"></script>
+<script src="scripts/prettify/lang-css.js"></script>
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+
+
+    <link type="text/css" rel="stylesheet" href="ltsv.css">
+    
+</body>
+</html>
