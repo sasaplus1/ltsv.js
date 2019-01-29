@@ -1,6 +1,6 @@
 {
   "name": "ltsv",
-  "description": "LTSV parser and formatter",
+  "description": "LTSV parser, formatter, validator and TransformStream",
   "version": "1.1.0",
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "browser": "./umd/ltsv.js",
