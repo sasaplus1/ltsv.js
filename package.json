@@ -37,6 +37,7 @@
     "node": ">=6"
   },
   "files": [
+    ".runkit.js",
     "cjs",
     "index.*",
     "src",
