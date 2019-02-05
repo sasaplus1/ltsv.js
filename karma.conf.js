@@ -22,6 +22,14 @@ module.exports = function(config) {
         ui: 'bdd'
       }
     },
+    customHeaders: [
+      {
+        match: '.*debug\\.html$',
+        name: 'Content-Security-Policy',
+        value:
+          "default-src 'none'; img-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self'"
+      }
+    ],
     customLaunchers: {
       // NOTE: Headless Chrome testing for CI
       // NOTE: https://docs.travis-ci.com/user/chrome#Sandboxing
