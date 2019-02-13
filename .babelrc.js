@@ -85,7 +85,7 @@ module.exports = function(api) {
     ];
   }
 
-  if (api.env('mocha:src')) {
+  if (api.env('mocha:mjs')) {
     config.compact = false;
     config.minified = false;
     config.presets = [
