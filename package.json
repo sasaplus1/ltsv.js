@@ -65,6 +65,7 @@
     "mocha": "npm run mocha:src && npm run mocha:cjs",
     "mocha:cjs": "BABEL_ENV=mocha:cjs mocha --exclude ./test/validator.mjs './test/**/*.mjs'",
     "mocha:src": "BABEL_ENV=mocha:src mocha './test/**/*.mjs'",
+    "precommit": "lint-staged",
     "prekarma": "npm run build:umd",
     "premocha:cjs": "npm run build:cjs",
     "test": "npm run mocha && npm run karma -- --single-run --browsers ChromeHeadlessNoSandbox",
