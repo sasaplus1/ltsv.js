@@ -9,7 +9,7 @@
     "@babel/core": "7.2.2",
     "@babel/preset-env": "7.3.4",
     "@babel/register": "7.0.0",
-    "@mocha/docdash": "2.0.1",
+    "@mocha/docdash": "2.1.0",
     "babel-plugin-transform-rename-import": "2.3.0",
     "babel-preset-power-assert": "3.0.0",
     "eslint": "5.14.1",
