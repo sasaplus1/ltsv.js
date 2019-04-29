@@ -28,6 +28,14 @@ matrix:
       script:
         - npm run travis
     - os: osx
+      osx_image: xcode10.2
+      node_js:
+        - 'lts/*'
+      env:
+        - BROWSERS=Safari
+      script:
+        - npm run travis
+    - os: osx
       osx_image: xcode10.1
       node_js:
         - 'lts/*'
