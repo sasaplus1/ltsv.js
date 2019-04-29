@@ -24,7 +24,7 @@
     "karma-rollup-preprocessor": "7.0.0",
     "karma-safari-launcher": "1.0.0",
     "lint-staged": "8.1.5",
-    "mocha": "6.0.2",
+    "mocha": "6.1.4",
     "power-assert": "1.6.1",
     "prettier": "1.16.4",
     "rollup": "1.9.3",
