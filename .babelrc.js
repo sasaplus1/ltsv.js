@@ -11,7 +11,7 @@ module.exports = function(api) {
           debug: true,
           modules: 'commonjs',
           targets: {
-            node: '6'
+            node: '8'
           }
         }
       ]
