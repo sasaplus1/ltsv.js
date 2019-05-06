@@ -165,7 +165,7 @@ describe('browser_stream', function() {
   });
 
   describe('strict', function() {
-    it('should throw error if LTSV has unasserted character', function() {
+    it('should throw error if LTSV has illegal character', function() {
       return new Promise(function(resolve, reject) {
         const transformStream = createLtsvToJsonStream({ strict: true });
         const readableStream = createReadableStream(['+:']);
