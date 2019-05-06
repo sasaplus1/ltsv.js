@@ -21,11 +21,12 @@ export class LtsvToJsonStream extends Transform {
    * @param {boolean} options.strict
    */
   constructor(options = {}) {
-    super({
-      ...options,
-      decodeStrings: true,
-      objectMode: true
-    });
+    super(
+      Object.assign({}, options, {
+        decodeStrings: true,
+        objectMode: true
+      })
+    );
 
     const { encoding = 'utf8', objectMode = false, strict = false } = options;
 

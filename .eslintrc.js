@@ -20,12 +20,27 @@ module.exports = {
       env: {
         mocha: true
       },
+      globals: {
+        __dirname: true
+      },
       files: ['test/**/*.mjs']
+    },
+    {
+      files: ['rollup.config.js'],
+      rules: {
+        'node/no-unsupported-features/es-syntax': 'off'
+      }
     },
     {
       files: ['.runkit.js'],
       rules: {
-        'no-console': 'off'
+        'no-console': 'off',
+        'node/no-missing-require': [
+          'error',
+          {
+            allowModules: ['ltsv']
+          }
+        ]
       }
     }
   ],
