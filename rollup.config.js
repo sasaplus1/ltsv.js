@@ -23,6 +23,7 @@ const babelOptions = {
     [
       '@babel/preset-env',
       {
+        corejs: 3,
         debug: true,
         modules: false,
         targets: {
