@@ -37,8 +37,7 @@ const babelOptions = {
 const nodeResolveOptions = {
   browser: true,
   extensions: ['.mjs', '.js'],
-  main: true,
-  module: true
+  mainFields: ['module', 'main']
 };
 
 const terserOptions = {
