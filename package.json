@@ -54,7 +54,7 @@
   "runkitExampleFilename": "./.runkit.js",
   "scripts": {
     "build": "npm run build:cjs && npm run build:umd",
-    "build:cjs": "BABEL_ENV=cjs babel ./src -d ./cjs -s --ignore ./src/streams.mjs && BABEL_ENV=cjs babel ./index.mjs -o ./index.js -s",
+    "build:cjs": "BABEL_ENV=cjs babel ./src -d ./cjs -s --ignore ./src/browser_stream.mjs && BABEL_ENV=cjs babel ./index.mjs -o ./index.js -s",
     "build:docs": "jsdoc --configure ./.jsdocrc.js",
     "build:umd": "BABEL_ENV=umd rollup -c",
     "clean": "npx rimraf ./cjs ./umd ./index.js ./index.js.map",

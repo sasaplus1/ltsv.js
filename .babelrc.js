@@ -45,7 +45,7 @@ module.exports = function(api) {
           replacements: [
             {
               original: '(.*)/stream\\.mjs$',
-              replacement: '$1/streams.mjs'
+              replacement: '$1/browser_stream.mjs'
             }
           ]
         }
@@ -133,7 +133,7 @@ module.exports = function(api) {
             }
             // {
             //   original: '(.*)/stream\\.mjs$',
-            //   replacement: '$1/streams.mjs'
+            //   replacement: '$1/browser_stream.mjs'
             // }
           ]
         }

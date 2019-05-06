@@ -52,7 +52,7 @@ module.exports = function(config) {
         watched: true
       },
       {
-        pattern: 'test/**/!(stream|streams).mjs',
+        pattern: 'test/**/!(stream).mjs',
         type: 'js',
         watched: true
       }

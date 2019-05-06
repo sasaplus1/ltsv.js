@@ -7,6 +7,12 @@ module.exports = {
   extends: ['eslint:recommended', 'plugin:prettier/recommended'],
   overrides: [
     {
+      globals: {
+        TransformStream: true
+      },
+      files: ['src/browser_stream.mjs']
+    },
+    {
       env: {
         mocha: true
       },
@@ -20,7 +26,7 @@ module.exports = {
     }
   ],
   parserOptions: {
-    ecmaVersion: 2018,
+    ecmaVersion: 2019,
     sourceType: 'module'
   },
   root: true
