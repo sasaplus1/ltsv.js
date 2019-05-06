@@ -27,14 +27,15 @@ matrix:
         - BROWSERS=ChromeHeadlessNoSandbox,FirefoxHeadless
       script:
         - npm run travis
-    - os: osx
-      osx_image: xcode10.2
-      node_js:
-        - 'lts/*'
-      env:
-        - BROWSERS=Safari
-      script:
-        - npm run travis
+    # NOTE: https://github.com/karma-runner/karma-safari-launcher/issues/29
+    # - os: osx
+    #   osx_image: xcode10.2
+    #   node_js:
+    #     - 'lts/*'
+    #   env:
+    #     - BROWSERS=Safari
+    #   script:
+    #     - npm run travis
     - os: osx
       osx_image: xcode10.1
       node_js:
