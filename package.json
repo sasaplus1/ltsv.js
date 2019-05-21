@@ -9,8 +9,8 @@
   },
   "devDependencies": {
     "@babel/cli": "7.4.4",
-    "@babel/core": "7.4.4",
-    "@babel/preset-env": "7.4.4",
+    "@babel/core": "7.4.5",
+    "@babel/preset-env": "7.4.5",
     "@babel/register": "7.4.4",
     "@mocha/docdash": "2.1.0",
     "babel-plugin-transform-rename-import": "2.3.0",
