@@ -59,7 +59,7 @@ function baseFormat(data: LtsvRecord | LtsvRecord[], strict: boolean): string {
 
   if (isArray) {
     for (let i = 0, len = data.length; i < len; ++i) {
-      records[i] = objectToRecord(data[i], strict);
+      records[i] = objectToRecord((data as LtsvRecord[])[i], strict);
     }
   } else {
     records.push(objectToRecord(data as LtsvRecord, strict));

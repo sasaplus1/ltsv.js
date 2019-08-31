@@ -70,7 +70,7 @@ export class LtsvToJsonStream extends Transform {
   _push(text: string, isFlush: boolean, callback: TransformCallback): void {
     let next = 0;
     let last = 0;
-    let error: Error = null;
+    let error: Error | null = null;
 
     // eslint-disable-next-line no-constant-condition
     while (true) {
@@ -91,7 +91,7 @@ export class LtsvToJsonStream extends Transform {
       // NOTE: -----------------|
       const line = text.slice(next, index + 1);
 
-      let record: LtsvRecord;
+      let record: LtsvRecord = {};
 
       try {
         record = this.parse(line);
