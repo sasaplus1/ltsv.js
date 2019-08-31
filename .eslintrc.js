@@ -30,18 +30,6 @@ module.exports = {
       rules: {
         'node/no-unsupported-features/es-syntax': 'off'
       }
-    },
-    {
-      files: ['.runkit.js'],
-      rules: {
-        'no-console': 'off',
-        'node/no-missing-require': [
-          'error',
-          {
-            allowModules: ['ltsv']
-          }
-        ]
-      }
     }
   ],
   parserOptions: {
