@@ -1,5 +1,4 @@
-cjs
-docs
-umd
-index.js
 !.*.js
+*.d.ts
+dist/**/*.js
+index.js

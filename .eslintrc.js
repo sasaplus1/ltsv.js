@@ -1,6 +1,5 @@
 module.exports = {
   env: {
-    browser: true,
     es6: true,
     node: true
   },
@@ -11,19 +10,25 @@ module.exports = {
   ],
   overrides: [
     {
-      globals: {
-        TransformStream: true
+      extends: [
+        'eslint:recommended',
+        'plugin:node/recommended',
+        'plugin:@typescript-eslint/eslint-recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:prettier/recommended',
+        'prettier/@typescript-eslint'
+      ],
+      files: ['**/*.ts'],
+      parser: '@typescript-eslint/parser',
+      plugins: ['@typescript-eslint'],
+      rules: {
+        'node/no-unsupported-features/es-syntax': 'off'
       },
-      files: ['src/browser_stream.mjs']
-    },
-    {
-      env: {
-        mocha: true
-      },
-      globals: {
-        __dirname: true
-      },
-      files: ['test/**/*.mjs']
+      settings: {
+        node: {
+          tryExtensions: ['.ts', '.js', '.json', '.node']
+        }
+      }
     },
     {
       files: ['rollup.config.js'],
