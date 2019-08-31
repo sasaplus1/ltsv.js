@@ -1,16 +1,13 @@
 module.exports = {
-  '*.+(js|mjs)': 'npx --no-install eslint --ext .js,.mjs',
+  '*.(js|ts)': 'npx eslint --cache --ext .js,.ts',
   '*.yml': [
-    'npx --no-install prettier --parser yaml --write',
-    'git diff --exit-code --quiet'
-  ],
-  '!(package|package-lock).json': [
-    'npx --no-install prettier --parser json-stringify --write',
+    'npx prettier --parser yaml --write',
     'git diff --exit-code --quiet'
   ],
   'package.json': [
     'npx fixpack',
-    'npx --no-install prettier --parser json-stringify --write',
+    'npx prettier --parser json-stringify --write',
     'git diff --exit-code --quiet'
-  ]
+  ],
+  'package-lock.json': 'node -e "process.exit(1);"'
 };
