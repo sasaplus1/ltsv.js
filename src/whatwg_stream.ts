@@ -33,7 +33,7 @@ function push(
 ): void {
   let next = 0;
   let last = 0;
-  let error: Error = null;
+  let error: Error | null = null;
 
   // eslint-disable-next-line no-constant-condition
   while (true) {
@@ -54,7 +54,7 @@ function push(
     // NOTE: -----------------|
     const line = text.slice(next, index + 1);
 
-    let record: LtsvRecord;
+    let record: LtsvRecord = {};
 
     try {
       record = this.parse(line);
