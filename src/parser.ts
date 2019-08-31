@@ -1,20 +1,21 @@
-/**
- * @file LTSV parser.
- * @module parser
- */
+import { isValidLabel, isValidValue } from './validator';
 
-import { isValidLabel, isValidValue } from './validator.mjs';
+import { LtsvRecord } from './types';
+
+type LtsvField = {
+  label: string;
+  value: string;
+};
 
 /**
- * split to label and value from field.
+ * split to label and value from field
  *
  * @private
- * @param {string} chunk
- * @param {boolean} strict
- * @returns {Object}
+ * @param chunk
+ * @param strict
  * @throws {SyntaxError}
  */
-function splitField(chunk, strict) {
+function splitField(chunk: string, strict: boolean): LtsvField {
   const field = String(chunk);
   const index = field.indexOf(':');
 
@@ -26,11 +27,11 @@ function splitField(chunk, strict) {
   const value = field.slice(index + 1);
 
   if (strict && !isValidLabel(label)) {
-    throw new SyntaxError(`unexpected character of label: "${label}"`);
+    throw new SyntaxError(`unexpected character in label: "${label}"`);
   }
 
   if (strict && !isValidValue(value)) {
-    throw new SyntaxError(`unexpected character of value: "${value}"`);
+    throw new SyntaxError(`unexpected character in value: "${value}"`);
   }
 
   return {
@@ -40,41 +41,18 @@ function splitField(chunk, strict) {
 }
 
 /**
- * parse LTSV text.
+ * parse LTSV record
  *
  * @private
- * @param {string} text
- * @param {boolean} strict
- * @returns {Object[]}
+ * @param line
+ * @param strict
  */
-function baseParse(text, strict) {
-  const lines = String(text)
-    .replace(/(?:\r?\n)+$/, '')
-    .split(/\r?\n/);
-
-  const records = [];
-
-  for (let i = 0, len = lines.length; i < len; ++i) {
-    records[i] = baseParseLine(lines[i], strict);
-  }
-
-  return records;
-}
-
-/**
- * parse LTSV record.
- *
- * @private
- * @param {string} line
- * @param {boolean} strict
- * @returns {Object}
- */
-function baseParseLine(line, strict) {
+function baseParseLine(line: string, strict: boolean): LtsvRecord {
   const fields = String(line)
     .replace(/(?:\r?\n)+$/, '')
     .split('\t');
 
-  const record = {};
+  const record: LtsvRecord = {};
 
   for (let i = 0, len = fields.length; i < len; ++i) {
     const { label, value } = splitField(fields[i], strict);
@@ -86,41 +64,58 @@ function baseParseLine(line, strict) {
 }
 
 /**
- * parse LTSV text.
+ * parse LTSV text
  *
- * @param {string} text
- * @returns {string}
+ * @private
+ * @param text
+ * @param strict
  */
-export function parse(text) {
+function baseParse(text: string, strict: boolean): LtsvRecord[] {
+  const lines = String(text)
+    .replace(/(?:\r?\n)+$/, '')
+    .split(/\r?\n/);
+
+  const records: LtsvRecord[] = [];
+
+  for (let i = 0, len = lines.length; i < len; ++i) {
+    records[i] = baseParseLine(lines[i], strict);
+  }
+
+  return records;
+}
+
+/**
+ * parse LTSV text
+ *
+ * @param text
+ */
+export function parse(text: string): LtsvRecord[] {
   return baseParse(text, false);
 }
 
 /**
- * parse LTSV record.
+ * parse LTSV record
  *
- * @param {string} line
- * @returns {string}
+ * @param line
  */
-export function parseLine(line) {
+export function parseLine(line: string): LtsvRecord {
   return baseParseLine(line, false);
 }
 
 /**
- * parse LTSV text.
+ * parse LTSV text
  *
- * @param {string} text
- * @returns {string}
+ * @param text
  */
-export function parseStrict(text) {
+export function parseStrict(text: string): LtsvRecord[] {
   return baseParse(text, true);
 }
 
 /**
- * parse LTSV record.
+ * parse LTSV record
  *
- * @param {string} line
- * @returns {string}
+ * @param line
  */
-export function parseLineStrict(line) {
+export function parseLineStrict(line: string): LtsvRecord {
   return baseParseLine(line, true);
 }

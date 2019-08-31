@@ -1,37 +1,37 @@
-/**
- * @file LTSV formatter.
- * @module formatter
- */
+import { isValidLabel, isValidValue } from './validator';
 
-import { isValidLabel, isValidValue } from './validator.mjs';
+import { LtsvRecord } from './types';
+
+export type StringifyOptions = {
+  strict: boolean;
+};
 
 /**
- * convert to record string from object.
+ * convert to record string from object
  *
  * @private
- * @param {Object} object
- * @param {boolean} strict
- * @returns {string}
+ * @param record
+ * @param strict
  * @throws {TypeError}
  */
-function objectToRecord(object, strict) {
-  if (object === null || typeof object !== 'object') {
-    throw new TypeError('object must be an Object');
+function objectToRecord(record: LtsvRecord, strict: boolean): string {
+  if (record === null || typeof record !== 'object') {
+    throw new TypeError('record must be an Object');
   }
 
-  const keys = Object.keys(object);
+  const keys = Object.keys(record);
   const fields = [];
 
   for (let i = 0, len = keys.length; i < len; ++i) {
     const label = keys[i];
-    const value = object[keys[i]];
+    const value = record[keys[i]];
 
     if (strict && !isValidLabel(label)) {
-      throw new SyntaxError(`unexpected character of label: "${label}"`);
+      throw new SyntaxError(`unexpected character in label: "${label}"`);
     }
 
     if (strict && !isValidValue(value)) {
-      throw new SyntaxError(`unexpected character of value: "${value}"`);
+      throw new SyntaxError(`unexpected character in value: "${value}"`);
     }
 
     fields[i] = label + ':' + value;
@@ -41,66 +41,64 @@ function objectToRecord(object, strict) {
 }
 
 /**
- * convert to LTSV string from object or array.
+ * convert to LTSV string from object or array
  *
  * @private
- * @param {Object|Object[]} data
- * @param {boolean} strict
- * @returns {string}
+ * @param data
+ * @param strict
  * @throws {TypeError}
  */
-function baseFormat(data, strict) {
+function baseFormat(data: LtsvRecord | LtsvRecord[], strict: boolean): string {
   const isArray = Array.isArray(data);
 
   if (!isArray && (data === null || typeof data !== 'object')) {
     throw new TypeError('data must be an Object or Array');
   }
 
-  const records = [];
+  const records: string[] = [];
 
   if (isArray) {
     for (let i = 0, len = data.length; i < len; ++i) {
       records[i] = objectToRecord(data[i], strict);
     }
   } else {
-    records.push(objectToRecord(data, strict));
+    records.push(objectToRecord(data as LtsvRecord, strict));
   }
 
   return records.join('\n');
 }
 
 /**
- * convert to LTSV string from object or array.
+ * convert to LTSV string from object or array
  *
- * @param {Object|Object[]} data
- * @returns {string}
+ * @param data
  * @see baseFormat
  */
-export function format(data) {
+export function format(data: LtsvRecord | LtsvRecord[]): string {
   return baseFormat(data, false);
 }
 
 /**
- * convert to LTSV string from object or array.
+ * convert to LTSV string from object or array
  *
- * @param {Object|Object[]} data
- * @returns {string}
+ * @param data
  * @see baseFormat
  */
-export function formatStrict(data) {
+export function formatStrict(data: LtsvRecord | LtsvRecord[]): string {
   return baseFormat(data, true);
 }
 
 /**
- * convert to LTSV string from object or array.
+ * convert to LTSV string from object or array
  *
- * @param {Object|Object[]} data
- * @param {Object} options
- * @param {boolean} [options.strict=false]
- * @returns {string}
+ * @param data
+ * @param options
  * @see baseFormat
  */
-export function stringify(data, options = {}) {
+export function stringify(
+  data: LtsvRecord | LtsvRecord[],
+  options: StringifyOptions = { strict: false }
+): string {
   const { strict = false } = options;
 
   return baseFormat(data, strict);

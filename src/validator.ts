@@ -1,25 +1,18 @@
 /**
- * @file LTSV validator.
- * @module validator
- */
-
-/**
- * validate label.
+ * validate label
  *
- * @param {string} label
- * @returns {boolean}
+ * @param label
  */
-export function isValidLabel(label) {
+export function isValidLabel(label: string): boolean {
   return /^[0-9A-Za-z_.-]+$/.test(label);
 }
 
 /**
- * validate for value.
+ * validate for value
  *
- * @param {string} value
- * @returns {boolean}
+ * @param value
  */
-export function isValidValue(value) {
+export function isValidValue(value: string): boolean {
   // eslint-disable-next-line no-control-regex
   return /^[\x01-\x08\x0B\x0C\x0E-\xFF]*$/.test(value);
 }

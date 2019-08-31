@@ -1,26 +1,48 @@
-/**
- * @file LTSV to JSON transform stream.
- * @module stream
- */
-
-import { Transform } from 'stream';
+import { Transform, TransformCallback } from 'stream';
 import { StringDecoder } from 'string_decoder';
 
-import { parseLine, parseLineStrict } from './parser.mjs';
+import { parseLine, parseLineStrict } from './parser';
+import { LtsvRecord } from './types';
+
+export type LtsvToJsonStreamOptions = {
+  encoding: string;
+  objectMode: boolean;
+  strict: boolean;
+};
 
 /**
- * LTSV to JSON transform stream.
+ * LTSV to JSON transform stream
  */
 export class LtsvToJsonStream extends Transform {
   /**
-   * constructor.
-   *
-   * @param {Object} options
-   * @param {string} options.encoding
-   * @param {boolean} options.objectMode
-   * @param {boolean} options.strict
+   * chunk buffer
    */
-  constructor(options = {}) {
+  buffer: string;
+  /**
+   * for decode chunks
+   */
+  decoder: StringDecoder;
+  /**
+   * if true, pass object to next stream
+   */
+  objectMode: boolean;
+  /**
+   * parser function
+   */
+  parse: typeof parseLine | typeof parseLineStrict;
+
+  /**
+   * constructor
+   *
+   * @param options
+   */
+  constructor(
+    options: LtsvToJsonStreamOptions = {
+      encoding: 'utf8',
+      objectMode: false,
+      strict: false
+    }
+  ) {
     super(
       Object.assign({}, options, {
         decodeStrings: true,
@@ -41,14 +63,14 @@ export class LtsvToJsonStream extends Transform {
    * transform and push to stream.
    *
    * @private
-   * @param {string} text
-   * @param {boolean} isFlush
-   * @param {Function} callback
+   * @param text
+   * @param isFlush
+   * @param callback
    */
-  _push(text, isFlush, callback) {
+  _push(text: string, isFlush: boolean, callback: TransformCallback): void {
     let next = 0;
     let last = 0;
-    let error = null;
+    let error: Error = null;
 
     // eslint-disable-next-line no-constant-condition
     while (true) {
@@ -69,7 +91,7 @@ export class LtsvToJsonStream extends Transform {
       // NOTE: -----------------|
       const line = text.slice(next, index + 1);
 
-      let record;
+      let record: LtsvRecord;
 
       try {
         record = this.parse(line);
@@ -104,11 +126,15 @@ export class LtsvToJsonStream extends Transform {
    * _transform implementation.
    *
    * @private
-   * @param {Buffer|string|*} chunk
-   * @param {string} encoding
-   * @param {Function} callback
+   * @param chunk
+   * @param encoding
+   * @param callback
    */
-  _transform(chunk, encoding, callback) {
+  _transform(
+    chunk: Buffer,
+    encoding: string,
+    callback: TransformCallback
+  ): void {
     this._push(this.buffer + this.decoder.write(chunk), false, callback);
   }
 
@@ -116,9 +142,9 @@ export class LtsvToJsonStream extends Transform {
    * _flush implementation.
    *
    * @private
-   * @param {Function} callback
+   * @param callback
    */
-  _flush(callback) {
+  _flush(callback: TransformCallback): void {
     this._push(this.buffer + this.decoder.end(), true, callback);
   }
 }
@@ -126,10 +152,11 @@ export class LtsvToJsonStream extends Transform {
 /**
  * create LtsvToJsonStream instance.
  *
- * @param {Object} options
- * @returns {LtsvToJsonStream}
+ * @param options
  * @see LtsvToJsonStream
  */
-export function createLtsvToJsonStream(options) {
+export function createLtsvToJsonStream(
+  options: LtsvToJsonStreamOptions
+): LtsvToJsonStream {
   return new LtsvToJsonStream(options);
 }
