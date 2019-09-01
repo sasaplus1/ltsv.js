@@ -10,6 +10,6 @@
     "target": "ESNext"
   },
   "files": [
-    "index.cjs.ts"
+    "index.ts"
   ]
 }
