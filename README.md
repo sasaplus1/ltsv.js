@@ -1,5 +1,6 @@
 # ltsv.js
 
+[![test](https://github.com/sasaplus1/ltsv.js/workflows/test/badge.svg)](https://github.com/sasaplus1/ltsv.js)
 [![Build Status](https://travis-ci.org/sasaplus1/ltsv.js.svg?branch=master)](https://travis-ci.org/sasaplus1/ltsv.js)
 [![npm version](https://badge.fury.io/js/ltsv.svg)](https://badge.fury.io/js/ltsv)
 [![Try ltsv on RunKit](https://badge.runkitcdn.com/ltsv.svg)](https://npm.runkit.com/ltsv)
