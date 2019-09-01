@@ -1,39 +1,20 @@
 const path = require('path');
 
-const babel = require('rollup-plugin-babel');
-const commonjs = require('rollup-plugin-commonjs');
-const nodeResolve = require('rollup-plugin-node-resolve');
+const typescript = require('rollup-plugin-typescript');
 
 const meta = require('./package.json');
 
 module.exports = function(config) {
-  const { file } = config;
-
-  if (!file) {
-    throw new Error('file is not found');
-  }
-
   config.set({
     basePath: path.resolve(__dirname),
     browsers: ['ChromeHeadlessNoSandbox'],
     client: {
       mocha: {
-        reporter: 'html',
-        ui: 'bdd'
+        reporter: 'html'
       }
     },
-    customHeaders: [
-      {
-        match: '.*debug\\.html$',
-        name: 'Content-Security-Policy',
-        value:
-          "default-src 'none'; img-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self'"
-      }
-    ],
     customLaunchers: {
-      // NOTE: Headless Chrome testing for CI
       // NOTE: https://docs.travis-ci.com/user/chrome#Sandboxing
-      // NOTE: https://discuss.circleci.com/t/running-browser-tests/10998/8
       ChromeHeadlessNoSandbox: {
         base: 'ChromeHeadless',
         chromeDataDir: path.resolve(__dirname, '.chrome'),
@@ -47,37 +28,40 @@ module.exports = function(config) {
         watched: false
       },
       {
-        pattern: file,
+        pattern: require.resolve('./dist/umd/ltsv.legacy.js'),
         type: 'js',
         watched: true
       },
       {
-        pattern: 'test/**/!(stream).mjs',
+        included: false,
+        pattern: require.resolve('./dist/umd/ltsv.legacy.js.map'),
+        served: true
+      },
+      {
+        pattern: './test/!(nodejs_stream).ts',
         type: 'js',
         watched: true
       }
     ],
     frameworks: ['mocha'],
     preprocessors: {
-      'test/**/*.mjs': ['rollup']
+      './test/*.ts': ['rollup']
     },
     reporters: ['dots'],
     rollupPreprocessor: {
-      plugins: [
-        babel(),
-        nodeResolve({
-          browser: true,
-          extensions: ['.mjs', '.js'],
-          main: true,
-          module: true
-        }),
-        commonjs()
-      ],
       output: {
         format: 'umd',
         name: meta.name,
         sourcemap: 'inline'
-      }
+      },
+      plugins: [
+        typescript({
+          newLine: 'lf',
+          strict: true,
+          sourceMap: true,
+          target: 'ES5'
+        })
+      ]
     }
   });
 };
