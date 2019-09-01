@@ -1,3 +1,2 @@
---reporter spec
---require @babel/register
---ui bdd
+--extension ts
+--require espower-typescript/guess
