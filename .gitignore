@@ -81,3 +81,7 @@ typings/
 
 # Chrome data directory
 .chrome
+
+# GitHub Pages
+# $ git worktree docs gh-pages
+docs/
