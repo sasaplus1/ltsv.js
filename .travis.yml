@@ -9,7 +9,6 @@ language: node_js
 node_js:
   - '8'
   - '10'
-  - '11'
   - '12'
   - 'lts/*'
 
@@ -23,42 +22,38 @@ matrix:
         firefox: latest
       node_js:
         - 'lts/*'
-      env:
-        - BROWSERS=ChromeHeadlessNoSandbox,FirefoxHeadless
       script:
-        - npm run travis
+        - yarn add -D karma-chrome-launcher karma-firefox-launcher
+        - yarn karma start --single-run --browsers ChromeHeadlessNoSandbox,FirefoxHeadless
     # NOTE: https://github.com/karma-runner/karma-safari-launcher/issues/29
     # - os: osx
     #   osx_image: xcode10.2
     #   node_js:
     #     - 'lts/*'
-    #   env:
-    #     - BROWSERS=Safari
     #   script:
-    #     - npm run travis
+    #     - yarn add -D karma-safari-launcher
+    #     - yarn karma start --single-run --browsers Safari
     - os: osx
       osx_image: xcode10.1
       node_js:
         - 'lts/*'
-      env:
-        - BROWSERS=Safari
       script:
-        - npm run travis
+        - yarn add -D karma-safari-launcher
+        - yarn karma start --single-run --browsers Safari
     - os: osx
       osx_image: xcode9.2
       node_js:
         - 'lts/*'
-      env:
-        - BROWSERS=Safari
       script:
-        - npm run travis
+        - yarn add -D karma-safari-launcher
+        - yarn karma start --single-run --browsers Safari
 
 git:
   depth: 3
 
-cache: npm
+cache: yarn
 
 script:
-  - npm run lint
-  - npm run mocha
-  - npm run build
+  - yarn run lint
+  - yarn run test
+  - yarn run check-types
