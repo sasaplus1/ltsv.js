@@ -1,15 +1,9 @@
-import {
-  TransformStream,
-  TransformStreamDefaultController,
-  TransformStreamTransformer
-} from 'whatwg-streams';
-
 import { parseLine, parseLineStrict } from './parser';
 import { LtsvRecord } from './types';
 
 export type LtsvToJsonStreamOptions = {
-  objectMode: boolean;
-  strict: boolean;
+  objectMode?: boolean;
+  strict?: boolean;
 };
 
 type LtsvToJsonStreamInstance = {
@@ -91,7 +85,7 @@ export function LtsvToJsonStream(
     objectMode: false,
     strict: false
   }
-): TransformStreamTransformer<string | LtsvRecord, string> {
+): Transformer<string, string | LtsvRecord> {
   const { objectMode = false, strict = false } = options;
 
   const instance: LtsvToJsonStreamInstance = {
@@ -104,8 +98,8 @@ export function LtsvToJsonStream(
     /**
      * transform implementation.
      *
-     * @param {string} chunk
-     * @param {TransformStreamDefaultController} controller
+     * @param chunk
+     * @param controller
      */
     transform(
       chunk: string,
@@ -116,7 +110,7 @@ export function LtsvToJsonStream(
     /**
      * flush implementation.
      *
-     * @param {TransformStreamDefaultController} controller
+     * @param controller
      */
     flush(
       controller: TransformStreamDefaultController<string | LtsvRecord>
@@ -127,7 +121,7 @@ export function LtsvToJsonStream(
 }
 
 export function createLtsvToJsonStream(
-  options: LtsvToJsonStreamOptions
-): TransformStream<string | LtsvRecord, string> {
+  options?: LtsvToJsonStreamOptions
+): TransformStream<string, string | LtsvRecord> {
   return new TransformStream(LtsvToJsonStream(options));
 }

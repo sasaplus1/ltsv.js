@@ -5,9 +5,9 @@ import { parseLine, parseLineStrict } from './parser';
 import { LtsvRecord } from './types';
 
 export type LtsvToJsonStreamOptions = {
-  encoding: string;
-  objectMode: boolean;
-  strict: boolean;
+  encoding?: string;
+  objectMode?: boolean;
+  strict?: boolean;
 };
 
 /**
@@ -43,12 +43,11 @@ export class LtsvToJsonStream extends Transform {
       strict: false
     }
   ) {
-    super(
-      Object.assign({}, options, {
-        decodeStrings: true,
-        objectMode: true
-      })
-    );
+    super({
+      ...options,
+      decodeStrings: true,
+      objectMode: true
+    });
 
     const { encoding = 'utf8', objectMode = false, strict = false } = options;
 
@@ -156,7 +155,7 @@ export class LtsvToJsonStream extends Transform {
  * @see LtsvToJsonStream
  */
 export function createLtsvToJsonStream(
-  options: LtsvToJsonStreamOptions
+  options?: LtsvToJsonStreamOptions
 ): LtsvToJsonStream {
   return new LtsvToJsonStream(options);
 }
