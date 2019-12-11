@@ -15,8 +15,10 @@ describe('formatter', function() {
 
     it('should generate LTSV string from object in array', function() {
       assert(
-        format([{ l1: 'v1', l2: 'v2' }, { l3: 'v3', l4: 'v4' }]) ===
-          'l1:v1\tl2:v2\nl3:v3\tl4:v4'
+        format([
+          { l1: 'v1', l2: 'v2' },
+          { l3: 'v3', l4: 'v4' }
+        ]) === 'l1:v1\tl2:v2\nl3:v3\tl4:v4'
       );
     });
 
@@ -103,8 +105,10 @@ describe('formatter', function() {
 
     it('should generate LTSV string from object in array', function() {
       assert(
-        formatStrict([{ l1: 'v1', l2: 'v2' }, { l3: 'v3', l4: 'v4' }]) ===
-          'l1:v1\tl2:v2\nl3:v3\tl4:v4'
+        formatStrict([
+          { l1: 'v1', l2: 'v2' },
+          { l3: 'v3', l4: 'v4' }
+        ]) === 'l1:v1\tl2:v2\nl3:v3\tl4:v4'
       );
     });
 
