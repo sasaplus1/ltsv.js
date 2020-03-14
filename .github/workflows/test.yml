@@ -30,8 +30,8 @@ jobs:
       - run: yarn run lint
       - run: yarn run test
       - run: yarn run build
-  karma-windows:
-    name: karma on Windows
+  karma-ie:
+    name: karma on IE
     strategy:
       matrix:
         node:
@@ -52,27 +52,8 @@ jobs:
             ${{ runner.os }}-yarn-
       - run: npm install -g yarn
       - run: yarn install --frozen-lockfile
-      - run: yarn add -D karma-edge-launcher karma-ie-launcher
-      # NOTE: karma-edge-launcher cannot execute Edge
-      # see: https://github.com/sasaplus1/holidays-jp.js/runs/200661928
-      # - run: yarn karma start --single-run --browsers Edge,IE
+      - run: yarn global add  karma-ie-launcher
       - run: yarn karma start --single-run --browsers IE
-  # NOTE: karma-safari-launcher can execute Safari, but not capture
-  # see: https://github.com/sasaplus1/holidays-jp.js/runs/200661925
-  # karma-macos:
-  #   name: karma on macOS
-  #   runs-on: macOS-latest
-  #   steps:
-  #     - uses: actions/checkout@v1
-  #       with:
-  #         fetch-depth: 1
-  #     - uses: actions/setup-node@v1
-  #       with:
-  #         node-version: 10
-  #     - run: npm install -g yarn
-  #     - run: yarn install --frozen-lockfile
-  #     - run: yarn add -D karma-safari-launcher
-  #     - run: yarn karma start --single-run --browsers Safari
   karma-ios:
     name: karma on iOS
     strategy:
@@ -104,8 +85,8 @@ jobs:
       - run: xcrun simctl boot $(cat udid)
       - run: (sleep 3 && xcrun simctl openurl $(cat udid) http://127.0.0.1:9876) &
       - run: yarn karma start --single-run --no-browsers
-  karma-ubuntu:
-    name: karma on Ubuntu
+  karma-chrome-firefox:
+    name: karma on Chrome and Firefox
     strategy:
       matrix:
         node:
@@ -126,5 +107,5 @@ jobs:
             ${{ runner.os }}-yarn-
       - run: npm install -g yarn
       - run: yarn install --frozen-lockfile
-      - run: yarn add -D karma-chrome-launcher karma-firefox-launcher
+      - run: yarn global add karma-chrome-launcher karma-firefox-launcher
       - run: yarn karma start --single-run --browsers ChromeHeadlessNoSandbox,FirefoxHeadless
