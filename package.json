@@ -7,8 +7,8 @@
   "devDependencies": {
     "@types/mocha": "^7.0.0",
     "@types/node": "^12.7.3",
-    "@typescript-eslint/eslint-plugin": "^2.0.0",
-    "@typescript-eslint/parser": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^3.0.0",
+    "@typescript-eslint/parser": "^3.0.0",
     "eslint": "7.0.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-node": "11.1.0",
