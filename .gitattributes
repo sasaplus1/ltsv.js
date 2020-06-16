@@ -1,0 +1,4 @@
+dist/**/*.js linguist-generated
+dist/**/*.map linguist-generated
+dist/**/*.mjs linguist-generated
+dist/**/*.ts linguist-generated
