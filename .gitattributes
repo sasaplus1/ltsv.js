@@ -1,1 +1,2 @@
-dist/ linguist-generated=true
+dist/* -linguist-detectable
+dist/* linguist-generated
