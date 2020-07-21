@@ -70,8 +70,7 @@ if (process.env.build === 'umd') {
         terser({
           output: {
             preamble: banner
-          },
-          sourcemap: true
+          }
         })
       ]
     },
@@ -112,8 +111,7 @@ if (process.env.build === 'umd') {
         terser({
           output: {
             preamble: banner
-          },
-          sourcemap: true
+          }
         })
       ]
     }
