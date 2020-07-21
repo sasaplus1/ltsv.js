@@ -3,18 +3,18 @@ import * as fs from 'fs';
 
 import { createLtsvToJsonStream } from '../src/nodejs_stream';
 
-describe('nodejs_stream', function() {
-  describe('#write() and #end()', function() {
-    it('should convert to JSON from LTSV', function(done) {
+describe('nodejs_stream', function () {
+  describe('#write() and #end()', function () {
+    it('should convert to JSON from LTSV', function (done) {
       const stream = createLtsvToJsonStream();
       const buffer: string[] = [];
 
-      stream.on('readable', function() {
+      stream.on('readable', function () {
         for (let buf = stream.read(); buf != null; buf = stream.read()) {
           buffer.push(buf);
         }
       });
-      stream.once('end', function() {
+      stream.once('end', function () {
         assert.deepStrictEqual(buffer, [
           '{"label1":"value1","label2":"value2"}',
           '{"label3":"value3","label4":"value4"}'
@@ -26,16 +26,16 @@ describe('nodejs_stream', function() {
       stream.end('\nlabel3:value3\tlabel4:value4');
     });
 
-    it('should convert to JSON if LTSV has empty line of end', function(done) {
+    it('should convert to JSON if LTSV has empty line of end', function (done) {
       const stream = createLtsvToJsonStream();
       const buffer: string[] = [];
 
-      stream.on('readable', function() {
+      stream.on('readable', function () {
         for (let buf = stream.read(); buf != null; buf = stream.read()) {
           buffer.push(buf);
         }
       });
-      stream.once('end', function() {
+      stream.once('end', function () {
         assert.deepStrictEqual(buffer, [
           '{"label1":"value1","label2":"value2"}',
           '{"label3":"value3","label4":"value4"}'
@@ -47,10 +47,10 @@ describe('nodejs_stream', function() {
       stream.end('\nlabel3:value3\tlabel4:value4\n');
     });
 
-    it('should throw error if illegal LTSV', function(done) {
+    it('should throw error if illegal LTSV', function (done) {
       const stream = createLtsvToJsonStream();
 
-      stream.once('error', function(err) {
+      stream.once('error', function (err) {
         assert(err !== null);
         done();
       });
@@ -58,17 +58,17 @@ describe('nodejs_stream', function() {
       stream.end('\t');
     });
 
-    describe('objectMode mode', function() {
-      it('should convert to Object from LTSV', function(done) {
+    describe('objectMode mode', function () {
+      it('should convert to Object from LTSV', function (done) {
         const stream = createLtsvToJsonStream({ objectMode: true });
         const buffer: string[] = [];
 
-        stream.on('readable', function() {
+        stream.on('readable', function () {
           for (let buf = stream.read(); buf != null; buf = stream.read()) {
             buffer.push(buf);
           }
         });
-        stream.once('end', function() {
+        stream.once('end', function () {
           assert.deepStrictEqual(buffer, [
             { label1: 'value1', label2: 'value2' },
             { label3: 'value3', label4: 'value4' }
@@ -81,11 +81,11 @@ describe('nodejs_stream', function() {
       });
     });
 
-    describe('isStrict mode', function() {
-      it('should throw error if LTSV has unasserted character', function(done) {
+    describe('isStrict mode', function () {
+      it('should throw error if LTSV has unasserted character', function (done) {
         const stream = createLtsvToJsonStream({ strict: true });
 
-        stream.once('error', function(err) {
+        stream.once('error', function (err) {
           assert(err !== null);
           done();
         });
@@ -95,8 +95,8 @@ describe('nodejs_stream', function() {
     });
   });
 
-  describe('#pipe()', function() {
-    it('should convert LTSV log of 1 line', function(done) {
+  describe('#pipe()', function () {
+    it('should convert LTSV log of 1 line', function (done) {
       const stream = createLtsvToJsonStream();
       const buffer: string[] = [];
 
@@ -104,7 +104,7 @@ describe('nodejs_stream', function() {
         return assert.fail();
       }
 
-      stream.on('readable', function() {
+      stream.on('readable', function () {
         if (stream === null) {
           return;
         }
@@ -113,7 +113,7 @@ describe('nodejs_stream', function() {
           buffer.push(buf);
         }
       });
-      stream.once('end', function() {
+      stream.once('end', function () {
         assert.deepStrictEqual(buffer, [
           '{"aaa":"bbb","ccc":"ddd","eee":"fff"}'
         ]);
@@ -123,11 +123,11 @@ describe('nodejs_stream', function() {
       fs.createReadStream(require.resolve('./log/valid-1.ltsv')).pipe(stream);
     });
 
-    it('should convert LTSV log of 3 line', function(done) {
+    it('should convert LTSV log of 3 line', function (done) {
       const stream = createLtsvToJsonStream();
       const buffer: string[] = [];
 
-      stream.on('readable', function() {
+      stream.on('readable', function () {
         if (stream === null) {
           return;
         }
@@ -135,7 +135,7 @@ describe('nodejs_stream', function() {
           buffer.push(buf);
         }
       });
-      stream.once('end', function() {
+      stream.once('end', function () {
         assert.deepStrictEqual(buffer, [
           '{"aaa":"bbb","ccc":"ddd","eee":"fff"}',
           '{"aaa":"bbb","ccc":"ddd","eee":"fff"}',
@@ -147,11 +147,11 @@ describe('nodejs_stream', function() {
       fs.createReadStream(require.resolve('./log/valid-3.ltsv')).pipe(stream);
     });
 
-    it('should throw error if invalid LTSV log', function(done) {
+    it('should throw error if invalid LTSV log', function (done) {
       const stream = createLtsvToJsonStream();
 
       // XXX: why fail when use stream.once?
-      stream.on('error', function(err) {
+      stream.on('error', function (err) {
         assert(err !== null);
         done();
       });

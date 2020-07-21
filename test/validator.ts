@@ -2,11 +2,11 @@ import assert = require('assert');
 
 import { isValidLabel, isValidValue } from '../src/validator';
 
-describe('validator', function() {
-  describe('#isValidLabel()', function() {
+describe('validator', function () {
+  describe('#isValidLabel()', function () {
     // match to /^[0-9A-Za-z_.-]+$/
 
-    it('should return true if arg is valid label', function() {
+    it('should return true if arg is valid label', function () {
       assert(
         isValidLabel(
           '0123456789' +
@@ -17,11 +17,11 @@ describe('validator', function() {
       );
     });
 
-    it('should return false if arg is empty string', function() {
+    it('should return false if arg is empty string', function () {
       assert(isValidLabel('') === false);
     });
 
-    it('should return false if arg is unasserted character', function() {
+    it('should return false if arg is unasserted character', function () {
       // without:
       //   00:                            09 0A       0D
       //   10:
@@ -57,10 +57,10 @@ describe('validator', function() {
     });
   });
 
-  describe('#isValidValue()', function() {
+  describe('#isValidValue()', function () {
     // match to /^[\\x01-\\x08\\x0B\\x0C\\x0E-\\xFF]*$/
 
-    it('should return true if arg is valid value', function() {
+    it('should return true if arg is valid value', function () {
       // without:
       //   00: 00 09 0A 0D
       const assertedCharacters = (
@@ -88,11 +88,11 @@ describe('validator', function() {
       }
     });
 
-    it('should return true if arg is empty string', function() {
+    it('should return true if arg is empty string', function () {
       assert(isValidValue('') === true);
     });
 
-    it('should return false if arg is unasserted character', function() {
+    it('should return false if arg is unasserted character', function () {
       assert(isValidValue('\x00') === false);
       assert(isValidValue('\x09') === false);
       assert(isValidValue('\x0A') === false);
