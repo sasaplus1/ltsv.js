@@ -66,7 +66,7 @@ const ltsv = require('ltsv'),
 
 const stream = ltsv.createLtsvToJsonStream({
   encoding: 'utf8',
-  obectMode: false,
+  objectMode: false,
   strict: false
 });
 
