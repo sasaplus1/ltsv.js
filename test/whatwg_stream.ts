@@ -12,7 +12,7 @@ function enqueue(
   strings: string[],
   controller: ReadableStreamDefaultController<string>
 ): void {
-  setTimeout(function() {
+  setTimeout(function () {
     if (strings.length <= 0) {
       controller.close();
     } else {
@@ -63,8 +63,8 @@ function createWritableStream(
   return new WritableStream<string>(underlyingSink);
 }
 
-describe('whatwg_stream', function() {
-  before(function() {
+describe('whatwg_stream', function () {
+  before(function () {
     if (
       typeof ReadableStream === 'undefined' ||
       typeof WritableStream === 'undefined' ||
@@ -74,8 +74,8 @@ describe('whatwg_stream', function() {
     }
   });
 
-  it('should convert to JSON from LTSV', function() {
-    return new Promise<void>(function(
+  it('should convert to JSON from LTSV', function () {
+    return new Promise<void>(function (
       resolve: () => void,
       reject: (reason?: Error | null) => void
     ): void {
@@ -101,8 +101,8 @@ describe('whatwg_stream', function() {
     });
   });
 
-  it('should convert to JSON if LTSV has empty line of end', function() {
-    return new Promise<void>(function(
+  it('should convert to JSON if LTSV has empty line of end', function () {
+    return new Promise<void>(function (
       resolve: () => void,
       reject: (reason?: Error | null) => void
     ): void {
@@ -128,8 +128,8 @@ describe('whatwg_stream', function() {
     });
   });
 
-  it('should throw error if illegal LTSV', function() {
-    return new Promise<void>(function(
+  it('should throw error if illegal LTSV', function () {
+    return new Promise<void>(function (
       resolve: () => void,
       reject: (reason?: Error | null) => void
     ): void {
@@ -150,9 +150,9 @@ describe('whatwg_stream', function() {
     });
   });
 
-  describe('objectMode', function() {
-    it('should convert to Object from LTSV', function() {
-      return new Promise<void>(function(
+  describe('objectMode', function () {
+    it('should convert to Object from LTSV', function () {
+      return new Promise<void>(function (
         resolve: () => void,
         reject: (reason?: Error | null) => void
       ): void {
@@ -181,9 +181,9 @@ describe('whatwg_stream', function() {
     });
   });
 
-  describe('strict', function() {
-    it('should throw error if LTSV has illegal character', function() {
-      return new Promise<void>(function(
+  describe('strict', function () {
+    it('should throw error if LTSV has illegal character', function () {
+      return new Promise<void>(function (
         resolve: () => void,
         reject: (reason?: Error | null) => void
       ): void {
