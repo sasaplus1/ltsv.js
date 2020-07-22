@@ -58,7 +58,7 @@ if (process.env.build === 'umd') {
           newLine: 'lf',
           strict: true,
           sourceMap: true,
-          target: 'ESNext'
+          target: 'ES5'
         })
       ]
     },
@@ -82,7 +82,7 @@ if (process.env.build === 'umd') {
           newLine: 'lf',
           strict: true,
           sourceMap: true,
-          target: 'ESNext'
+          target: 'ES5'
         }),
         terser({
           output: {

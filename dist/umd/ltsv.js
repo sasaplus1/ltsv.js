@@ -39,16 +39,16 @@
       if (record === null || typeof record !== 'object') {
           throw new TypeError('record must be an Object');
       }
-      const keys = Object.keys(record);
-      const fields = [];
-      for (let i = 0, len = keys.length; i < len; ++i) {
-          const label = keys[i];
-          const value = record[keys[i]];
+      var keys = Object.keys(record);
+      var fields = [];
+      for (var i = 0, len = keys.length; i < len; ++i) {
+          var label = keys[i];
+          var value = record[keys[i]];
           if (strict && !isValidLabel(label)) {
-              throw new SyntaxError(`unexpected character in label: "${label}"`);
+              throw new SyntaxError("unexpected character in label: \"" + label + "\"");
           }
           if (strict && !isValidValue(value)) {
-              throw new SyntaxError(`unexpected character in value: "${value}"`);
+              throw new SyntaxError("unexpected character in value: \"" + value + "\"");
           }
           fields[i] = label + ':' + value;
       }
@@ -63,13 +63,13 @@
    * @throws {TypeError}
    */
   function baseFormat(data, strict) {
-      const isArray = Array.isArray(data);
+      var isArray = Array.isArray(data);
       if (!isArray && (data === null || typeof data !== 'object')) {
           throw new TypeError('data must be an Object or Array');
       }
-      const records = [];
+      var records = [];
       if (isArray) {
-          for (let i = 0, len = data.length; i < len; ++i) {
+          for (var i = 0, len = data.length; i < len; ++i) {
               records[i] = objectToRecord(data[i], strict);
           }
       }
@@ -103,8 +103,9 @@
    * @param options
    * @see baseFormat
    */
-  function stringify(data, options = { strict: false }) {
-      const { strict = false } = options;
+  function stringify(data, options) {
+      if (options === void 0) { options = { strict: false }; }
+      var _a = options.strict, strict = _a === void 0 ? false : _a;
       return baseFormat(data, strict);
   }
 
@@ -117,22 +118,22 @@
    * @throws {SyntaxError}
    */
   function splitField(chunk, strict) {
-      const field = String(chunk);
-      const index = field.indexOf(':');
+      var field = String(chunk);
+      var index = field.indexOf(':');
       if (index === -1) {
-          throw new SyntaxError(`field separator is not found: "${field}"`);
+          throw new SyntaxError("field separator is not found: \"" + field + "\"");
       }
-      const label = field.slice(0, index);
-      const value = field.slice(index + 1);
+      var label = field.slice(0, index);
+      var value = field.slice(index + 1);
       if (strict && !isValidLabel(label)) {
-          throw new SyntaxError(`unexpected character in label: "${label}"`);
+          throw new SyntaxError("unexpected character in label: \"" + label + "\"");
       }
       if (strict && !isValidValue(value)) {
-          throw new SyntaxError(`unexpected character in value: "${value}"`);
+          throw new SyntaxError("unexpected character in value: \"" + value + "\"");
       }
       return {
-          label,
-          value
+          label: label,
+          value: value
       };
   }
   /**
@@ -143,12 +144,12 @@
    * @param strict
    */
   function baseParseLine(line, strict) {
-      const fields = String(line)
+      var fields = String(line)
           .replace(/(?:\r?\n)+$/, '')
           .split('\t');
-      const record = {};
-      for (let i = 0, len = fields.length; i < len; ++i) {
-          const { label, value } = splitField(fields[i], strict);
+      var record = {};
+      for (var i = 0, len = fields.length; i < len; ++i) {
+          var _a = splitField(fields[i], strict), label = _a.label, value = _a.value;
           record[label] = value;
       }
       return record;
@@ -161,11 +162,11 @@
    * @param strict
    */
   function baseParse(text, strict) {
-      const lines = String(text)
+      var lines = String(text)
           .replace(/(?:\r?\n)+$/, '')
           .split(/\r?\n/);
-      const records = [];
-      for (let i = 0, len = lines.length; i < len; ++i) {
+      var records = [];
+      for (var i = 0, len = lines.length; i < len; ++i) {
           records[i] = baseParseLine(lines[i], strict);
       }
       return records;
@@ -211,12 +212,12 @@
    * @param controller
    */
   function push(text, isFlush, controller) {
-      let next = 0;
-      let last = 0;
-      let error = null;
+      var next = 0;
+      var last = 0;
+      var error = null;
       // eslint-disable-next-line no-constant-condition
       while (true) {
-          let index = text.indexOf('\n', next);
+          var index = text.indexOf('\n', next);
           if (index === -1) {
               if (isFlush && next < text.length) {
                   // NOTE: subtract 1 from text.length,
@@ -230,8 +231,8 @@
           // NOTE: include `\n`.
           // NOTE: foo:foo\tbar:bar\nfoo:foo\tbar:bar\n
           // NOTE: -----------------|
-          const line = text.slice(next, index + 1);
-          let record = {};
+          var line = text.slice(next, index + 1);
+          var record = {};
           try {
               record = this.parse(line);
           }
@@ -257,14 +258,15 @@
    *
    * @param options
    */
-  function LtsvToJsonStream(options = {
-      objectMode: false,
-      strict: false
-  }) {
-      const { objectMode = false, strict = false } = options;
-      const instance = {
+  function LtsvToJsonStream(options) {
+      if (options === void 0) { options = {
+          objectMode: false,
+          strict: false
+      }; }
+      var _a = options.objectMode, objectMode = _a === void 0 ? false : _a, _b = options.strict, strict = _b === void 0 ? false : _b;
+      var instance = {
           buffer: '',
-          objectMode,
+          objectMode: objectMode,
           parse: strict ? parseLineStrict : parseLine
       };
       return {
@@ -274,7 +276,7 @@
            * @param chunk
            * @param controller
            */
-          transform(chunk, controller) {
+          transform: function (chunk, controller) {
               push.call(instance, instance.buffer + chunk, false, controller);
           },
           /**
@@ -282,7 +284,7 @@
            *
            * @param controller
            */
-          flush(controller) {
+          flush: function (controller) {
               push.call(instance, instance.buffer, true, controller);
           }
       };
