@@ -29,7 +29,7 @@
     "rollup-plugin-terser": "6.1.0",
     "rollup-plugin-typescript": "^1.0.1",
     "typedoc": "^0.17.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.9.7"
   },
   "engines": {
     "node": ">=8"
