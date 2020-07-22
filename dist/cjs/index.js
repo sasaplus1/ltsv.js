@@ -4,8 +4,9 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * @file for CommonJS
+ * @file entrypoint
  */
 __export(require("./src/index"));
+// NOTE: replace to './src/whatwg_stream' when build with rollup
 __export(require("./src/nodejs_stream"));
 //# sourceMappingURL=index.js.map
