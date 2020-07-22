@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.stringify = exports.formatStrict = exports.format = void 0;
 const validator_1 = require("./validator");
 /**
  * convert to record string from object
