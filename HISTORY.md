@@ -1,3 +1,8 @@
+# 2.0.0 / 2020-07-23
+
+- migrate to TypeScript
+- support WHATWG Streams API
+
 # 1.1.0 / 2019-01-27
 
 - add stringify function
