@@ -1,3 +1,4 @@
+import alias from '@rollup/plugin-alias';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript';
 
@@ -7,12 +8,17 @@ const config = [];
 
 if (process.env.build === 'esm') {
   config.push({
-    input: './entry.ts',
+    input: './index.ts',
     output: {
       file: './dist/esm/index.mjs',
       format: 'esm'
     },
     plugins: [
+      alias({
+        entries: [
+          { find: './src/nodejs_stream', replacement: './src/whatwg_stream' }
+        ]
+      }),
       typescript({
         module: 'ESNext',
         newLine: 'lf',
@@ -34,7 +40,7 @@ if (process.env.build === 'umd') {
 
   config.push(
     {
-      input: './entry.ts',
+      input: './index.ts',
       output: {
         banner,
         file: `./dist/umd/${meta.name}.js`,
@@ -43,6 +49,11 @@ if (process.env.build === 'umd') {
         sourcemap: true
       },
       plugins: [
+        alias({
+          entries: [
+            { find: './src/nodejs_stream', replacement: './src/whatwg_stream' }
+          ]
+        }),
         typescript({
           newLine: 'lf',
           strict: true,
@@ -52,15 +63,21 @@ if (process.env.build === 'umd') {
       ]
     },
     {
-      input: './entry.ts',
+      input: './index.ts',
       output: {
-        banner,
+        // NOTE: add header with terser
+        // banner,
         file: `./dist/umd/${meta.name}.min.js`,
         format: 'umd',
         name: meta.name,
         sourcemap: true
       },
       plugins: [
+        alias({
+          entries: [
+            { find: './src/nodejs_stream', replacement: './src/whatwg_stream' }
+          ]
+        }),
         typescript({
           newLine: 'lf',
           strict: true,
@@ -75,7 +92,7 @@ if (process.env.build === 'umd') {
       ]
     },
     {
-      input: './entry.ts',
+      input: './index.ts',
       output: {
         banner,
         file: `./dist/umd/${meta.name}.legacy.js`,
@@ -84,6 +101,11 @@ if (process.env.build === 'umd') {
         sourcemap: true
       },
       plugins: [
+        alias({
+          entries: [
+            { find: './src/nodejs_stream', replacement: './src/whatwg_stream' }
+          ]
+        }),
         typescript({
           newLine: 'lf',
           strict: true,
@@ -93,15 +115,21 @@ if (process.env.build === 'umd') {
       ]
     },
     {
-      input: './entry.ts',
+      input: './index.ts',
       output: {
-        banner,
+        // NOTE: add header with terser
+        // banner,
         file: `./dist/umd/${meta.name}.legacy.min.js`,
         format: 'umd',
         name: meta.name,
         sourcemap: true
       },
       plugins: [
+        alias({
+          entries: [
+            { find: './src/nodejs_stream', replacement: './src/whatwg_stream' }
+          ]
+        }),
         typescript({
           newLine: 'lf',
           strict: true,
