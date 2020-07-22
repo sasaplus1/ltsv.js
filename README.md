@@ -60,9 +60,9 @@ ltsv.format({ label1: 'value1', label2: 'value2' });
 ```
 
 ```js
-const fs = require('fs'),
+const fs = require('fs');
 
-const ltsv = require('ltsv'),
+const ltsv = require('ltsv');
 
 const stream = ltsv.createLtsvToJsonStream({
   encoding: 'utf8',
