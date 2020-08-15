@@ -42,7 +42,7 @@ describe('formatter', function () {
       assert.throws(function () {
         format(function () {} as any);
       }, TypeError);
-      if (typeof Symbol !== 'undefined') {
+      if (typeof Symbol === 'function' && typeof Symbol() === 'symbol') {
         assert.throws(function () {
           format(Symbol() as any);
         });
@@ -132,7 +132,7 @@ describe('formatter', function () {
       assert.throws(function () {
         formatStrict(function () {} as any);
       }, TypeError);
-      if (typeof Symbol !== 'undefined') {
+      if (typeof Symbol === 'function' && typeof Symbol() === 'symbol') {
         assert.throws(function () {
           formatStrict(Symbol() as any);
         });
