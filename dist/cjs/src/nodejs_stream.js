@@ -18,11 +18,7 @@ class LtsvToJsonStream extends stream_1.Transform {
         objectMode: false,
         strict: false
     }) {
-        super({
-            ...options,
-            decodeStrings: true,
-            objectMode: true
-        });
+        super(Object.assign(Object.assign({}, options), { decodeStrings: true, objectMode: true }));
         const { encoding = 'utf8', objectMode = false, strict = false } = options;
         this.objectMode = objectMode;
         this.parse = strict ? parser_1.parseLineStrict : parser_1.parseLine;
