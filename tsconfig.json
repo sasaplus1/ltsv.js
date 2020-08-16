@@ -7,7 +7,7 @@
     "rootDir": ".",
     "sourceMap": true,
     "strict": true,
-    "target": "ESNext"
+    "target": "ES2017"
   },
   "files": [
     "index.ts"
