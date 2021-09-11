@@ -59,6 +59,7 @@
     "lint:eslint": "eslint --cache .",
     "lint:prettier": "prettier --check './**/*.+(js|md|ts|yml)'",
     "lint:tsc": "tsc --noEmit",
+    "prepare": "is-ci || husky install",
     "pretest": "run-s build:cjs",
     "pretest:browser": "run-s build:umd",
     "test": "mocha",
