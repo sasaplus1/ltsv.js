@@ -13,7 +13,6 @@
     "eslint": "7.32.0",
     "eslint-config-prettier": "7.2.0",
     "eslint-plugin-node": "11.1.0",
-    "eslint-plugin-prettier": "3.4.1",
     "espower-typescript": "^10.0.0",
     "husky": "7.0.2",
     "karma": "6.3.4",
