@@ -3,27 +3,17 @@ module.exports = {
     es6: true,
     node: true
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:node/recommended',
-    'plugin:prettier/recommended'
-  ],
+  extends: ['eslint:recommended', 'plugin:node/recommended', 'prettier'],
   overrides: [
     {
       extends: [
         'eslint:recommended',
-        'plugin:node/recommended',
         'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
-        'plugin:prettier/recommended',
-        'prettier/@typescript-eslint'
+        'plugin:node/recommended-module',
+        'prettier'
       ],
       files: ['**/*.ts'],
-      parser: '@typescript-eslint/parser',
-      plugins: ['@typescript-eslint'],
-      rules: {
-        'node/no-unsupported-features/es-syntax': 'off'
-      },
       settings: {
         node: {
           tryExtensions: ['.ts', '.js', '.json', '.node']
@@ -31,14 +21,16 @@ module.exports = {
       }
     },
     {
-      files: ['rollup.config.js'],
-      rules: {
-        'node/no-unsupported-features/es-syntax': 'off'
-      }
+      extends: [
+        'eslint:recommended',
+        'plugin:node/recommended-module',
+        'prettier'
+      ],
+      files: ['rollup.config.js']
     }
   ],
   parserOptions: {
-    ecmaVersion: 2019,
+    ecmaVersion: 2020,
     sourceType: 'module'
   },
   root: true
