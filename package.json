@@ -5,7 +5,7 @@
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "browser": "./dist/umd/ltsv.js",
   "devDependencies": {
-    "@rollup/plugin-alias": "^3.1.1",
+    "@rollup/plugin-alias": "^4.0.0",
     "@tsconfig/recommended": "^1.0.1",
     "@types/mocha": "^9.0.0",
     "@types/node": "^12.7.3",
