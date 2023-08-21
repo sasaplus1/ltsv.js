@@ -1,12 +1,3 @@
 {
-  "extends": "@tsconfig/recommended/tsconfig.json",
-  "compilerOptions": {
-    "declaration": true,
-    "module": "CommonJS",
-    "newLine": "lf",
-    "outDir": "dist/cjs",
-    "rootDir": ".",
-    "sourceMap": true,
-    "target": "ES2017"
-  }
+  "extends": "@tsconfig/recommended/tsconfig.json"
 }
