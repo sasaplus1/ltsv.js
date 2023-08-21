@@ -5,7 +5,6 @@
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "browser": "./dist/ltsv.module.js",
   "devDependencies": {
-    "@rollup/plugin-alias": "^5.0.0",
     "@tsconfig/recommended": "^1.0.1",
     "@types/mocha": "^9.0.0",
     "@types/node": "^12.7.3",
@@ -27,9 +26,6 @@
     "npm-run-all": "^4.1.5",
     "power-assert": "^1.6.1",
     "prettier": "^2.4.0",
-    "rollup": "^2.56.3",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript": "^1.0.1",
     "typedoc": "^0.24.0",
     "typescript": "^4.0.2"
   },
