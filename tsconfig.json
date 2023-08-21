@@ -8,8 +8,5 @@
     "rootDir": ".",
     "sourceMap": true,
     "target": "ES2017"
-  },
-  "files": [
-    "index.ts"
-  ]
+  }
 }

@@ -53,7 +53,9 @@ function push(
     try {
       record = this.parse(line);
     } catch (e) {
-      error = e;
+      if (e instanceof Error) {
+        error = e;
+      }
     }
 
     if (error) {

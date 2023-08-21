@@ -1,7 +1,7 @@
 {
   "cleanOutputDir": true,
   "entryPoints": [
-    "index.ts"
+    "./src/index.ts"
   ],
   "excludeExternals": true,
   "excludePrivate": true,
