@@ -1,20 +1,5 @@
-import { Transform } from 'stream';
-import { StringDecoder } from 'string_decoder';
-
-function _extends() {
-  _extends = Object.assign ? Object.assign.bind() : function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-    return target;
-  };
-  return _extends.apply(this, arguments);
-}
+var stream = require('stream');
+var string_decoder = require('string_decoder');
 
 /**
  * validate label
@@ -103,7 +88,7 @@ function parseLineStrict(line) {
 /**
  * LTSV to JSON transform stream
  */
-class LtsvToJsonStream extends Transform {
+class LtsvToJsonStream extends stream.Transform {
   /**
    * constructor
    *
@@ -114,10 +99,11 @@ class LtsvToJsonStream extends Transform {
     objectMode: false,
     strict: false
   }) {
-    super(_extends({}, options, {
+    super({
+      ...options,
       decodeStrings: true,
       objectMode: true
-    }));
+    });
     /**
      * chunk buffer
      */
@@ -142,7 +128,7 @@ class LtsvToJsonStream extends Transform {
     this.objectMode = objectMode;
     this.parse = strict ? parseLineStrict : parseLine;
     this.buffer = '';
-    this.decoder = new StringDecoder(encoding);
+    this.decoder = new string_decoder.StringDecoder(encoding);
   }
   /**
    * transform and push to stream.
@@ -229,5 +215,6 @@ function createLtsvToJsonStream(options) {
   return new LtsvToJsonStream(options);
 }
 
-export { LtsvToJsonStream, createLtsvToJsonStream };
-//# sourceMappingURL=ltsv.modern.mjs.map
+exports.LtsvToJsonStream = LtsvToJsonStream;
+exports.createLtsvToJsonStream = createLtsvToJsonStream;
+//# sourceMappingURL=ltsv.js.map

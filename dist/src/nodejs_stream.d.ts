@@ -1,12 +1,11 @@
 /// <reference types="node" />
 /// <reference types="node" />
 /// <reference types="node" />
-/// <reference types="node" />
 import { Transform, TransformCallback } from 'stream';
 import { StringDecoder } from 'string_decoder';
 import { parseLine, parseLineStrict } from './parser';
 export type LtsvToJsonStreamOptions = {
-    encoding?: string;
+    encoding?: BufferEncoding;
     objectMode?: boolean;
     strict?: boolean;
 };
@@ -53,7 +52,7 @@ export declare class LtsvToJsonStream extends Transform {
      * @param encoding
      * @param callback
      */
-    _transform(chunk: Buffer, encoding: string, callback: TransformCallback): void;
+    _transform(chunk: any, _encoding: BufferEncoding, callback: TransformCallback): void;
     /**
      * _flush implementation.
      *

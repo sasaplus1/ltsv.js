@@ -1,4 +1,4 @@
-import assert = require('assert');
+import { strict as assert } from 'node:assert';
 
 import { parse, parseLine, parseStrict, parseLineStrict } from '../src/parser';
 

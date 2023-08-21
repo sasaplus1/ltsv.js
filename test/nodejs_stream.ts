@@ -1,7 +1,12 @@
-import assert = require('assert');
-import * as fs from 'fs';
+import { strict as assert } from 'node:assert';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+import * as url from 'node:url';
 
 import { createLtsvToJsonStream } from '../src/nodejs_stream';
+
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 describe('nodejs_stream', function () {
   describe('#write() and #end()', function () {
@@ -120,7 +125,9 @@ describe('nodejs_stream', function () {
         done();
       });
 
-      fs.createReadStream(require.resolve('./log/valid-1.ltsv')).pipe(stream);
+      fs.createReadStream(path.join(__dirname, './log/valid-1.ltsv')).pipe(
+        stream
+      );
     });
 
     it('should convert LTSV log of 3 line', function (done) {
@@ -144,7 +151,9 @@ describe('nodejs_stream', function () {
         done();
       });
 
-      fs.createReadStream(require.resolve('./log/valid-3.ltsv')).pipe(stream);
+      fs.createReadStream(path.join(__dirname, './log/valid-3.ltsv')).pipe(
+        stream
+      );
     });
 
     it('should throw error if invalid LTSV log', function (done) {
@@ -156,7 +165,9 @@ describe('nodejs_stream', function () {
         done();
       });
 
-      fs.createReadStream(require.resolve('./log/invalid.ltsv')).pipe(stream);
+      fs.createReadStream(path.join(__dirname, './log/invalid.ltsv')).pipe(
+        stream
+      );
     });
   });
 });

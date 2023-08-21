@@ -1,4 +1,4 @@
-import assert = require('assert');
+import { strict as assert } from 'node:assert';
 
 import { createLtsvToJsonStream } from '../src/whatwg_stream';
 

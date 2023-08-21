@@ -1,4 +1,4 @@
-import assert = require('assert');
+import { strict as assert } from 'node:assert';
 
 import { isValidLabel, isValidValue } from '../src/validator';
 
@@ -52,7 +52,13 @@ describe('validator', function () {
       ).split('');
 
       for (let i = 0, len = unassertedCharacters.length; i < len; ++i) {
-        assert(isValidLabel(unassertedCharacters[i]) === false);
+        const character = unassertedCharacters[i];
+
+        if (!character) {
+          assert.fail();
+        }
+
+        assert(isValidLabel(character) === false);
       }
     });
   });
@@ -84,7 +90,13 @@ describe('validator', function () {
       ).split('');
 
       for (let i = 0, len = assertedCharacters.length; i < len; ++i) {
-        assert(isValidValue(assertedCharacters[i]) === true);
+        const character = assertedCharacters[i];
+
+        if (!character) {
+          assert.fail();
+        }
+
+        assert(isValidValue(character) === true);
       }
     });
 

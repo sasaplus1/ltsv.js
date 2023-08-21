@@ -26,15 +26,18 @@ function isValidValue(value) {
  * @param chunk
  * @param strict
  * @throws {SyntaxError}
+ * @throws {TypeError}
  */
 function splitField(chunk, strict) {
-  const field = String(chunk);
-  const index = field.indexOf(':');
-  if (index === -1) {
-    throw new SyntaxError(`field separator is not found: "${field}"`);
+  if (chunk === undefined) {
+    throw new TypeError('chunk is undefined');
   }
-  const label = field.slice(0, index);
-  const value = field.slice(index + 1);
+  const index = chunk.indexOf(':');
+  if (index === -1) {
+    throw new SyntaxError(`field separator is not found: "${chunk}"`);
+  }
+  const label = chunk.slice(0, index);
+  const value = chunk.slice(index + 1);
   if (strict && !isValidLabel(label)) {
     throw new SyntaxError(`unexpected character in label: "${label}"`);
   }
@@ -187,7 +190,9 @@ class LtsvToJsonStream extends Transform {
    * @param encoding
    * @param callback
    */
-  _transform(chunk, encoding, callback) {
+  _transform(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  chunk, _encoding, callback) {
     this._push(this.buffer + this.decoder.write(chunk), false, callback);
   }
   /**
