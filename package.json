@@ -73,6 +73,10 @@
   },
   "main": "./dist/ltsv.cjs",
   "module": "./dist/ltsv.module.mjs",
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "none"
+  },
   "readmeFilename": "README.md",
   "repository": {
     "type": "git",
