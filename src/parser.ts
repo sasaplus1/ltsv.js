@@ -14,17 +14,21 @@ type LtsvField = {
  * @param chunk
  * @param strict
  * @throws {SyntaxError}
+ * @throws {TypeError}
  */
-function splitField(chunk: string, strict: boolean): LtsvField {
-  const field = String(chunk);
-  const index = field.indexOf(':');
-
-  if (index === -1) {
-    throw new SyntaxError(`field separator is not found: "${field}"`);
+function splitField(chunk: string | undefined, strict: boolean): LtsvField {
+  if (chunk === undefined) {
+    throw new TypeError('chunk is undefined');
   }
 
-  const label = field.slice(0, index);
-  const value = field.slice(index + 1);
+  const index = chunk.indexOf(':');
+
+  if (index === -1) {
+    throw new SyntaxError(`field separator is not found: "${chunk}"`);
+  }
+
+  const label = chunk.slice(0, index);
+  const value = chunk.slice(index + 1);
 
   if (strict && !isValidLabel(label)) {
     throw new SyntaxError(`unexpected character in label: "${label}"`);
@@ -47,7 +51,7 @@ function splitField(chunk: string, strict: boolean): LtsvField {
  * @param line
  * @param strict
  */
-function baseParseLine(line: string, strict: boolean): LtsvRecord {
+function baseParseLine(line: string | undefined, strict: boolean): LtsvRecord {
   const fields = String(line)
     .replace(/(?:\r?\n)+$/, '')
     .split('\t');

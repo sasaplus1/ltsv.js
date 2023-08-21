@@ -5,7 +5,7 @@ import { parseLine, parseLineStrict } from './parser';
 import { LtsvRecord } from './types';
 
 export type LtsvToJsonStreamOptions = {
-  encoding?: string;
+  encoding?: BufferEncoding;
   objectMode?: boolean;
   strict?: boolean;
 };
@@ -131,9 +131,10 @@ export class LtsvToJsonStream extends Transform {
    * @param encoding
    * @param callback
    */
-  _transform(
-    chunk: Buffer,
-    encoding: string,
+  override _transform(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    chunk: any,
+    _encoding: BufferEncoding,
     callback: TransformCallback
   ): void {
     this._push(this.buffer + this.decoder.write(chunk), false, callback);
@@ -145,7 +146,7 @@ export class LtsvToJsonStream extends Transform {
    * @private
    * @param callback
    */
-  _flush(callback: TransformCallback): void {
+  override _flush(callback: TransformCallback): void {
     this._push(this.buffer + this.decoder.end(), true, callback);
   }
 }

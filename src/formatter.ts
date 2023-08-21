@@ -24,7 +24,16 @@ function objectToRecord(record: LtsvRecord, strict: boolean): string {
 
   for (let i = 0, len = keys.length; i < len; ++i) {
     const label = keys[i];
-    const value = record[keys[i]];
+
+    if (!label) {
+      throw new TypeError('label must be a non-empty string');
+    }
+
+    const value = record[label];
+
+    if (!value) {
+      throw new TypeError('value must be a non-empty string');
+    }
 
     if (strict && !isValidLabel(label)) {
       throw new SyntaxError(`unexpected character in label: "${label}"`);
@@ -59,7 +68,13 @@ function baseFormat(data: LtsvRecord | LtsvRecord[], strict: boolean): string {
 
   if (isArray) {
     for (let i = 0, len = data.length; i < len; ++i) {
-      records[i] = objectToRecord((data as LtsvRecord[])[i], strict);
+      const record = data[i];
+
+      if (!record) {
+        throw new TypeError('record must be an Object');
+      }
+
+      records[i] = objectToRecord(record, strict);
     }
   } else {
     records.push(objectToRecord(data as LtsvRecord, strict));
