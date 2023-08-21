@@ -3,7 +3,7 @@
   "description": "LTSV parser, formatter, validator and TransformStream",
   "version": "2.0.0",
   "author": "sasa+1 <sasaplus1@gmail.com>",
-  "browser": "./dist/ltsv.umd.js",
+  "browser": "./dist/ltsv.module.js",
   "devDependencies": {
     "@rollup/plugin-alias": "^5.0.0",
     "@tsconfig/recommended": "^1.0.1",
