@@ -72,6 +72,10 @@
     ]
   },
   "main": "./dist/ltsv.cjs",
+  "mocha": {
+    "extension": "ts",
+    "require": "espower-typescript/guess"
+  },
   "module": "./dist/ltsv.module.mjs",
   "prettier": {
     "singleQuote": true,
