@@ -85,6 +85,6 @@ jobs:
           xcrun simctl list -j | jq '.devices[][] | select(.isAvailable == true) | { (.name): .udid }' | jq -s add
       - run: |
           xcrun simctl list -j | jq '.devices[][] | select(.isAvailable == true) | { (.name): .udid }' | jq -s add | jq -r '.["iPhone 11"]' | tee udid
-      - run: xcrun simctl boot $(cat udid)
-      - run: xcrun simctl openurl $(cat udid) http://127.0.0.1:9876 &
+      - run: xcrun simctl boot "$(cat udid)"
+      - run: xcrun simctl openurl "$(cat udid)" 'http://127.0.0.1:9876' &
       - run: npm karma start --single-run --no-browsers
