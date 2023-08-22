@@ -8,6 +8,7 @@ jobs:
   mocha:
     name: mocha
     strategy:
+      fail-fast: false
       matrix:
         node:
           - 14
@@ -29,6 +30,7 @@ jobs:
   karma:
     name: karma with Chrome and Firefox
     strategy:
+      fail-fast: false
       matrix:
         node:
           - 14
@@ -46,6 +48,7 @@ jobs:
   karma-ie:
     name: karma with IE11
     strategy:
+      fail-fast: false
       matrix:
         node:
           - 14
@@ -63,6 +66,7 @@ jobs:
   karma-ios:
     name: karma on iOS
     strategy:
+      fail-fast: false
       matrix:
         node:
           - 14
