@@ -2,8 +2,8 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 import * as url from 'node:url';
 import { assert, describe, it } from 'vitest';
-
 import { createLtsvToJsonStream } from '../src/nodejs_stream';
+import { type LtsvRecord } from '../src/types';
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -73,7 +73,7 @@ describe('nodejs_stream', function () {
       it('should convert to Object from LTSV', function () {
         return new Promise<void>((resolve) => {
           const stream = createLtsvToJsonStream({ objectMode: true });
-          const buffer: string[] = [];
+          const buffer: LtsvRecord[] = [];
 
           stream.on('readable', function () {
             for (let buf = stream.read(); buf != null; buf = stream.read()) {

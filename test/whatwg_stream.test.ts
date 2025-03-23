@@ -1,5 +1,4 @@
 import { assert, describe, it } from 'vitest';
-
 import { createLtsvToJsonStream } from '../src/whatwg_stream';
 
 /**
@@ -161,7 +160,9 @@ describe('whatwg_stream', function () {
             assert.deepStrictEqual(chunks, [
               { label1: 'value1', label2: 'value2' },
               { label3: 'value3', label4: 'value4' }
-            ]);
+              // TODO: use LtsvRecord type
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            ] as any);
             resolve();
           }
         });
