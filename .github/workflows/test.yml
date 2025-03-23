@@ -7,14 +7,12 @@ on:
 jobs:
   mocha:
     name: mocha
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     strategy:
       fail-fast: false
       matrix:
         node:
-          - 14
-          - 16
-          - 18
-          - 20
+          - 22
           - lts/*
     runs-on: ubuntu-latest
     steps:
@@ -29,12 +27,13 @@ jobs:
       - run: npm run build
   karma:
     name: karma with Chrome and Firefox
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     strategy:
       fail-fast: false
       matrix:
         node:
-          - 14
-          - 18
+          - 22
+          - lts/*
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -47,12 +46,13 @@ jobs:
       - run: npm karma start --single-run --browsers ChromeHeadless,FirefoxHeadless
   karma-ie:
     name: karma with IE11
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     strategy:
       fail-fast: false
       matrix:
         node:
-          - 14
-          - 18
+          - 22
+          - lts/*
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
@@ -65,12 +65,13 @@ jobs:
       - run: npm karma start --single-run --browsers IE
   karma-ios:
     name: karma on iOS
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     strategy:
       fail-fast: false
       matrix:
         node:
-          - 14
-          - 18
+          - 22
+          - lts/*
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
