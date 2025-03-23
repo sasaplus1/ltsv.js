@@ -33,7 +33,7 @@ function createReadableStream(
 ): ReadableStream {
   const underlyingSink: UnderlyingSource<string> = {
     start(controller): void {
-      enqueue(strings, controller);
+      enqueue(strings, controller as ReadableStreamDefaultController<string>);
     },
     ...overrides
   };
