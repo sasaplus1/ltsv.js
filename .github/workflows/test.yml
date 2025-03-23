@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
-      - uses: actions/setup-node@1a4442cacd436585916779262731d5b162bc6ec7 # v3
+      - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
         with:
           node-version: ${{ matrix.node }}
           cache: npm
@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
-      - uses: actions/setup-node@1a4442cacd436585916779262731d5b162bc6ec7 # v3
+      - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
         with:
           node-version: ${{ matrix.node }}
           cache: npm
@@ -56,7 +56,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
-      - uses: actions/setup-node@1a4442cacd436585916779262731d5b162bc6ec7 # v3
+      - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
         with:
           node-version: ${{ matrix.node }}
           cache: npm
@@ -75,7 +75,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
-      - uses: actions/setup-node@1a4442cacd436585916779262731d5b162bc6ec7 # v3
+      - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
         with:
           node-version: ${{ matrix.node }}
           cache: npm
