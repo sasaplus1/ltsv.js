@@ -63,12 +63,7 @@ function createWritableStream(
   return new WritableStream<string>(underlyingSink);
 }
 
-const hasnotWhatwgStreams =
-  typeof ReadableStream === 'undefined' ||
-  typeof WritableStream === 'undefined' ||
-  typeof TransformStream === 'undefined';
-
-describe.skipIf(hasnotWhatwgStreams)('whatwg_stream', function () {
+describe('whatwg_stream', function () {
   it('should convert to JSON from LTSV', function () {
     return new Promise<void>(function (
       resolve: () => void,
