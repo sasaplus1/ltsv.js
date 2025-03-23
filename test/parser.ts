@@ -1,4 +1,4 @@
-import { strict as assert } from 'node:assert';
+import { assert, describe, it } from 'vitest';
 
 import { parse, parseLine, parseStrict, parseLineStrict } from '../src/parser';
 

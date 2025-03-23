@@ -1,7 +1,7 @@
-import { strict as assert } from 'node:assert';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import * as url from 'node:url';
+import { assert, describe, it } from 'vitest';
 
 import { createLtsvToJsonStream } from '../src/nodejs_stream';
 
