@@ -116,7 +116,7 @@
     "lint:tsc": "tsc --noEmit",
     "prepare": "is-ci || husky install",
     "pretest:browser": "run-s build:umd",
-    "test": "mocha",
+    "test": "vitest run",
     "test:browser": "karma start --single-run"
   },
   "sideEffects": false,
