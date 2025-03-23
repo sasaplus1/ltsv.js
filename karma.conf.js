@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const path = require('path');
 
 const typescript = require('rollup-plugin-typescript');
