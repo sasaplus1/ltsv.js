@@ -1,4 +1,4 @@
-import { strict as assert } from 'node:assert';
+import { assert, describe, it } from 'vitest';
 
 import { createLtsvToJsonStream } from '../src/whatwg_stream';
 
@@ -64,16 +64,6 @@ function createWritableStream(
 }
 
 describe('whatwg_stream', function () {
-  before(function () {
-    if (
-      typeof ReadableStream === 'undefined' ||
-      typeof WritableStream === 'undefined' ||
-      typeof TransformStream === 'undefined'
-    ) {
-      this.skip();
-    }
-  });
-
   it('should convert to JSON from LTSV', function () {
     return new Promise<void>(function (
       resolve: () => void,

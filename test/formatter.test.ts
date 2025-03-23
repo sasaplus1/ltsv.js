@@ -1,4 +1,4 @@
-import { strict as assert } from 'node:assert';
+import { assert, describe, it } from 'vitest';
 
 import { format, formatStrict } from '../src/formatter';
 
@@ -53,34 +53,34 @@ describe('formatter', function () {
     it('should generate record if label has unexpected character', function () {
       assert(
         format({
-          '\x00\x2C': ''
-        }) === '\x00\x2C:'
+          '\x00\x2C': 'v'
+        }) === '\x00\x2C:v'
       );
       assert(
         format({
-          '\x2F': ''
-        }) === '\x2F:'
+          '\x2F': 'v'
+        }) === '\x2F:v'
       );
       // NOTE: \x3A is ":"
       assert(
         format({
-          '\x3B\x40': ''
-        }) === '\x3B\x40:'
+          '\x3B\x40': 'v'
+        }) === '\x3B\x40:v'
       );
       assert(
         format({
-          '\x5B\x5E': ''
-        }) === '\x5B\x5E:'
+          '\x5B\x5E': 'v'
+        }) === '\x5B\x5E:v'
       );
       assert(
         format({
-          '\x60': ''
-        }) === '\x60:'
+          '\x60': 'v'
+        }) === '\x60:v'
       );
       assert(
         format({
-          '\x7B\xFF': ''
-        }) === '\x7B\xFF:'
+          '\x7B\xFF': 'v'
+        }) === '\x7B\xFF:v'
       );
     });
 
@@ -142,22 +142,22 @@ describe('formatter', function () {
 
     it('should throw error if label has unexpected character', function () {
       assert.throws(function () {
-        formatStrict({ '\x00\x2C': '' });
+        formatStrict({ '\x00\x2C': 'v' });
       }, SyntaxError);
       assert.throws(function () {
-        formatStrict({ '\x2F': '' });
+        formatStrict({ '\x2F': 'v' });
       }, SyntaxError);
       assert.throws(function () {
-        formatStrict({ '\x3B\x40': '' });
+        formatStrict({ '\x3B\x40': 'v' });
       }, SyntaxError);
       assert.throws(function () {
-        formatStrict({ '\x5B\x5E': '' });
+        formatStrict({ '\x5B\x5E': 'v' });
       }, SyntaxError);
       assert.throws(function () {
-        formatStrict({ '\x60': '' });
+        formatStrict({ '\x60': 'v' });
       }, SyntaxError);
       assert.throws(function () {
-        formatStrict({ '\x7B\xFF': '' });
+        formatStrict({ '\x7B\xFF': 'v' });
       }, SyntaxError);
     });
 
