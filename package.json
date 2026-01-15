@@ -27,7 +27,7 @@
     "power-assert": "1.6.1",
     "prettier": "3.0.2",
     "tsx": "3.12.7",
-    "typedoc": "0.24.8",
+    "typedoc": "0.28.16",
     "typescript": "5.1.6",
     "vitest": "3.0.9"
   },
