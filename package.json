@@ -13,6 +13,7 @@
     "@types/node": "24.10.8",
     "@vitest/browser": "4.0.17",
     "@vitest/browser-playwright": "4.0.17",
+    "fixpack": "4.0.0",
     "husky": "9.1.7",
     "lint-staged": "16.2.7",
     "microbundle": "0.15.1",
@@ -66,7 +67,7 @@
       "biome check --write --no-errors-on-unmatched"
     ],
     "package.json": [
-      "pnpm dlx fixpack --dryRun"
+      "fixpack --dryRun"
     ]
   },
   "main": "./dist/ltsv.cjs",
@@ -84,10 +85,10 @@
     "build:whatwg_stream": "microbundle -i ./src/whatwg_stream.ts -o ./dist/whatwg_stream -f modern,esm,cjs,umd --target web",
     "fix": "run-s fix:*",
     "fix:biome": "biome check --write .",
-    "fix:fixpack": "pnpm dlx fixpack",
+    "fix:fixpack": "fixpack",
     "lint": "run-s lint:*",
     "lint:biome": "biome check .",
-    "lint:fixpack": "pnpm dlx fixpack --dryRun",
+    "lint:fixpack": "fixpack --dryRun",
     "lint:tsc": "tsc --noEmit",
     "prepare": "husky",
     "test": "vitest run",
