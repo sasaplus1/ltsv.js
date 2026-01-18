@@ -129,7 +129,10 @@ describe('whatwg_stream', () => {
           }
         });
 
-        readableStream.pipeThrough(transformStream).pipeTo(writableStream);
+        readableStream
+          .pipeThrough(transformStream)
+          .pipeTo(writableStream)
+          .catch(() => {});
       }
     ));
 
@@ -187,7 +190,10 @@ describe('whatwg_stream', () => {
             }
           });
 
-          readableStream.pipeThrough(transformStream).pipeTo(writableStream);
+          readableStream
+            .pipeThrough(transformStream)
+            .pipeTo(writableStream)
+            .catch(() => {});
         }
       ));
   });
