@@ -1,10 +1,5 @@
 # ltsv.js
 
-[![test](https://github.com/sasaplus1/ltsv.js/workflows/test/badge.svg)](https://github.com/sasaplus1/ltsv.js/actions?query=workflow%3Atest)
-[![npm version](https://badge.fury.io/js/ltsv.svg)](https://badge.fury.io/js/ltsv)
-[![Try ltsv on RunKit](https://badge.runkitcdn.com/ltsv.svg)](https://npm.runkit.com/ltsv)
-[![renovate](https://badges.renovateapi.com/github/sasaplus1/ltsv.js)](https://renovatebot.com)
-
 [LTSV](http://ltsv.org/) parser, formatter, validator and TransformStream
 
 ## Installation
@@ -20,7 +15,7 @@ $ npm install ltsv
 ### node.js
 
 ```js
-const ltsv = require('ltsv');
+import * as ltsv from 'ltsv';
 ```
 
 ### browser
@@ -60,9 +55,8 @@ ltsv.format({ label1: 'value1', label2: 'value2' });
 ```
 
 ```js
-const fs = require('fs');
-
-const ltsv = require('ltsv');
+import * as fs from 'node:fs';
+import * as ltsv from 'ltsv/nodejs_stream';
 
 const stream = ltsv.createLtsvToJsonStream({
   encoding: 'utf8',
@@ -80,7 +74,7 @@ fs.createReadStream('./access.log').pipe(stream).pipe(process.stdout);
 
 ## Functions
 
-see [docs](docs) or https://sasaplus1.github.io/ltsv.js
+see https://sasaplus1.github.io/ltsv.js
 
 ## License
 
