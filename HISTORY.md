@@ -1,3 +1,7 @@
+# 3.0.0 / 2026-01-19
+
+- modernize
+
 # 2.0.0 / 2020-07-23
 
 - migrate to TypeScript
