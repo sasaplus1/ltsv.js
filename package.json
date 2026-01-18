@@ -25,23 +25,19 @@
   },
   "exports": {
     ".": {
-      "browser": "./dist/ltsv.module.mjs",
-      "default": "./dist/ltsv.modern.mjs",
-      "require": "./dist/ltsv.cjs",
       "types": "./dist/src/ltsv.d.ts",
-      "umd": "./dist/ltsv.umd.js"
+      "import": "./dist/ltsv.modern.mjs",
+      "require": "./dist/ltsv.cjs"
     },
     "./nodejs_stream": {
-      "default": "./dist/nodejs_stream/ltsv.modern.mjs",
-      "require": "./dist/nodejs_stream/ltsv.cjs",
-      "types": "./dist/src/nodejs_stream.d.ts"
+      "types": "./dist/src/nodejs_stream.d.ts",
+      "import": "./dist/nodejs_stream/ltsv.modern.mjs",
+      "require": "./dist/nodejs_stream/ltsv.cjs"
     },
     "./whatwg_stream": {
-      "browser": "./dist/whatwg_stream/ltsv.module.mjs",
-      "default": "./dist/whatwg_stream/ltsv.modern.mjs",
-      "require": "./dist/whatwg_stream/ltsv.cjs",
       "types": "./dist/src/whatwg_stream.d.ts",
-      "umd": "./dist/whatwg_stream/ltsv.umd.js"
+      "import": "./dist/whatwg_stream/ltsv.modern.mjs",
+      "require": "./dist/whatwg_stream/ltsv.cjs"
     }
   },
   "files": [
@@ -91,6 +87,5 @@
   "source": "./src/index.ts",
   "type": "module",
   "types": "./dist/src/ltsv.d.ts",
-  "umd:main": "./dist/ltsv.umd.js",
   "unpkg": "./dist/ltsv.umd.js"
 }
