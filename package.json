@@ -54,7 +54,7 @@
   "license": "MIT",
   "lint-staged": {
     "*.{js,ts,json}": [
-      "biome check --write"
+      "biome check --write --no-errors-on-unmatched"
     ],
     "package.json": [
       "npx fixpack --dryRun"
