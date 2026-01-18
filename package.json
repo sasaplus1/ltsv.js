@@ -22,6 +22,13 @@
     "typescript": "5.9.3",
     "vitest": "4.0.17"
   },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "10",
+      "onFail": "error"
+    }
+  },
   "engines": {
     "node": ">=20"
   },
@@ -59,7 +66,7 @@
       "biome check --write --no-errors-on-unmatched"
     ],
     "package.json": [
-      "npx fixpack --dryRun"
+      "pnpm dlx fixpack --dryRun"
     ]
   },
   "main": "./dist/ltsv.cjs",
@@ -77,10 +84,10 @@
     "build:whatwg_stream": "microbundle -i ./src/whatwg_stream.ts -o ./dist/whatwg_stream -f modern,esm,cjs,umd --target web",
     "fix": "run-s fix:*",
     "fix:biome": "biome check --write .",
-    "fix:fixpack": "npx fixpack",
+    "fix:fixpack": "pnpm dlx fixpack",
     "lint": "run-s lint:*",
     "lint:biome": "biome check .",
-    "lint:fixpack": "npx fixpack --dryRun",
+    "lint:fixpack": "pnpm dlx fixpack --dryRun",
     "lint:tsc": "tsc --noEmit",
     "prepare": "husky",
     "test": "vitest run",
