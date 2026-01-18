@@ -11,7 +11,7 @@
     "@biomejs/biome": "1.9.4",
     "@tsconfig/strictest": "2.0.5",
     "@types/mocha": "10.0.1",
-    "@types/node": "20.5.1",
+    "@types/node": "22.19.7",
     "espower-typescript": "10.0.1",
     "husky": "9.1.7",
     "karma": "6.4.2",
@@ -25,7 +25,7 @@
     "power-assert": "1.6.1",
     "tsx": "4.21.0",
     "typedoc": "0.28.16",
-    "typescript": "5.1.6",
+    "typescript": "5.9.3",
     "vitest": "3.0.9"
   },
   "engines": {
