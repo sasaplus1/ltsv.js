@@ -1,6 +1,10 @@
 {
   "cleanOutputDir": true,
-  "entryPoints": ["./src/index.ts"],
+  "entryPoints": [
+    "./src/index.ts",
+    "./src/nodejs_stream.ts",
+    "./src/whatwg_stream.ts"
+  ],
   "excludeExternals": true,
   "excludePrivate": true,
   "excludeProtected": true,
