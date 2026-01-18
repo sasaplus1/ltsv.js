@@ -5,19 +5,19 @@ on:
   - pull_request
 
 jobs:
-  mocha:
-    name: mocha
+  test:
+    name: test
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     strategy:
       fail-fast: false
       matrix:
         node:
+          - 20
           - 22
-          - lts/*
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
-      - uses: actions/setup-node@1a4442cacd436585916779262731d5b162bc6ec7 # v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
           cache: npm
@@ -25,67 +25,3 @@ jobs:
       - run: npm run lint
       - run: npm run test
       - run: npm run build
-  karma:
-    name: karma with Chrome and Firefox
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
-    strategy:
-      fail-fast: false
-      matrix:
-        node:
-          - 22
-          - lts/*
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
-      - uses: actions/setup-node@1a4442cacd436585916779262731d5b162bc6ec7 # v3
-        with:
-          node-version: ${{ matrix.node }}
-          cache: npm
-      - run: npm ci
-      - run: npm add -D karma-chrome-launcher karma-firefox-launcher
-      - run: npm karma start --single-run --browsers ChromeHeadless,FirefoxHeadless
-  karma-ie:
-    name: karma with IE11
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
-    strategy:
-      fail-fast: false
-      matrix:
-        node:
-          - 22
-          - lts/*
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
-      - uses: actions/setup-node@1a4442cacd436585916779262731d5b162bc6ec7 # v3
-        with:
-          node-version: ${{ matrix.node }}
-          cache: npm
-      - run: npm ci
-      - run: npm add -D karma-ie-launcher
-      - run: npm karma start --single-run --browsers IE
-  karma-ios:
-    name: karma on iOS
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
-    strategy:
-      fail-fast: false
-      matrix:
-        node:
-          - 22
-          - lts/*
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
-      - uses: actions/setup-node@1a4442cacd436585916779262731d5b162bc6ec7 # v3
-        with:
-          node-version: ${{ matrix.node }}
-          cache: npm
-      - run: npm ci
-      - run: xcrun simctl list
-      - run: xcrun simctl list -j
-      - run: |
-          xcrun simctl list -j | jq '.devices[][] | select(.isAvailable == true) | { (.name): .udid }' | jq -s add
-      - run: |
-          xcrun simctl list -j | jq '.devices[][] | select(.isAvailable == true) | { (.name): .udid }' | jq -s add | jq -r '.["iPhone 11"]' | tee udid
-      - run: xcrun simctl boot "$(cat udid)"
-      - run: xcrun simctl openurl "$(cat udid)" 'http://127.0.0.1:9876' &
-      - run: npm karma start --single-run --no-browsers

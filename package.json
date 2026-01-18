@@ -1,99 +1,67 @@
 {
   "name": "ltsv",
   "description": "LTSV parser, formatter, validator and TransformStream",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "browser": "./dist/ltsv.module.js",
+  "bugs": {
+    "url": "https://github.com/sasaplus1/ltsv.js/issues"
+  },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@tsconfig/strictest": "2.0.5",
-    "@types/mocha": "10.0.1",
-    "@types/node": "20.5.1",
-    "@typescript-eslint/eslint-plugin": "6.4.0",
-    "@typescript-eslint/parser": "6.4.0",
-    "eslint": "8.47.0",
-    "eslint-config-prettier": "9.0.0",
-    "eslint-plugin-node": "11.1.0",
-    "espower-typescript": "10.0.1",
-    "husky": "8.0.3",
-    "is-ci": "3.0.1",
-    "karma": "6.4.2",
-    "karma-chrome-launcher": "3.2.0",
-    "karma-mocha": "2.0.1",
-    "karma-rollup-preprocessor": "7.0.8",
-    "lint-staged": "14.0.0",
+    "@types/node": "22.19.7",
+    "husky": "9.1.7",
+    "lint-staged": "16.2.7",
     "microbundle": "0.15.1",
-    "mocha": "10.2.0",
     "npm-run-all": "4.1.5",
-    "power-assert": "1.6.1",
-    "prettier": "3.0.2",
-    "tsx": "3.12.7",
-    "typedoc": "0.24.8",
-    "typescript": "5.1.6",
-    "vitest": "3.0.9"
+    "tsx": "4.21.0",
+    "typedoc": "0.28.16",
+    "typescript": "5.9.3",
+    "vitest": "3.2.4"
   },
   "engines": {
-    "node": ">=8.3"
+    "node": ">=20"
   },
   "exports": {
     ".": {
-      "browser": "./dist/ltsv.module.mjs",
-      "default": "./dist/ltsv.modern.mjs",
-      "require": "./dist/ltsv.cjs",
       "types": "./dist/src/ltsv.d.ts",
-      "umd": "./dist/ltsv.umd.js"
+      "import": "./dist/ltsv.modern.mjs",
+      "require": "./dist/ltsv.cjs"
     },
     "./nodejs_stream": {
-      "default": "./dist/nodejs_stream/ltsv.modern.mjs",
-      "require": "./dist/nodejs_stream/ltsv.cjs",
-      "types": "./dist/src/nodejs_stream.d.ts"
+      "types": "./dist/src/nodejs_stream.d.ts",
+      "import": "./dist/nodejs_stream/ltsv.modern.mjs",
+      "require": "./dist/nodejs_stream/ltsv.cjs"
     },
     "./whatwg_stream": {
-      "browser": "./dist/whatwg_stream/ltsv.module.mjs",
-      "default": "./dist/whatwg_stream/ltsv.modern.mjs",
-      "require": "./dist/whatwg_stream/ltsv.cjs",
       "types": "./dist/src/whatwg_stream.d.ts",
-      "umd": "./dist/whatwg_stream/ltsv.umd.js"
+      "import": "./dist/whatwg_stream/ltsv.modern.mjs",
+      "require": "./dist/whatwg_stream/ltsv.cjs"
     }
   },
   "files": [
     "dist/**/*"
   ],
+  "homepage": "https://github.com/sasaplus1/ltsv.js#readme",
+  "keywords": [
+    "formatter",
+    "ltsv",
+    "parser",
+    "stream",
+    "validator"
+  ],
   "license": "MIT",
   "lint-staged": {
-    "*.{js,ts}": [
-      "eslint",
-      "prettier --check"
+    "*.{js,ts,json}": [
+      "biome check --write --no-errors-on-unmatched"
     ],
-    "*.{md,yml}": [
-      "prettier --check"
-    ],
-    "!package{,-lock}.json": "prettier --check",
     "package.json": [
-      "npx fixpack --dryRun",
-      "prettier --check"
+      "npx fixpack --dryRun"
     ]
   },
   "main": "./dist/ltsv.cjs",
-  "mocha": {
-    "extension": [
-      "ts"
-    ],
-    "loader": [
-      "tsx"
-    ],
-    "spec": [
-      "test/**/*.ts"
-    ],
-    "watch-files": [
-      "src/**/*.ts",
-      "test/**/*.ts"
-    ]
-  },
   "module": "./dist/ltsv.module.mjs",
-  "prettier": {
-    "singleQuote": true,
-    "trailingComma": "none"
-  },
   "readmeFilename": "README.md",
   "repository": {
     "type": "git",
@@ -106,23 +74,18 @@
     "build:nodejs_stream": "microbundle -i ./src/nodejs_stream.ts -o ./dist/nodejs_stream -f modern,esm,cjs --target node",
     "build:whatwg_stream": "microbundle -i ./src/whatwg_stream.ts -o ./dist/whatwg_stream -f modern,esm,cjs,umd --target web",
     "fix": "run-s fix:*",
-    "fix:eslint": "eslint --fix .",
+    "fix:biome": "biome check --write .",
     "fix:fixpack": "npx fixpack",
-    "fix:prettier": "prettier --write './**/*.+(js|md|ts|yml)'",
     "lint": "run-s lint:*",
-    "lint:eslint": "eslint .",
+    "lint:biome": "biome check .",
     "lint:fixpack": "npx fixpack --dryRun",
-    "lint:prettier": "prettier --check './**/*.+(js|md|ts|yml)'",
     "lint:tsc": "tsc --noEmit",
-    "prepare": "is-ci || husky install",
-    "pretest:browser": "run-s build:umd",
-    "test": "vitest run",
-    "test:browser": "karma start --single-run"
+    "prepare": "husky",
+    "test": "vitest run"
   },
   "sideEffects": false,
   "source": "./src/index.ts",
   "type": "module",
   "types": "./dist/src/ltsv.d.ts",
-  "umd:main": "./dist/ltsv.umd.js",
   "unpkg": "./dist/ltsv.umd.js"
 }

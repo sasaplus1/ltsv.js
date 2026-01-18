@@ -2,9 +2,9 @@ import { assert, describe, it } from 'vitest';
 
 import { format, formatStrict } from '../src/formatter';
 
-describe('formatter', function () {
-  describe('#format()', function () {
-    it('should generate LTSV string from object', function () {
+describe('formatter', () => {
+  describe('#format()', () => {
+    it('should generate LTSV string from object', () => {
       assert(
         format({
           label1: 'value1',
@@ -13,7 +13,7 @@ describe('formatter', function () {
       );
     });
 
-    it('should generate LTSV string from object in array', function () {
+    it('should generate LTSV string from object in array', () => {
       assert(
         format([
           { l1: 'v1', l2: 'v2' },
@@ -22,35 +22,35 @@ describe('formatter', function () {
       );
     });
 
-    it('should throw error if arg is not an object or array', function () {
+    it('should throw error if arg is not an object or array', () => {
       /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-empty-function */
-      assert.throws(function () {
+      assert.throws(() => {
         format(1 as any);
       }, TypeError);
-      assert.throws(function () {
+      assert.throws(() => {
         format('a' as any);
       }, TypeError);
-      assert.throws(function () {
+      assert.throws(() => {
         format(true as any);
       }, TypeError);
-      assert.throws(function () {
+      assert.throws(() => {
         format(null as any);
       }, TypeError);
-      assert.throws(function () {
+      assert.throws(() => {
         format(undefined as any);
       }, TypeError);
-      assert.throws(function () {
-        format(function () {} as any);
+      assert.throws(() => {
+        format((() => {}) as any);
       }, TypeError);
       if (typeof Symbol === 'function' && typeof Symbol() === 'symbol') {
-        assert.throws(function () {
+        assert.throws(() => {
           format(Symbol() as any);
         });
       }
       /* eslint-enable @typescript-eslint/no-explicit-any, @typescript-eslint/no-empty-function */
     });
 
-    it('should generate record if label has unexpected character', function () {
+    it('should generate record if label has unexpected character', () => {
       assert(
         format({
           '\x00\x2C': 'v'
@@ -84,7 +84,7 @@ describe('formatter', function () {
       );
     });
 
-    it('should generate record if value has unexpected character', function () {
+    it('should generate record if value has unexpected character', () => {
       assert(
         format({
           label: '\x00\x09\x0A\x0D'
@@ -93,8 +93,8 @@ describe('formatter', function () {
     });
   });
 
-  describe('#formatStrict()', function () {
-    it('should generate LTSV string from object', function () {
+  describe('#formatStrict()', () => {
+    it('should generate LTSV string from object', () => {
       assert(
         formatStrict({
           label1: 'value1',
@@ -103,7 +103,7 @@ describe('formatter', function () {
       );
     });
 
-    it('should generate LTSV string from object in array', function () {
+    it('should generate LTSV string from object in array', () => {
       assert(
         formatStrict([
           { l1: 'v1', l2: 'v2' },
@@ -112,72 +112,72 @@ describe('formatter', function () {
       );
     });
 
-    it('should throw error if arg is not an object or array', function () {
+    it('should throw error if arg is not an object or array', () => {
       /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-empty-function */
-      assert.throws(function () {
+      assert.throws(() => {
         formatStrict(1 as any);
       }, TypeError);
-      assert.throws(function () {
+      assert.throws(() => {
         formatStrict('a' as any);
       }, TypeError);
-      assert.throws(function () {
+      assert.throws(() => {
         formatStrict(true as any);
       }, TypeError);
-      assert.throws(function () {
+      assert.throws(() => {
         formatStrict(null as any);
       }, TypeError);
-      assert.throws(function () {
+      assert.throws(() => {
         formatStrict(undefined as any);
       }, TypeError);
-      assert.throws(function () {
-        formatStrict(function () {} as any);
+      assert.throws(() => {
+        formatStrict((() => {}) as any);
       }, TypeError);
       if (typeof Symbol === 'function' && typeof Symbol() === 'symbol') {
-        assert.throws(function () {
+        assert.throws(() => {
           formatStrict(Symbol() as any);
         });
       }
       /* eslint-enable @typescript-eslint/no-explicit-any, @typescript-eslint/no-empty-function */
     });
 
-    it('should throw error if label has unexpected character', function () {
-      assert.throws(function () {
+    it('should throw error if label has unexpected character', () => {
+      assert.throws(() => {
         formatStrict({ '\x00\x2C': 'v' });
       }, SyntaxError);
-      assert.throws(function () {
+      assert.throws(() => {
         formatStrict({ '\x2F': 'v' });
       }, SyntaxError);
-      assert.throws(function () {
+      assert.throws(() => {
         formatStrict({ '\x3B\x40': 'v' });
       }, SyntaxError);
-      assert.throws(function () {
+      assert.throws(() => {
         formatStrict({ '\x5B\x5E': 'v' });
       }, SyntaxError);
-      assert.throws(function () {
+      assert.throws(() => {
         formatStrict({ '\x60': 'v' });
       }, SyntaxError);
-      assert.throws(function () {
+      assert.throws(() => {
         formatStrict({ '\x7B\xFF': 'v' });
       }, SyntaxError);
     });
 
-    it('should throw error if value has unexpected character', function () {
-      assert.throws(function () {
+    it('should throw error if value has unexpected character', () => {
+      assert.throws(() => {
         formatStrict({ label: '\x00' });
       }, SyntaxError);
-      assert.throws(function () {
+      assert.throws(() => {
         formatStrict({ label: '\x09' });
       }, SyntaxError);
-      assert.throws(function () {
+      assert.throws(() => {
         formatStrict({ label: '\x0A' });
       }, SyntaxError);
-      assert.throws(function () {
+      assert.throws(() => {
         formatStrict({ label: '\x0D' });
       }, SyntaxError);
     });
   });
 
-  describe('#stringify()', function () {
+  describe('#stringify()', () => {
     it.skip('not impelemented');
   });
 });

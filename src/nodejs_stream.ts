@@ -1,8 +1,8 @@
-import { Transform, TransformCallback } from 'stream';
+import { Transform, type TransformCallback } from 'stream';
 import { StringDecoder } from 'string_decoder';
 
 import { parseLine, parseLineStrict } from './parser';
-import { LtsvRecord } from './types';
+import type { LtsvRecord } from './types';
 
 export type LtsvToJsonStreamOptions = {
   encoding?: BufferEncoding;
