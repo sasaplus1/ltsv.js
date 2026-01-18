@@ -1,7 +1,4 @@
-/// <reference types="node" />
-/// <reference types="node" />
-/// <reference types="node" />
-import { Transform, TransformCallback } from 'stream';
+import { Transform, type TransformCallback } from 'stream';
 import { StringDecoder } from 'string_decoder';
 import { parseLine, parseLineStrict } from './parser';
 export type LtsvToJsonStreamOptions = {
