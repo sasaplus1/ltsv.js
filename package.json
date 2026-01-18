@@ -57,7 +57,7 @@
   ],
   "license": "MIT",
   "lint-staged": {
-    "*.{js,ts,json,md,yml}": [
+    "*.{js,ts,json}": [
       "biome check --write"
     ],
     "package.json": [
