@@ -51,7 +51,8 @@
     }
   },
   "files": [
-    "dist/**/*"
+    "dist/**/*",
+    "!dist/src/test/**/*"
   ],
   "homepage": "https://github.com/sasaplus1/ltsv.js#readme",
   "keywords": [
