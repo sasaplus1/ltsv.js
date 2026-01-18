@@ -1,7 +1,7 @@
 {
   "name": "ltsv",
   "description": "LTSV parser, formatter, validator and TransformStream",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "browser": "./dist/ltsv.module.js",
   "bugs": {
@@ -29,7 +29,7 @@
     "vitest": "3.0.9"
   },
   "engines": {
-    "node": ">=8.3"
+    "node": ">=20"
   },
   "exports": {
     ".": {
