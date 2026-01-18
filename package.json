@@ -4,15 +4,14 @@
   "version": "2.0.0",
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "browser": "./dist/ltsv.module.js",
+  "bugs": {
+    "url": "https://github.com/sasaplus1/ltsv.js/issues"
+  },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@tsconfig/strictest": "2.0.5",
     "@types/mocha": "10.0.1",
     "@types/node": "20.5.1",
-    "@typescript-eslint/eslint-plugin": "6.4.0",
-    "@typescript-eslint/parser": "6.4.0",
-    "eslint": "8.47.0",
-    "eslint-config-prettier": "9.0.0",
-    "eslint-plugin-node": "11.1.0",
     "espower-typescript": "10.0.1",
     "husky": "8.0.3",
     "is-ci": "3.0.1",
@@ -25,7 +24,6 @@
     "mocha": "10.2.0",
     "npm-run-all": "4.1.5",
     "power-assert": "1.6.1",
-    "prettier": "3.0.2",
     "tsx": "3.12.7",
     "typedoc": "0.24.8",
     "typescript": "5.1.6",
@@ -58,19 +56,21 @@
   "files": [
     "dist/**/*"
   ],
+  "homepage": "https://github.com/sasaplus1/ltsv.js#readme",
+  "keywords": [
+    "formatter",
+    "ltsv",
+    "parser",
+    "stream",
+    "validator"
+  ],
   "license": "MIT",
   "lint-staged": {
-    "*.{js,ts}": [
-      "eslint",
-      "prettier --check"
+    "*.{js,ts,json,md,yml}": [
+      "biome check --write"
     ],
-    "*.{md,yml}": [
-      "prettier --check"
-    ],
-    "!package{,-lock}.json": "prettier --check",
     "package.json": [
-      "npx fixpack --dryRun",
-      "prettier --check"
+      "npx fixpack --dryRun"
     ]
   },
   "main": "./dist/ltsv.cjs",
@@ -90,10 +90,6 @@
     ]
   },
   "module": "./dist/ltsv.module.mjs",
-  "prettier": {
-    "singleQuote": true,
-    "trailingComma": "none"
-  },
   "readmeFilename": "README.md",
   "repository": {
     "type": "git",
@@ -106,13 +102,11 @@
     "build:nodejs_stream": "microbundle -i ./src/nodejs_stream.ts -o ./dist/nodejs_stream -f modern,esm,cjs --target node",
     "build:whatwg_stream": "microbundle -i ./src/whatwg_stream.ts -o ./dist/whatwg_stream -f modern,esm,cjs,umd --target web",
     "fix": "run-s fix:*",
-    "fix:eslint": "eslint --fix .",
+    "fix:biome": "biome check --write .",
     "fix:fixpack": "npx fixpack",
-    "fix:prettier": "prettier --write './**/*.+(js|md|ts|yml)'",
     "lint": "run-s lint:*",
-    "lint:eslint": "eslint .",
+    "lint:biome": "biome check .",
     "lint:fixpack": "npx fixpack --dryRun",
-    "lint:prettier": "prettier --check './**/*.+(js|md|ts|yml)'",
     "lint:tsc": "tsc --noEmit",
     "prepare": "is-ci || husky install",
     "pretest:browser": "run-s build:umd",

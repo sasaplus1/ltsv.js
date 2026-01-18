@@ -6,7 +6,7 @@ const typescript = require('rollup-plugin-typescript');
 
 const meta = require('./package.json');
 
-module.exports = function (config) {
+module.exports = (config) => {
   config.set({
     basePath: path.resolve(__dirname),
     browsers: ['ChromeHeadlessNoSandbox'],

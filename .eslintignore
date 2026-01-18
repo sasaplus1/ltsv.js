@@ -1,4 +1,0 @@
-dist/**
-docs/**
-*.d.ts
-!.*.js

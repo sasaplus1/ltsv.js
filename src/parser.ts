@@ -1,6 +1,6 @@
 import { isValidLabel, isValidValue } from './validator';
 
-import { LtsvRecord } from './types';
+import type { LtsvRecord } from './types';
 
 type LtsvField = {
   label: string;

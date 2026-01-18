@@ -1,5 +1,5 @@
 import { parseLine, parseLineStrict } from './parser';
-import { LtsvRecord } from './types';
+import type { LtsvRecord } from './types';
 
 export type LtsvToJsonStreamOptions = {
   objectMode?: boolean;

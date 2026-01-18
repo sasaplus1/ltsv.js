@@ -1,6 +1,6 @@
 import { isValidLabel, isValidValue } from './validator';
 
-import { LtsvRecord } from './types';
+import type { LtsvRecord } from './types';
 
 export type StringifyOptions = {
   strict: boolean;

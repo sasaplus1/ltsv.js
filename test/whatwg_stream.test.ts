@@ -11,7 +11,7 @@ function enqueue(
   strings: string[],
   controller: ReadableStreamDefaultController<string>
 ): void {
-  setTimeout(function () {
+  setTimeout(() => {
     if (strings.length <= 0) {
       controller.close();
     } else {
@@ -62,94 +62,13 @@ function createWritableStream(
   return new WritableStream<string>(underlyingSink);
 }
 
-describe('whatwg_stream', function () {
-  it('should convert to JSON from LTSV', function () {
-    return new Promise<void>(function (
-      resolve: () => void,
-      reject: (reason?: Error | null) => void
-    ): void {
-      const chunks: string[] = [];
-
-      const transformStream = createLtsvToJsonStream();
-      const readableStream = createReadableStream([
-        'label1:value1\tlabel2:value2\n',
-        'label3:value3\tlabel4:value4'
-      ]);
-      const writableStream = createWritableStream(chunks, {
-        abort: reject,
-        close() {
-          assert.deepStrictEqual(chunks, [
-            '{"label1":"value1","label2":"value2"}',
-            '{"label3":"value3","label4":"value4"}'
-          ]);
-          resolve();
-        }
-      });
-
-      readableStream.pipeThrough(transformStream).pipeTo(writableStream);
-    });
-  });
-
-  it('should convert to JSON if LTSV has empty line of end', function () {
-    return new Promise<void>(function (
-      resolve: () => void,
-      reject: (reason?: Error | null) => void
-    ): void {
-      const chunks: string[] = [];
-
-      const transformStream = createLtsvToJsonStream();
-      const readableStream = createReadableStream([
-        'label1:value1\tlabel2:value2\n',
-        'label3:value3\tlabel4:value4\n'
-      ]);
-      const writableStream = createWritableStream(chunks, {
-        abort: reject,
-        close() {
-          assert.deepStrictEqual(chunks, [
-            '{"label1":"value1","label2":"value2"}',
-            '{"label3":"value3","label4":"value4"}'
-          ]);
-          resolve();
-        }
-      });
-
-      readableStream.pipeThrough(transformStream).pipeTo(writableStream);
-    });
-  });
-
-  it('should throw error if illegal LTSV', function () {
-    return new Promise<void>(function (
-      resolve: () => void,
-      reject: (reason?: Error | null) => void
-    ): void {
-      const transformStream = createLtsvToJsonStream();
-      const readableStream = createReadableStream(['\t']);
-      const writableStream = createWritableStream([], {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        abort(reason: any) {
-          assert(reason !== null);
-          resolve();
-        },
-        close() {
-          reject(new Error('close'));
-        }
-      });
-
-      readableStream.pipeThrough(transformStream).pipeTo(writableStream);
-    });
-  });
-
-  describe('objectMode', function () {
-    it('should convert to Object from LTSV', function () {
-      return new Promise<void>(function (
-        resolve: () => void,
-        reject: (reason?: Error | null) => void
-      ): void {
+describe('whatwg_stream', () => {
+  it('should convert to JSON from LTSV', () =>
+    new Promise<void>(
+      (resolve: () => void, reject: (reason?: Error | null) => void): void => {
         const chunks: string[] = [];
 
-        const transformStream = createLtsvToJsonStream({
-          objectMode: true
-        });
+        const transformStream = createLtsvToJsonStream();
         const readableStream = createReadableStream([
           'label1:value1\tlabel2:value2\n',
           'label3:value3\tlabel4:value4'
@@ -158,28 +77,47 @@ describe('whatwg_stream', function () {
           abort: reject,
           close() {
             assert.deepStrictEqual(chunks, [
-              { label1: 'value1', label2: 'value2' },
-              { label3: 'value3', label4: 'value4' }
-              // TODO: use LtsvRecord type
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            ] as any);
+              '{"label1":"value1","label2":"value2"}',
+              '{"label3":"value3","label4":"value4"}'
+            ]);
             resolve();
           }
         });
 
         readableStream.pipeThrough(transformStream).pipeTo(writableStream);
-      });
-    });
-  });
+      }
+    ));
 
-  describe('strict', function () {
-    it('should throw error if LTSV has illegal character', function () {
-      return new Promise<void>(function (
-        resolve: () => void,
-        reject: (reason?: Error | null) => void
-      ): void {
-        const transformStream = createLtsvToJsonStream({ strict: true });
-        const readableStream = createReadableStream(['+:']);
+  it('should convert to JSON if LTSV has empty line of end', () =>
+    new Promise<void>(
+      (resolve: () => void, reject: (reason?: Error | null) => void): void => {
+        const chunks: string[] = [];
+
+        const transformStream = createLtsvToJsonStream();
+        const readableStream = createReadableStream([
+          'label1:value1\tlabel2:value2\n',
+          'label3:value3\tlabel4:value4\n'
+        ]);
+        const writableStream = createWritableStream(chunks, {
+          abort: reject,
+          close() {
+            assert.deepStrictEqual(chunks, [
+              '{"label1":"value1","label2":"value2"}',
+              '{"label3":"value3","label4":"value4"}'
+            ]);
+            resolve();
+          }
+        });
+
+        readableStream.pipeThrough(transformStream).pipeTo(writableStream);
+      }
+    ));
+
+  it('should throw error if illegal LTSV', () =>
+    new Promise<void>(
+      (resolve: () => void, reject: (reason?: Error | null) => void): void => {
+        const transformStream = createLtsvToJsonStream();
+        const readableStream = createReadableStream(['\t']);
         const writableStream = createWritableStream([], {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           abort(reason: any) {
@@ -192,7 +130,65 @@ describe('whatwg_stream', function () {
         });
 
         readableStream.pipeThrough(transformStream).pipeTo(writableStream);
-      });
-    });
+      }
+    ));
+
+  describe('objectMode', () => {
+    it('should convert to Object from LTSV', () =>
+      new Promise<void>(
+        (
+          resolve: () => void,
+          reject: (reason?: Error | null) => void
+        ): void => {
+          const chunks: string[] = [];
+
+          const transformStream = createLtsvToJsonStream({
+            objectMode: true
+          });
+          const readableStream = createReadableStream([
+            'label1:value1\tlabel2:value2\n',
+            'label3:value3\tlabel4:value4'
+          ]);
+          const writableStream = createWritableStream(chunks, {
+            abort: reject,
+            close() {
+              assert.deepStrictEqual(chunks, [
+                { label1: 'value1', label2: 'value2' },
+                { label3: 'value3', label4: 'value4' }
+                // TODO: use LtsvRecord type
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              ] as any);
+              resolve();
+            }
+          });
+
+          readableStream.pipeThrough(transformStream).pipeTo(writableStream);
+        }
+      ));
+  });
+
+  describe('strict', () => {
+    it('should throw error if LTSV has illegal character', () =>
+      new Promise<void>(
+        (
+          resolve: () => void,
+          reject: (reason?: Error | null) => void
+        ): void => {
+          const transformStream = createLtsvToJsonStream({ strict: true });
+          const readableStream = createReadableStream(['+:']);
+          const writableStream = createWritableStream([], {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            abort(reason: any) {
+              assert(reason !== null);
+              resolve();
+            },
+            close() {
+              reject(new Error('close'));
+            }
+          });
+
+          readableStream.pipeThrough(transformStream).pipeTo(writableStream);
+        }
+      ));
   });
 });
