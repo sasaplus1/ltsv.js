@@ -1,6 +1,6 @@
 import { Transform, type TransformCallback } from 'stream';
 import { StringDecoder } from 'string_decoder';
-import { parseLine, parseLineStrict } from './parser';
+import { parseLine, parseLineStrict } from './parser.js';
 export type LtsvToJsonStreamOptions = {
     encoding?: BufferEncoding;
     objectMode?: boolean;

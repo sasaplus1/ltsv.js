@@ -1,4 +1,4 @@
-import type { LtsvRecord } from './types';
+import type { LtsvRecord } from './types.js';
 export type LtsvToJsonStreamOptions = {
     objectMode?: boolean;
     strict?: boolean;

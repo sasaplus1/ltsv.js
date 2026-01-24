@@ -1,13 +1,14 @@
 {
   "name": "ltsv",
   "description": "LTSV parser, formatter, validator and TransformStream",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "browser": "./dist/ltsv.module.mjs",
   "bugs": {
     "url": "https://github.com/sasaplus1/ltsv.js/issues"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.2",
     "@biomejs/biome": "2.3.11",
     "@tsconfig/strictest": "2.0.8",
     "@types/node": "24.10.8",
@@ -35,17 +36,17 @@
   },
   "exports": {
     ".": {
-      "types": "./dist/src/index.d.ts",
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/ltsv.modern.mjs",
       "require": "./dist/ltsv.cjs"
     },
     "./nodejs_stream": {
-      "types": "./dist/src/nodejs_stream.d.ts",
+      "types": "./dist/types/nodejs_stream.d.ts",
       "import": "./dist/nodejs_stream/ltsv.modern.mjs",
       "require": "./dist/nodejs_stream/ltsv.cjs"
     },
     "./whatwg_stream": {
-      "types": "./dist/src/whatwg_stream.d.ts",
+      "types": "./dist/types/whatwg_stream.d.ts",
       "import": "./dist/whatwg_stream/ltsv.modern.mjs",
       "require": "./dist/whatwg_stream/ltsv.cjs"
     }
@@ -81,9 +82,10 @@
   "scripts": {
     "build": "run-p -l build:*",
     "build-documents": "typedoc",
-    "build:main": "microbundle",
-    "build:nodejs_stream": "microbundle -i ./src/nodejs_stream.ts -o ./dist/nodejs_stream -f modern,esm,cjs --target node",
-    "build:whatwg_stream": "microbundle -i ./src/whatwg_stream.ts -o ./dist/whatwg_stream -f modern,esm,cjs,umd --target web",
+    "build:main": "microbundle --no-generateTypes",
+    "build:nodejs_stream": "microbundle -i ./src/nodejs_stream.ts -o ./dist/nodejs_stream -f modern,esm,cjs --target node --no-generateTypes",
+    "build:types": "tsc -p tsconfig.build.json",
+    "build:whatwg_stream": "microbundle -i ./src/whatwg_stream.ts -o ./dist/whatwg_stream -f modern,esm,cjs,umd --target web --no-generateTypes",
     "fix": "run-s fix:*",
     "fix:biome": "biome check --write .",
     "fix:fixpack": "fixpack",
@@ -92,15 +94,19 @@
     "lint:fixpack": "fixpack --dryRun",
     "lint:tsc": "tsc --noEmit",
     "prepare": "husky",
-    "test": "vitest run",
+    "test": "vitest run && pnpm run test:types",
     "test:browser": "vitest run --browser",
     "test:browser:chromium": "vitest run --browser --project chromium",
     "test:browser:firefox": "vitest run --browser --project firefox",
-    "test:browser:webkit": "vitest run --browser --project webkit"
+    "test:browser:webkit": "vitest run --browser --project webkit",
+    "test:types": "pnpm pack && run-s test:types:* && rm ltsv-*.tgz",
+    "test:types:esm-only": "attw ltsv-*.tgz --profile esm-only --ignore-rules false-esm",
+    "test:types:node16": "attw ltsv-*.tgz --profile node16 --ignore-rules false-esm",
+    "test:types:strict": "attw ltsv-*.tgz --profile strict --ignore-rules false-esm no-resolution"
   },
   "sideEffects": false,
   "source": "./src/index.ts",
   "type": "module",
-  "types": "./dist/src/index.d.ts",
+  "types": "./dist/types/index.d.ts",
   "unpkg": "./dist/ltsv.umd.js"
 }

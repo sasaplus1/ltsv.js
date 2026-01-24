@@ -1,5 +1,5 @@
-import type { LtsvRecord } from './types';
-import { isValidLabel, isValidValue } from './validator';
+import type { LtsvRecord } from './types.js';
+import { isValidLabel, isValidValue } from './validator.js';
 
 type LtsvField = {
   label: string;
