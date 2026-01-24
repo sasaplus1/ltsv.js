@@ -3,7 +3,7 @@
   "description": "LTSV parser, formatter, validator and TransformStream",
   "version": "3.0.0",
   "author": "sasa+1 <sasaplus1@gmail.com>",
-  "browser": "./dist/ltsv.module.js",
+  "browser": "./dist/ltsv.module.mjs",
   "bugs": {
     "url": "https://github.com/sasaplus1/ltsv.js/issues"
   },
@@ -35,7 +35,7 @@
   },
   "exports": {
     ".": {
-      "types": "./dist/src/ltsv.d.ts",
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/ltsv.modern.mjs",
       "require": "./dist/ltsv.cjs"
     },
@@ -101,6 +101,6 @@
   "sideEffects": false,
   "source": "./src/index.ts",
   "type": "module",
-  "types": "./dist/src/ltsv.d.ts",
+  "types": "./dist/src/index.d.ts",
   "unpkg": "./dist/ltsv.umd.js"
 }
