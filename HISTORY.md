@@ -1,3 +1,7 @@
+# 3.0.1 / 2026-01-24
+
+- fix file paths in package.json
+
 # 3.0.0 / 2026-01-19
 
 - modernize
