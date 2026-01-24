@@ -1,3 +1,7 @@
+# 3.0.2 / 2026-01-25
+
+- fix types
+
 # 3.0.1 / 2026-01-24
 
 - fix file paths in package.json
