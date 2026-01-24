@@ -1,4 +1,4 @@
-import { LtsvRecord } from './types';
+import type { LtsvRecord } from './types.js';
 /**
  * parse LTSV text
  *

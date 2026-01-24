@@ -1,4 +1,4 @@
-import type { LtsvRecord } from './types';
+import type { LtsvRecord } from './types.js';
 export type StringifyOptions = {
     strict: boolean;
 };
