@@ -8,6 +8,7 @@
     "url": "https://github.com/sasaplus1/ltsv.js/issues"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.2",
     "@biomejs/biome": "2.3.11",
     "@tsconfig/strictest": "2.0.8",
     "@types/node": "24.10.8",
