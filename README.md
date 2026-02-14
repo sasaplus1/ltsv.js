@@ -18,12 +18,6 @@ $ npm install ltsv
 import * as ltsv from 'ltsv';
 ```
 
-### browser
-
-```html
-<script src="ltsv.min.js"></script>
-```
-
 ### Example
 
 ```js

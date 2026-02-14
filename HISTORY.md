@@ -1,3 +1,11 @@
+# 4.0.0 / 2026-02-14
+
+- migrate bundler from microbundle to rolldown
+- drop UMD output
+- drop `unpkg` field from package.json
+- unify ESM output (`modern.mjs` + `module.mjs` → single `.mjs`)
+- output is no longer minified (ESNext syntax, no ES5 downlevel)
+
 # 3.0.2 / 2026-01-25
 
 - fix types
