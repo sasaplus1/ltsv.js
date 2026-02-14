@@ -1,5 +1,3 @@
-Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-
 //#region src/validator.ts
 /**
 * validate label
@@ -135,6 +133,5 @@ function createLtsvToJsonStream(options) {
 }
 
 //#endregion
-exports.LtsvToJsonStream = LtsvToJsonStream;
-exports.createLtsvToJsonStream = createLtsvToJsonStream;
-//# sourceMappingURL=ltsv.cjs.map
+export { LtsvToJsonStream, createLtsvToJsonStream };
+//# sourceMappingURL=ltsv.mjs.map
