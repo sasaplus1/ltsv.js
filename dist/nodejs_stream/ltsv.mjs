@@ -1,6 +1,5 @@
-Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-let stream = require("stream");
-let string_decoder = require("string_decoder");
+import { Transform } from "stream";
+import { StringDecoder } from "string_decoder";
 
 //#region src/validator.ts
 /**
@@ -82,7 +81,7 @@ function parseLineStrict(line) {
 /**
 * LTSV to JSON transform stream
 */
-var LtsvToJsonStream = class extends stream.Transform {
+var LtsvToJsonStream = class extends Transform {
 	/**
 	* chunk buffer
 	*/
@@ -118,7 +117,7 @@ var LtsvToJsonStream = class extends stream.Transform {
 		this.objectMode = objectMode;
 		this.parse = strict ? parseLineStrict : parseLine;
 		this.buffer = "";
-		this.decoder = new string_decoder.StringDecoder(encoding);
+		this.decoder = new StringDecoder(encoding);
 	}
 	/**
 	* transform and push to stream.
@@ -182,6 +181,5 @@ function createLtsvToJsonStream(options) {
 }
 
 //#endregion
-exports.LtsvToJsonStream = LtsvToJsonStream;
-exports.createLtsvToJsonStream = createLtsvToJsonStream;
-//# sourceMappingURL=ltsv.cjs.map
+export { LtsvToJsonStream, createLtsvToJsonStream };
+//# sourceMappingURL=ltsv.mjs.map

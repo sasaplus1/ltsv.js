@@ -1,5 +1,3 @@
-Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-
 //#region src/validator.ts
 /**
 * validate label
@@ -180,13 +178,5 @@ function parseLineStrict(line) {
 }
 
 //#endregion
-exports.format = format;
-exports.formatStrict = formatStrict;
-exports.isValidLabel = isValidLabel;
-exports.isValidValue = isValidValue;
-exports.parse = parse;
-exports.parseLine = parseLine;
-exports.parseLineStrict = parseLineStrict;
-exports.parseStrict = parseStrict;
-exports.stringify = stringify;
-//# sourceMappingURL=ltsv.cjs.map
+export { format, formatStrict, isValidLabel, isValidValue, parse, parseLine, parseLineStrict, parseStrict, stringify };
+//# sourceMappingURL=ltsv.mjs.map
