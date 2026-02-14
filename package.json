@@ -1,7 +1,7 @@
 {
   "name": "ltsv",
   "description": "LTSV parser, formatter, validator and TransformStream",
-  "version": "3.0.2",
+  "version": "4.0.0",
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "browser": "./dist/ltsv.mjs",
   "bugs": {
