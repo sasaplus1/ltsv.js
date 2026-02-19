@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.2",
-    "@biomejs/biome": "2.4.0",
+    "@biomejs/biome": "2.4.1",
     "@tsconfig/strictest": "2.0.8",
     "@types/node": "24.10.13",
     "@vitest/browser": "4.0.18",
