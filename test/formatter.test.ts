@@ -91,6 +91,37 @@ describe('formatter', () => {
         }) === 'label:\x00\x09\x0A\x0D'
       );
     });
+
+    it('should generate record if value is empty string', () => {
+      assert(format({ label: '' }) === 'label:');
+    });
+
+    it('should generate record if multiple values contain empty strings', () => {
+      assert(format({ l1: '', l2: 'v2' }) === 'l1:\tl2:v2');
+    });
+
+    it('should generate record from array with empty values', () => {
+      assert(
+        format([
+          { l1: '', l2: 'v2' },
+          { l3: 'v3', l4: '' }
+        ]) === 'l1:\tl2:v2\nl3:v3\tl4:'
+      );
+    });
+
+    it('should throw error if value is not a string', () => {
+      /* eslint-disable @typescript-eslint/no-explicit-any */
+      assert.throws(() => {
+        format({ label: undefined as any });
+      }, TypeError);
+      assert.throws(() => {
+        format({ label: null as any });
+      }, TypeError);
+      assert.throws(() => {
+        format({ label: 123 as any });
+      }, TypeError);
+      /* eslint-enable @typescript-eslint/no-explicit-any */
+    });
   });
 
   describe('#formatStrict()', () => {
@@ -174,6 +205,10 @@ describe('formatter', () => {
       assert.throws(() => {
         formatStrict({ label: '\x0D' });
       }, SyntaxError);
+    });
+
+    it('should generate record if value is empty string in strict mode', () => {
+      assert(formatStrict({ label: '' }) === 'label:');
     });
   });
 
