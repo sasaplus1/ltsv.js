@@ -36,7 +36,7 @@ function objectToRecord(record, strict) {
 		const label = keys[i];
 		if (!label) throw new TypeError("label must be a non-empty string");
 		const value = record[label];
-		if (!value) throw new TypeError("value must be a non-empty string");
+		if (typeof value !== "string") throw new TypeError("value must be a string");
 		if (strict && !isValidLabel(label)) throw new SyntaxError(`unexpected character in label: "${label}"`);
 		if (strict && !isValidValue(value)) throw new SyntaxError(`unexpected character in value: "${value}"`);
 		fields[i] = label + ":" + value;
