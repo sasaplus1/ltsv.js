@@ -30,8 +30,8 @@ function objectToRecord(record: LtsvRecord, strict: boolean): string {
 
     const value = record[label];
 
-    if (!value) {
-      throw new TypeError('value must be a non-empty string');
+    if (typeof value !== 'string') {
+      throw new TypeError('value must be a string');
     }
 
     if (strict && !isValidLabel(label)) {
