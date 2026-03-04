@@ -1,3 +1,7 @@
+# 4.0.1 / 2026-03-04
+
+- allow empty string as field value (#609)
+
 # 4.0.0 / 2026-02-14
 
 - migrate bundler from microbundle to rolldown
