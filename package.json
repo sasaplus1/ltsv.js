@@ -11,7 +11,7 @@
     "@arethetypeswrong/cli": "0.18.2",
     "@biomejs/biome": "2.4.15",
     "@tsconfig/strictest": "2.0.8",
-    "@types/node": "24.12.3",
+    "@types/node": "24.12.4",
     "@vitest/browser": "4.1.6",
     "@vitest/browser-playwright": "4.1.6",
     "fixpack": "4.0.0",
