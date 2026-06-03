@@ -16,7 +16,7 @@
     "@vitest/browser-playwright": "4.1.7",
     "fixpack": "4.0.0",
     "husky": "9.1.7",
-    "lint-staged": "17.0.5",
+    "lint-staged": "17.0.7",
     "npm-run-all2": "9.0.1",
     "playwright": "1.60.0",
     "rolldown": "1.0.3",
