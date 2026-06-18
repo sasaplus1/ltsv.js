@@ -12,8 +12,8 @@
     "@biomejs/biome": "2.5.0",
     "@tsconfig/strictest": "2.0.8",
     "@types/node": "24.13.2",
-    "@vitest/browser": "4.1.8",
-    "@vitest/browser-playwright": "4.1.8",
+    "@vitest/browser": "4.1.9",
+    "@vitest/browser-playwright": "4.1.9",
     "fixpack": "4.0.0",
     "husky": "9.1.7",
     "lint-staged": "17.0.7",
@@ -22,7 +22,7 @@
     "rolldown": "1.1.1",
     "typedoc": "0.28.19",
     "typescript": "5.9.3",
-    "vitest": "4.1.8"
+    "vitest": "4.1.9"
   },
   "devEngines": {
     "packageManager": {
