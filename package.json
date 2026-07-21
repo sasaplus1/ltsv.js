@@ -21,7 +21,7 @@
     "playwright": "1.61.1",
     "rolldown": "1.2.0",
     "typedoc": "0.28.20",
-    "typescript": "5.9.3",
+    "typescript": "6.0.3",
     "vitest": "4.1.10"
   },
   "devEngines": {
