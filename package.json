@@ -17,7 +17,7 @@
     "fixpack": "4.0.0",
     "husky": "9.1.7",
     "lint-staged": "17.2.0",
-    "npm-run-all2": "9.0.2",
+    "npm-run-all2": "9.0.3",
     "playwright": "1.62.0",
     "rolldown": "1.2.0",
     "typedoc": "0.28.20",
