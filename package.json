@@ -19,7 +19,7 @@
     "lint-staged": "17.3.0",
     "npm-run-all2": "9.0.3",
     "playwright": "1.62.1",
-    "rolldown": "1.2.5",
+    "rolldown": "1.2.6",
     "typedoc": "0.28.20",
     "typescript": "5.9.3",
     "vitest": "4.1.11"
