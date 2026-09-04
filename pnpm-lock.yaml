@@ -46,10 +46,10 @@ importers:
         version: 1.2.6
       typedoc:
         specifier: 0.28.20
-        version: 0.28.20(typescript@5.9.3)
+        version: 0.28.20(typescript@6.0.3)
       typescript:
-        specifier: 5.9.3
-        version: 5.9.3
+        specifier: 6.0.3
+        version: 6.0.3
       vitest:
         specifier: 4.1.11
         version: 4.1.11(@types/node@24.13.3)(@vitest/browser-playwright@4.1.11)(yaml@2.9.0)
@@ -864,8 +864,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  typescript@5.9.3:
-    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+  typescript@6.0.3:
+    resolution: {integrity: sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -1697,18 +1697,18 @@ snapshots:
 
   totalist@3.0.1: {}
 
-  typedoc@0.28.20(typescript@5.9.3):
+  typedoc@0.28.20(typescript@6.0.3):
     dependencies:
       '@gerrit0/mini-shiki': 3.23.0
       lunr: 2.3.9
       markdown-it: 14.3.0
       minimatch: 10.2.6
-      typescript: 5.9.3
+      typescript: 6.0.3
       yaml: 2.9.0
 
   typescript@5.6.1-rc: {}
 
-  typescript@5.9.3: {}
+  typescript@6.0.3: {}
 
   uc.micro@2.1.0: {}
 
