@@ -10,7 +10,7 @@
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.5",
     "@biomejs/biome": "2.5.15",
-    "@tsconfig/strictest": "2.0.8",
+    "@tsconfig/strictest": "2.0.9",
     "@types/node": "26.6.6",
     "@vitest/browser": "5.1.0",
     "@vitest/browser-playwright": "5.1.0",
